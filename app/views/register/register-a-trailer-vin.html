@@ -1,0 +1,46 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="vienna-convention-part-2" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">Do you have a 17 character vehicle identification number (VIN)?</h1>
+            <div class="form-group">
+                <fieldset class="inline">
+                    <div class="multiple-choice" data-target="vin-number-yes">
+                        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                        <label for="radio-inline-1">Yes</label>
+                    </div>
+                    <div class="multiple-choice" data-target="vin-number-no">
+                        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                        <label for="radio-inline-2">No</label>
+                    </div>
+                    <div class="panel panel-border-narrow js-hidden" id="vin-number-yes">
+                        <label class="form-label" for="vin-number-inline-yes"><strong class="bold-small">VIN</strong></label>
+                        <input class="form-control" name="vin-number-yes" type="text" id="vin-number-yes">
+                    </div>
+                    <div class="panel panel-border-narrow js-hidden" id="vin-number-no">
+                        <label class="form-label" for="vin-number-inline-no"><strong class="bold-small">VIN or Chassis number</strong></label>
+                        <input class="form-control" name="vin-number-no" type="text" id="vin-number-no">
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+    </div>
+    <button class="margin-bottom-0 margin-top-2 button" type="submit">Continue</button>
+
+
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/register/register-a-trailer-manufacturer")
+    })
+</script>
+
+{% endblock %}

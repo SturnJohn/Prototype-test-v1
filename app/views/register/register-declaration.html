@@ -1,0 +1,42 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="vienna-convention-part-2" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">Trailer registration declaration</h1>
+            
+            <p>You must register any trailers that:</p>
+            <ul class="list list-bullet">
+                <li>travel abroad, weigh over 750kg and are used commercially</li>
+                <li>travel abroad, weigh over 3,500kg and are not used commercially</li>
+            </ul>
+
+            <p>Trailers travelling to the Republic of Ireland, Spain, Cyprus and Malta are not required to register, unless they pass through a foreign country that has ratified the Vienna Convention on the same journey.</p>
+
+            <p>You cannot register trailers that weigh less than 750kg.</p>
+
+            <h4 class="margin-bottom-3 heading-small">It’s optional to register for all other trailers.</h4>
+
+            <div class="multiple-choice">
+                <input id="waste-type-1" name="waste-types" type="checkbox" value="waste-animal">
+                <label for="waste-type-1">I have read and understand which trailers need to be registered</label>
+            </div>
+            <button class="margin-bottom-0 margin-top-6 button" type="submit">Continue</button>
+
+
+        </div>
+    </div>
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/register/register-a-trailer-number")
+    })
+</script>
+
+{% endblock %}

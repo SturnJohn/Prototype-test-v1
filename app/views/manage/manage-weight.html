@@ -1,0 +1,43 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="vienna-convention-part-2" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">Update trailer weights</h1>
+
+            <label class="form-label" for="first-name-2"><strong class="bold-small">Gross weight (kg)</strong></label>
+            <input class="form-control-66 form-control" id="trailer-reg-number" name="reg-number" type="reg">
+
+            <details class="margin-top-2">
+                <summary><span class="summary">What is gross weight?</span></summary>
+                <div class="panel panel-border-narrow">
+                    <p>This is specified by the manufacturer and it means the maximum weight the trailer is allowed to be when fully loaded. It is the unladen weight of the trailer plus the maximum permitted payload. It is also known as the Maximum Permissible Mass.</p>
+                </div>
+            </details>
+
+            <label class="margin-top-4 form-label" for="first-name-2"><strong class="bold-small">Unladen weight (kg)</strong></label>
+            <input class="margin-bottom-2 form-control-66 form-control" id="trailer-reg-number" name="reg-number" type="reg">
+
+            <details>
+                <summary><span class="summary">What is unladen weight?</span></summary>
+                <div class="panel panel-border-narrow">
+                    <p>The weight of an empty trailer, including any permanent modifications.</p>
+                </div>
+            </details>
+        </div>
+    </div>
+    <button class="margin-bottom-0 margin-top-3 button" type="submit">Save and continue</button>
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/register/register-a-trailer-outside-uk")
+    })
+</script>
+
+{% endblock %}

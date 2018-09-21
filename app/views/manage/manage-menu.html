@@ -1,0 +1,78 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+<main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div class="grid-row">
+        <div class="column-one-half">
+
+            <div class="breadcrumbs">
+                <ol>
+                    <li><a href="https://www.gov.uk">Trailer record</a></li>
+                    <li><a href="">A1234567</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="column-one-half">
+            <p class="haulage-company-company-details">Haulage Company | <a href="/dashboard/company-details">Company details</a></p>
+        </div>
+
+        <div class="column-two-thirds">
+            <h1 class="margin-bottom-0 h1-large heading-large">Manage trailer registration number A1234567</h1>
+            <fieldset>
+                <legend>
+                    <h1 class="heading-medium">What would you like to do?</h1>
+                </legend>
+                <div class="multiple-choice">
+                    <input id="radio-1" type="radio" name="radio-group" value="Northern Ireland">
+                    <label for="radio-1">Update trailer weights</label>
+                </div>
+                <div class="multiple-choice">
+                    <input id="radio-2" type="radio" name="radio-group" value="Isle of Man or the Channel Islands">
+                    <label for="radio-2">Request a replacement trailer certificate (£XX.XX)</label>
+                </div>
+                <div class="multiple-choice">
+                    <input id="radio-1" type="radio" name="radio-group" value="Northern Ireland">
+                    <label for="radio-1">Tell DVLA you’ve exported this trailer</label>
+                </div>
+                <div class="multiple-choice">
+                    <input id="radio-2" type="radio" name="radio-group" value="Isle of Man or the Channel Islands">
+                    <label for="radio-2">Tell DVLA you no longer have this trailer</label>
+                </div>
+            </fieldset>
+            <button class="margin-bottom-0 margin-top-4 button" type="submit">Continue</button>
+            <p class="margin-top-6 margin-bottom-0"><a href="/dashboard/trailer-record">Return to trailer record</a></p>
+        </div>
+
+        <div class="column-one-third">
+            <div class="margin-top-4 blue-dividing-line-third"></div>
+            <h3 class="margin-top-2 heading-medium">Trailer details</h3>
+
+            <p class="margin-bottom-1 font-xsmall">VIN / Chassis number</p>
+            <p class="minus-margin-bottom-2 bold-xsmall">10012345678</p>
+            <div class="margin-top-4 grey-line-1px"></div>
+            <p class="minus-margin-top-2 margin-bottom-1 font-xsmall">Make</p>
+            <p class="minus-margin-bottom-2 bold-xsmall">Concept Trailers</p>
+            <div class="margin-top-4 grey-line-1px"></div>
+
+            <p class="minus-margin-top-2 margin-bottom-1 font-xsmall">Gross weight (kg)</p>
+            <p class="minus-margin-bottom-2 bold-xsmall">3750</p>
+            <div class="margin-top-4 grey-line-1px"></div>
+
+            <p class="minus-margin-top-2 margin-bottom-1 font-xsmall">Unladen weight (kg)</p>
+            <p class="minus-margin-bottom-2 bold-xsmall">1250</p>
+            <div class="margin-top-4 grey-line-1px"></div>
+
+        </div>
+
+    </div>
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/dashboard/trailer-record")
+    })
+</script>
+
+{% endblock %}

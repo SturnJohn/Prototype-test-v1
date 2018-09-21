@@ -1,0 +1,77 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div class="grid-row">
+        <div class="column-full">
+        </div>
+        <div class="column-two-thirds">
+            <div class="register-confirmation below-banner confirmation-panel">
+
+                <h1 class="margin-bottom-1 h1-large heading-large">Application successful</h1>
+
+                <h4 class="heading-small">You can now put the number on the trailer</h4>
+                <div class="trailer-number-plate"></div>
+            </div>
+            <h3 class="heading-medium">Summary</h3>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Registration number</th>
+                        <th class="vin-chassis-number" scope="col">VIN / chassis number</th>
+                        <th class="numeric" scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="padding-right-0" scope="row">A1234567</th>
+                        <td class="vin-chassis-number">10012345678</td>
+                        <td class="numeric"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">B1260484</th>
+                        <td class="vin-chassis-number">20012345678</td>
+                        <td class="numeric"></td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+
+
+            <p class="margin-top-6">A receipt of the transaction and your proof of entitlement certificate XXXX has been sent to <strong class="bold-small">email@email.com</strong>.</p>
+            <p>You’ll receive your trailer registration certificate within <strong class="bold-small">3 to 5 days</strong>. <br>This should be kept with the trailer.</p>
+            <p>To manage your trailers you will need your trailer keeper number <br>and password.</p>
+            <h3 class="heading-medium">Next steps</h3>
+
+    <ol class="next-steps-list">
+        <li>
+            <span class="circle circle-step-large">1</span>
+            <span class="ol-content"> <a href="#">Download the proof of entitlement certificate (XXXX).</a></span>
+        </li>
+
+
+        <li>
+            <span class="circle circle-step-large">2</span>
+            <span class="ol-content">Get number plates made up with your nearest<a href="#">registered number plate supplier</a> (RNPS) using the XXXX. You do not need to wait for the registration certificate to arrive in the post.</span>
+        </li>
+    </ol>
+    <p class="margin-top-6">You can <a href="#">print this page</a> for your records.</p>
+    <button class="margin-bottom-0 margin-top-3 button" type="submit">Return to trailer record</button>
+        </div>
+    </div>
+    
+
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/dashboard/trailer-record-1-trailer")
+    })
+</script>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+#footer .footer-categories .footer-explore, #footer .footer-categories .footer-inside-government {
+    float: left;
+    width: 66.66%;
+    padding-bottom: 60px;
+}
+
+#footer .footer-categories .footer-inside-government {
+    float: left;
+    width: 33.33%;
+}
+
+#footer .footer-categories ul {
+    float: left;
+    margin: 15px 0 0 0;
+    width: 50%;
+}
+
+#footer .footer-categories ul li {
+    padding: 20px 0 0;
+    margin: 0 15px;
+}
+
+#footer .footer-categories .footer-explore h2, #footer .footer-categories .footer-inside-government h2 {
+    padding: 0 0 20px;
+    border-bottom: 1px solid #bfc1c3;
+}
+
+#footer .footer-categories, .grid-row {
+    margin: 0 -15px;
+}
+
+#footer .footer-categories .footer-explore h2, #footer .footer-categories .footer-inside-government h2 {
+    margin: 0 15px;
+}
+
+#footer .footer-categories .footer-inside-government ul li {
+    width: 100%;
+}
+
+#footer .footer-categories ul {
+    font-size: 16px;
+    line-height: 1.25;
+}

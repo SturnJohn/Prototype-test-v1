@@ -1,6 +1,7 @@
 {% extends "govuk_template.html" %}
 
 {% block head %}
+{% include "includes/scripts.html" %}
   {% include "includes/head.html" %}
 {% endblock %}
 
@@ -48,7 +49,6 @@
 
 {% block body_end %}
   {% block scripts %}
-    {% include "includes/scripts.html" %}
     {% block page_scripts %}{% endblock %}
   {% endblock %}
   <!-- GOV.UK Prototype kit {{releaseVersion}} -->

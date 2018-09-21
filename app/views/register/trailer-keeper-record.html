@@ -1,0 +1,94 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+<main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div class="grid-row">
+        <div class="column-one-half">
+            <p><a href="confirmation" class="link-back">Back</a></p>
+        </div>
+
+        <div class="column-one-half">
+            <p class="haulage-company-company-details">Haulage Company | <a href="/dashboard/company-details">Company details</a></p>
+        </div>
+    </div>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">Trailer Keeper Record</h1>
+            <h3 class="heading-medium">Company details</h3>
+        </div>
+        <div class="margin-bottom-2 minus-margin-top-2 column-full">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="columns-third" scope="row">Company name</td>
+                        <td class="bold second-column">Haulage Company</td>
+                        <td class="last-column"><a href="/change/change-company-name">Change</a></td>
+                    </tr>
+                    <tr>
+                        <th class="first-column columns-third" scope="row">Company address</th>
+                        <td class="bold">Unit 123 <br>2 Example Close <br>Swansea <br>SA1 2BC</td>
+                        <td class="last-column"><a href="/change/change-company-address">Change</a></td>
+                    </tr>
+                    <tr>
+                        <th class="columns-third" scope="row">Email address</th>
+                        <td class="bold second-column">email@email.com</td>
+                        <td class="last-column"><a href="/change/change-email-address">Change</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <button class="margin-top-3 button" type="submit">Register trailers</button>
+    <div class="margin-top-1 blue-dividing-line"></div>
+    <p class="margin-top-3 lede">To manage a trailer select the VIN / Chassis number from the table below.</p>
+
+    <div class="minus-margin-top-3 grid-row">
+        <div class="column-one-quarter">
+            <h3 class="vertical-align border-bottom heading-medium">Filter by:</h3>
+            <div class="margin-bottom-0 small-panel-quarter">
+                <p class="margin-top-0 heading-small">Search
+                    <a href="#" class="clear">Clear</a>
+
+                    <input class="input-box form-control">
+
+            </div>
+
+        </div>
+        <div class="column-3-quarters">
+            <p class="vertical-align border-bottom heading-small"><span class="big-number">0</span> trailers:</p>
+            <div class="column-third margin-bottom-3 show">Show 25, <a href="#">50</a>, <a href="#">75</a>, <a href="#">100</a> trailers</div>
+            <div class="page-of">Page 1 of 1</div>
+               
+            <table class="trailer-details">
+                <tbody>
+                    <tr>
+                        <td class="bold-xsmall">Registration Number</td>
+                        <td class="bold-xsmall">VIN / Chassis Number</td>
+                        <td class="bold-xsmall">Manufacturer</td>
+                        <td class="bold-xsmall">Gross weight (kg)</td>
+                        <td class="bold-xsmall">Unladen weight (kg)</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/register/register-declaration")
+    })
+</script>
+
+{% endblock %}

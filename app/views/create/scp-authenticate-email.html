@@ -1,0 +1,49 @@
+ {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div class="grid-row">
+        <div class="column-full">
+            <span><a href="scp-email-address" class="link-back">Back</a><p class="languages">English | <a href="#">Cymraeg</a></p></span>
+        </div>
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">Confirm your email address</h1>
+            <p class="margin-top-2">We have sent a code to <strong class="bold-small">email@email.com</strong></p>
+            <div class="form-group">
+                <label class="form-label" for="ni-number">Enter code
+                            <span class="form-hint">For example, CF–DNCLRK.</span>
+                        </label>
+                <form class="padding-top-0" action="/action_page.php">
+                    CF –
+                    <input class="form-control form-control-1-4" id="form-control-1-4" type="text" name="form-control-1-4">
+                </form>
+
+                <details>
+                    <summary class="margin-top-4"><span class="summary">I have not got the email</span></summary>
+                    <div class="margin-top-2 padding-bottom-2 panel panel-border-narrow">
+                        <p>It might take a few minutes for the email to arrive. The subject of the email is 'Confirm your email address – Government Gateway'.</p>
+                        <p>If you still have got the email, check your spam folder. If it is not in your spam folder you can <a href="#">request a new code</a> or <a href="#">start again</a></p>
+                    </div>
+                </details>
+                <div class="grid-row">
+                    <div class="column-full">
+                        <button class="button" type="submit">Continue</button>
+                        <p class="margin-bottom-0"><a href="#">Get help</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/create/scp-email-confirmed")
+    })
+</script>
+
+{% endblock %}

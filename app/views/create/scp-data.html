@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+            <h4 class="log-out heading-small">Log out</h4>
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div class="grid-row">
+        <div class="column-half">
+            <a href="scp-sign-in" class="link-back">Back</a>
+        </div>
+        <div class="column-half">
+            <p class="languages" align="right">English | <a href="#">Cymraeg</a></p>
+        </div>
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">About your data</h1>
+            <p class="minus-margin-top-2">We will need to collect, process and store certain data about you.</p>
+            <p>To continue to create a digital government ID you must accept the <a href="#">privacy policy (opens in a new window or tab).</a></p>
+            <div class="multiple-choice">
+                <input id="waste-type-1" name="waste-types" type="checkbox" value="waste-animal">
+                <label for="waste-type-1">I have read and accept the privacy policy</label>
+            </div>
+            <div class="grid-row">
+                <div class="column-full">
+                    <button class="margin-top-3 button" type="submit">Continue</button>
+                    <p class="margin-bottom-0"><a href="#">Get help</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+$(".button").click( function(){
+    go("/create/scp-email-address")
+})
+</script>
+
+{% endblock %}

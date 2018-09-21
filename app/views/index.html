@@ -1,64 +1,51 @@
-{% extends "layout.html" %}
-
-{% block page_title %}
-  GOV.UK prototype kit
-{% endblock %}
-
-{% block content %}
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block service_name %} {% endblock %} {% block content %}
 
 <main id="content" role="main">
-  <div class="grid-row">
-    <div class="column-two-thirds">
-
-      <h1 class="heading-xlarge">
-        The GOV.UK prototype kit
-        <span class="heading-secondary">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
-
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
-
-      <h2 class="heading-medium">About this page</h2>
-
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
-
-			<h2 class="heading-medium">Examples and documentation</h2>
-
-			<ul class="list list-bullet">
-				<li><a href="/docs/tutorials-and-examples">Example pages and documentation</a></li>
-				<li><a href="https://github.com/alphagov/govuk_prototype_kit">GitHub</a></li>
-			</ul>
-
-      <h2 class="heading-medium">Other resources</h2>
-
-			<ul class="list list-bullet">
-				<li>
-					<a href="https://govuk-elements.herokuapp.com/snippets/">
-						Guide to GOV.UK Elements
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/service-manual">
-						Service design manual
-					</a>
-				</li>
-				<li>
-					<a href="https://www.gov.uk/design-principles">
-						Government Digital Service Design Principles
-					</a>
-				</li>
-			</ul>
-
+    <div class="breadcrumbs">
+        <ol>
+            <li><a href="https://www.gov.uk">Home</a></li>
+            <li><a href="">Driving and transport</a></li>
+            <li><a href="">Number plates, vehicle registration and log books</a></li>
+        </ol>
     </div>
-  </div>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="margin-top-1 margin-bottom-1 heading-xlarge">{% if serviceName %} {{ serviceName }} {% endif %}</h1>
+            <p>Use this service to register and manage your trailers.</p>
+            <p>A trailer is anything on wheels which is intended or adapted to be drawn by a motor vehicle.</p>
+            <div class="panel panel-border-wide">
+                <p>This page is also available in Welsh (<a href="#">Cymraeg</a>)</p>
+            </div>
+            <p><button class="margin-top-3 button button-start" role="button">Start now</button></p>
+            <h2 class="margin-top-3 heading-medium">Before you start</h2>
+            <p>You will need:</p>
+            <ul class="margin-bottom-0 list list-bullet">
+                <li>details of your trailers</li>
+                <li>a valid email address</li>
+                <li>a debit or credit card.</li>
+            </ul>
+        </div>
+        <div class="column-third">
+            <aside class="margin-top govuk-related-items" role="complementary">
+                <h2 class="heading-medium" id="subsection-title">Driving and transport</h2>
+                <nav role="navigation" aria-labelledby="subsection-title">
+                    <ul class="font-xsmall">
+                        <li><a href="#">Vehicle registration</a></li>
+                        <li><a href="#" class="bold-xsmall">More <span class="visuallyhidden">in Subsection</span></a></li>
+                    </ul>
+                </nav>
+            </aside>
+        </div>
+    </div>
 </main>
 
-{% endblock %}
+<script>
+$(".button").click( function(){
+    go("create/trailer-keeper-number")
+})
+</script>
+
+
+{% endblock %} {% block footer_top %} {% include "includes/footer-categories.html" %} {% endblock %}
 
 

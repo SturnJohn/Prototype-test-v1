@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+<!--        <h4 class="log-out heading-small">Log out</h4>-->
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="sign-in" class="link-back">Back</a>
+    <div class="margin-bottom-0 blue-panel">
+        <div class="grid-row">
+            <div class="column-full">
+                <h1 class="margin-top-2 panel-h1-large heading-large">Check if you need to register your trailers</h1>
+            </div>
+            <div class="column-two-thirds">
+                <p class="p-panel-block">Before you create a trailer keeper record, you will be asked a series of questions to see if any of your trailers need to be registered</p>
+                <p class="p-panel-block p-last-line">This will allow you to register, manage and update your trailers.</p>
+                <button class="margin-bottom-0 margin-top-3 panel-button button" type="submit">Continue</button>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+$(".button").click( function(){
+    go("over-750")
+})
+</script>
+
+
+{% endblock %}

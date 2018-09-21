@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+                <h4 class="log-out heading-small">Log out</h4>
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="scp-user-ID" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">How DVLA uses your data</h1>
+            <p class="lede">Before you can continue you must read and accept how DVLA uses your data.</p>
+            <p>DVLA handles your personal data in accordance with road vehicle law and data protection laws. The law allows us to release your data to the police and other enforcement bodies.</p>
+            <p>For further information about how we process your data, your rights and who to contact, see our privacy notice at <a href="#">www.gov.uk/dvla/privacy-policy.</a></p>
+            <div class="grid-row">
+                <div class="column-full">
+                    <button class="margin-bottom-0 margin-top-3 button" type="submit">Accept and continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+$(".button").click( function(){
+    go("/create/keeper-company")
+})
+</script>
+
+{% endblock %}
