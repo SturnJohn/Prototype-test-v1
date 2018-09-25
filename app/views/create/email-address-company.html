@@ -1,0 +1,41 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">    
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="confirm-address" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-full">
+            <h1 class="h1-large heading-large">What is your company email address?</h1>
+
+            <p class="margin-bottom-2">Confirmation of any transactions or notifications will be sent to this email address</p>
+
+            <div class="margin-bottom-2 form-group">
+                <input class="form-control-66 form-control" id="company-email" name="company-email" type="company-email">
+            </div>
+        </div>
+    </div>
+    <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
+
+</main>
+
+<script>
+    $(".button").click(function() {
+
+        var CE = $("#company-email").val();
+        console.log("CE = "+CE);
+        
+        if(!CE){
+            alert("company email can not be empty");
+        }    
+        
+        if(CE){
+            go ("/create/check-your-answers-company");
+        }
+    })
+
+</script>
+
+{% endblock %}

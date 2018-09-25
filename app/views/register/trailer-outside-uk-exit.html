@@ -1,0 +1,31 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div><a href="#" class="link-back">Back</a>
+        <div class="grid-row">
+            <div class="column-two-thirds">
+                <div class="warning-panel">
+                    <h1 class="heading-large">You do not need to <br>register this trailer</h1>
+                </div>
+            <p>You only have to register trailers that are used outside of the UK.</p>
+            <p>You can still register this trailer if you want to.</p>
+            <button class="margin-bottom-3 button" type="submit">I still want to register</button>
+            <p class="margin-bottom-0"><a href="/register/trailer-record">Cancel and go to trailer record</a></p>
+                            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/register/trailer-reg-number")
+    })
+</script>
+
+{% endblock %}

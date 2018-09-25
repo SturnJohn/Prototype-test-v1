@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <div><a href="#" class="link-back">Back</a>
+        <div class="grid-row">
+            <div class="column-two-thirds">
+                <div class="warning-panel">
+                    <h1 class="heading-large">You cannot register this trailer</h1>
+                </div>
+            <p>Trailers must weight over 750kg in gross weight to be registered.</p>
+            <button class="margin-bottom-3 button" type="submit">Go to trailer record</button>
+            
+                            </div>
+
+        </div>
+
+    </div>
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/register/trailer-record")
+    })
+</script>
+
+{% endblock %}

@@ -13,13 +13,13 @@
         <div class="column-two-thirds">
             <div class="form-group">
                 <fieldset class="inline">
-                    <div class="multiple-choice" data-target="reg-number-yes">
-                        <input id="reg-number-inline-yes" type="radio" name="reg-number-yes" value="Yes">
-                        <label for="reg-number-inline-yes">Yes</label>
+                    <div class="multiple-choice">
+                        <input id="outside-uk-yes" type="radio" name="outside-uk" value="Yes">
+                        <label for="outside-uk-yes">Yes</label>
                     </div>
-                    <div class="multiple-choice" data-target="reg-number-no">
-                        <input id="reg-number-inline-no" type="radio" name="reg-number-no" value="No">
-                        <label for="reg-number-inline-no">No</label>
+                    <div class="multiple-choice">
+                        <input id="outside-uk-no" type="radio" name="outside-uk" value="No">
+                        <label for="outside-uk-no">No</label>
                     </div>
                 </fieldset>
             </div>
@@ -30,9 +30,26 @@
 </main>
 
 <script>
+
     $(".button").click(function() {
-        go("/register/register-a-trailer-Vienna-part-1")
+
+        var input = $('input[name = outside-uk]:checked').val();
+        console.log(input);
+
+        if (input == "Yes") {
+            go("/register/trailer-vienna-part-1");
+
+        } else {
+            if (input == "No") {
+            go("/register/trailer-outside-uk-exit");
+
+            } else {
+                alert("select an option");
+            }
+
+        }
     })
+
 </script>
 
 {% endblock %}

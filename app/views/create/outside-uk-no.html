@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-        <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -12,11 +11,22 @@
             <div class="warning-panel">
                 <h1 class="margin-top-2 heading-large">You do not need to <br>register your trailers</h1>
             </div>
+            <p>You only have to create a trailer record if you will use the trailers outside of the UK.</p>
+
+            <p>You can still create a trailer record if you want to.</p>
+
         </div>
     </div>
-    <p>You still have the option to register if you want to.</p>
-    <button class="button" type="submit">I still want to register</button>
+
+    <button class="button" type="submit">I still want to create a trailer record</button>
     <p class="margin-bottom-0"><a href="#">Return to GOV.UK</a></p>
 </main>
+
+<script>
+$(".button").click( function(){
+    go("/create/behalf-of-company")
+})
+</script>
+
 
 {% endblock %}

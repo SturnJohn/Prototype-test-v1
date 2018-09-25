@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-                <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -16,8 +15,8 @@
         <div class="column-two-thirds">
             <h1 class="h1-large heading-large">What is your full name?</h1>
             <div class="form-group">
-                <label class="margin-top-4 form-label" for="first-name-2"><strong class="bold-small">Full name</strong></label>
-                <input class="form-control" id="first-name-2" name="first-name-2" type="text">
+                <label class="margin-top-4 form-label" for="full-name"><strong class="bold-small">Full name</strong></label>
+                <input class="form-control" id="full-name" name="full-name" type="full-name">
             </div>
             <button class="margin-top-3 button" type="submit">Sign in</button>
             <p class="margin-bottom-0"><a href="#">Get help</a></p>
@@ -26,9 +25,20 @@
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/create/scp-password")
-})
-</script>
+    $(".button").click(function() {
 
+        var Name = $("#full-name").val();
+        console.log("Name = "+Name);
+       
+        
+        if(!Name){
+            alert("full name can not be empty");
+        }        
+        
+        if(Name){
+            go ("/create/scp-password");
+        }
+    })
+
+</script>
 {% endblock %}

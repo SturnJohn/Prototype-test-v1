@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-                <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -20,7 +19,7 @@
                 <li>not contain numbers</li>
             </ul>
             <div class="margin-bottom-2 form-group">
-                <label class="form-label" for="first-name-2"><strong class="bold-small">Recovery word</strong></label><input class="form-control-33 margin-top-0 form-control" id="email-address" name="email-address" type="email">
+                <label class="form-label" for="recovery-word"><strong class="bold-small">Recovery word</strong></label><input class="form-control-33 margin-top-0 form-control" id="recovery-word" name="recovery-word" type="recovery-word">
             </div>
             <button class="margin-top-3 button" type="submit">Continue</button>
             <p class="margin-bottom-0"><a href="#">Get help</a></p>
@@ -29,9 +28,20 @@
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/create/scp-user-ID")
-})
+    $(".button").click(function() {
+
+        var Recovery = $("#recovery-word").val();
+        console.log("Recovery = "+Recovery);  
+        
+        if(!Recovery){
+            alert("recovery word can not be empty");
+        }      
+        
+        if(Recovery){
+            go ("/create/scp-user-ID");
+        }
+    })
+
 </script>
 
 

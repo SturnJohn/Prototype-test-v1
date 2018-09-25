@@ -5,25 +5,21 @@
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
     </div>
+    <a href="address" class="link-back">Back</a>
     <div class="grid-row">
-        <div class="column-full">
-        </div>
         <div class="column-two-thirds">
-            <div class="confirmation-panel-below-banner confirmation-panel">
-                <h1 class="h1-large heading-large">Trailer record created successfully</h1>
+            <div class="no-info-panel">
+                <h1 class="h1-large heading-large">You cannot create a trailer record</h1>
             </div>
+            <p>To create a trailer record, trailers must weigh over 750kg in gross weight.</p>
+            <button class="margin-bottom-0 margin-top-3 button" type="submit">Return to GOV.UK</button>
         </div>
     </div>
-    <p class="large">You can now register your trailers.</p>
-    <button class="margin-top-3 button" type="submit">Go to trailer record</button>
-<!--    <p class="margin-bottom-0"><a href="#">Get help</a></p>-->
 </main>
-
-
 
 <script>
     $(".button").click(function() {
-        go("/register/trailer-record")
+        go("/index")
     })
 </script>
 

@@ -11,7 +11,7 @@
             <h1 class="h1-large heading-large">Enter weight details</h1>
 
             <label class="form-label" for="first-name-2"><strong class="bold-small">Gross weight (kg)</strong></label>
-            <input class="form-control-66 form-control" id="trailer-reg-number" name="reg-number" type="reg">
+            <input class="form-control-66 form-control" id="gross-weight" name="gross-weight" type="gross-weight">
 
             <details class="margin-top-2">
                 <summary><span class="summary">What is gross weight?</span></summary>
@@ -20,8 +20,8 @@
                 </div>
             </details>
 
-            <label class="margin-top-4 form-label" for="first-name-2"><strong class="bold-small">Unladen weight (kg)</strong></label>
-            <input class="margin-bottom-2 form-control-66 form-control" id="trailer-reg-number" name="reg-number" type="reg">
+            <label class="margin-top-4 form-label" for="unladen-weight"><strong class="bold-small">Unladen weight (kg)</strong></label>
+            <input class="margin-bottom-2 form-control-66 form-control" id="unladen-weight" name="unladen-weight" type="unladen-weight">
 
             <details>
                 <summary><span class="summary">What is unladen weight?</span></summary>
@@ -36,8 +36,27 @@
 
 <script>
     $(".button").click(function() {
-        go("/register/register-a-trailer-outside-uk")
+
+        var GW = $("#gross-weight").val();
+        var UW = $("#unladen-weight").val();
+        console.log("GW = "+GW);
+        console.log("UW = "+UW);
+        
+        if(!GW){
+            alert("the gross weight entry must be entered");
+        }       
+        
+        if(!UW){
+            alert("the unladen weight entry must be entered");
+        }       
+        
+        if(GW && UW){
+            go ("/register/trailer-outside-uk");
+        }
     })
+    
+
 </script>
+
 
 {% endblock %}

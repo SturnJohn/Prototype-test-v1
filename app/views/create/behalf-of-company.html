@@ -8,22 +8,17 @@
     <a href="index" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">Do you have a trailer record?</h1>
-            <details>
-                <summary><span class="summary">What is a trailer record?</span></summary>
-                <div class="panel panel-border-narrow">
-                    <p>A trailer record is where you can register your trailers, manage and update them.</p>
-                </div>
-            </details>
+            <h1 class="h1-large heading-large">Are you creating a trailer record on behalf of a company?</h1>
+            
             <div class="margin-top-3 form-group">
-                <fieldset class="inline">
+                <fieldset>
                     <div class="multiple-choice">
                         <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                        <label for="radio-inline-1">Yes</label>
+                        <label for="radio-inline-1">Yes, for a company</label>
                     </div>
-                    <div class="multiple-choice">
+                    <div class="margin-top-1 multiple-choice">
                         <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                        <label for="radio-inline-2">No</label>
+                        <label for="radio-inline-2">No, for myself</label>
                     </div>
                 </fieldset>
             </div>
@@ -40,11 +35,11 @@
 
 
         if (input == "Yes") {
-            go("/create/sign-in");
+            go("/create/authenticate-company");
 
         } else {
             if (input == "No") {
-            go("/create/over-750");
+            go("/create/authenticate-individual");
 
             } else {
                 alert("select an option");

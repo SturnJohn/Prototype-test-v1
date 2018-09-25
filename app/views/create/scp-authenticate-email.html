@@ -1,7 +1,6 @@
  {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-    <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -14,12 +13,12 @@
             <h1 class="h1-large heading-large">Confirm your email address</h1>
             <p class="margin-top-2">We have sent a code to <strong class="bold-small">email@email.com</strong></p>
             <div class="form-group">
-                <label class="form-label" for="ni-number">Enter code
+                <label class="form-label" for="email-code">Enter code
                             <span class="form-hint">For example, CF–DNCLRK.</span>
                         </label>
                 <form class="padding-top-0" action="/action_page.php">
                     CF –
-                    <input class="form-control form-control-1-4" id="form-control-1-4" type="text" name="form-control-1-4">
+                    <input class="form-control form-control-1-4" id="email-code" type="email-code" name="email-code">
                 </form>
 
                 <details>
@@ -42,8 +41,21 @@
 
 <script>
     $(".button").click(function() {
-        go("/create/scp-email-confirmed")
+
+        var Code = $("#email-code").val();
+        console.log("Code = "+Code);
+       
+        
+        if(!Code){
+            alert("email code can not be empty");
+        }        
+        
+        if(Code){
+            go ("/create/scp-email-confirmed");
+        }
     })
+
 </script>
+
 
 {% endblock %}

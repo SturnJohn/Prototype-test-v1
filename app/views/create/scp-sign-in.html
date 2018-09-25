@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-            <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -13,14 +12,14 @@
         <div class="column-two-thirds">
             <h1 class="h1-xlarge heading-xlarge">Sign in using Government Gateway</h1>
             <div class="form-group">
-                <label class="form-label" for="ni-number"><strong class="bold-small">User ID</strong>
+                <label class="form-label" for="scp-user-id"><strong class="bold-small">User ID</strong>
                     <span class="margin-bottom-1 form-hint">This could be up-to 12 characters. It is sometimes known as <br>a Government Gateway ID.</span>
                 </label>
-                <input class="form-control" id="ni-number" type="text" name="ni-number">
+                <input class="form-control" id="scp-user-id" type="text" name="scp-user-id">
             </div>
             <div class="form-group">
-                <label class="form-label" for="ni-number"><strong class="bold-small">Password</strong></label>
-                <input class="form-control" id="ni-number" type="text" name="ni-number">
+                <label class="form-label" for="scp-password"><strong class="bold-small">Password</strong></label>
+                <input class="form-control" id="scp-password" type="text" name="scp-password">
             </div>
             <button class="margin-top-3 button" type="submit">Sign in</button>
             <div>
@@ -39,9 +38,26 @@
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/create/scp-data")
-})
+    $(".button").click(function() {
+
+        var UserID = $("#scp-user-id").val();
+        var Pass = $("#scp-password").val();
+        console.log("UserID = "+UserID);
+        console.log("Pass = "+Pass);
+        
+        if(!UserID){
+            alert("user id can not be empty");
+        }
+        
+        if(!Pass){
+            alert("password can not be empty");
+        }        
+        
+        if(UserID && Pass){
+            go ("/create/scp-email-address");
+        }
+    })
+
 </script>
 
 {% endblock %}

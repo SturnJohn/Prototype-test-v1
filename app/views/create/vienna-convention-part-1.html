@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-    <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong>
@@ -17,36 +16,89 @@
                         <span class="body-text">Select all the countries that apply</span>
                     </legend>
                     <div class="multiple-choice">
-                        <input id="waste-type-1" name="waste-types" type="checkbox" value="waste-animal">
-                        <label for="waste-type-1">Republic of Ireland</label>
+                        <input id="checkbox-yes" name="checkbox-yes" type="checkbox" value="Yes-republic-of-ireland">
+                        <label for="country-1">Republic of Ireland</label>
                     </div>
                     <div class="multiple-choice">
-                        <input id="waste-type-2" name="waste-types" type="checkbox" value="waste-mines">
-                        <label for="waste-type-2">Spain</label>
+                        <input id="checkbox-yes" name="checkbox-yes" type="checkbox" value="Yes-spain">
+                        <label for="country-2">Spain</label>
                     </div>
                     <div class="multiple-choice">
-                        <input id="waste-type-3" name="waste-types" type="checkbox" value="waste-farm-agricultural">
-                        <label for="waste-type-3">Cyprus</label>
+                        <input id="checkbox-yes" name="checkbox-yes" type="checkbox" value="Yes-cyprus">
+                        <label for="country-3">Cyprus</label>
                     </div>
                     <div class="multiple-choice">
-                        <input id="waste-type-3" name="waste-types" type="checkbox" value="waste-farm-agricultural">
-                        <label for="waste-type-3">Malta</label>
+                        <input id="checkbox-yes" name="checkbox-yes" type="checkbox" value="Yes-malta">
+                        <label for="country-4">Malta</label>
                     </div>
-                    <div class="multiple-choice">
-                        <input id="waste-type-3" name="waste-types" type="checkbox" value="waste-farm-agricultural">
-                        <label for="waste-type-3">No, I won’t be travelling to any of these countries</label>
+                    </fieldset>
+                    <div class="margin-top-2">
+                        <p>or</p>
+                        </div>
+                
+                    <div class="minus-margin-top-1 multiple-choice">
+                        <input id="checkbox-no" name="checkbox-no" type="checkbox" value="No-countries">
+                        <label for="no-countries">No, I won’t be travelling to any of these countries</label>
                     </div>
-                </fieldset>
+                
             </div>
             <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
         </div>
     </div>
 </main>
 
+
+
+
+
 <script>
+    
+
     $(".button").click(function() {
-        go("/create/vienna-convention-part-2")
+
+        var input = $('input[name = outside-uk]:checked').val();
+        console.log(input);
+
+        if (input == "Yes") {
+            go("/register/trailer-vienna-part-1");
+
+        } else {
+            if (input == "No") {
+            go("/register/trailer-outside-uk-exit");
+
+            } else {
+                alert("select an option");
+            }
+
+        }
     })
+    
+    
+    
+//Yes, I'm traveling to one or more of these countries
+//    
+//    $(".button").click(function() {
+//
+//        var input = $('input[name = checkbox-yes or checkbox-no]:checked').val();
+//        console.log(input);
+//
+//
+//        if (input == "Yes");
+//
+//        } else {
+//            if (input == "No") {
+//            go("/create/commercially-no");
+//
+//            } else {
+//                alert("select an option");
+//            }
+//        
+//        }
+//    })
+//    
+//    
+
+    
 </script>
 
 {% endblock %}

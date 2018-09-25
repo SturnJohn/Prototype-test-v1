@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-            <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -21,7 +20,7 @@
             </div>
             <div class="form-group">
                 <div class="multiple-choice">
-                    <input id="checkbox-email-address" name="contact-by-text-phone" type="checkbox" value="true">
+                    <input id="correct-email" name="correct-email" type="checkbox" value="true">
                     <label for="checkbox-email-address">This email address is correct</label>
                 </div>
             </div>
@@ -36,9 +35,20 @@
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/create/scp-authenticate-email")
-})
+    $(".button").click(function() {
+
+        var Email = $("#email-address").val();
+        console.log("Email = "+Email);
+        
+        if(!Email){
+            alert("email can not be empty");
+        }      
+        
+        if(Email){
+            go ("/create/scp-authenticate-email");
+        }
+    })
+
 </script>
 
 {% endblock %}

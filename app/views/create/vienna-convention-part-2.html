@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-        <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -9,7 +8,7 @@
     <a href="vienna-convention-part-2" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">Will you be travelling through any other countries to get to Spain?</h1>
+            <h1 class="h1-large heading-large">Will you be travelling through <br>any other countries to get to <br>and from Spain?</h1>
             <div class="margin-bottom-1 form-group">
                 <fieldset class="inline">
                     <div class="multiple-choice">
@@ -28,9 +27,25 @@
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/create/commercially-yes")
-})
+    $(".button").click(function() {
+
+        var input = $('input[name = radio-inline-group]:checked').val();
+        console.log(input);
+
+
+        if (input == "Yes") {
+            go("/create/commercially-no");
+
+        } else {
+            if (input == "No") {
+            go("/create/trailer-record-no");
+
+            } else {
+                alert("select an option");
+            }
+
+        }
+    })
 </script>
 
 {% endblock %}
