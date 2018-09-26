@@ -1,0 +1,30 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="address" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <div class="no-info-panel">
+                <h1 class="h1-large heading-large">Trailer record could not be found</h1>
+            </div>
+            <p>You only have to create a trailer record to register non-commercial trailers that weigh over 3,500kg.</p>
+            <p>Under UK law you do not need to register your trailer, however you may be required to produce a UK Trailer Registration Certificate at foreign borders.</p>
+            <p>You can still create a trailer record if you want to.</p>
+            <button class="margin-bottom-4 margin-top-3 button" type="submit">I still want to create a trailer record</button>
+            <p><a href="/index">Return to GOV.UK</a></p>
+
+        </div>
+    </div>
+</main>
+
+<script>
+    $(".button").click(function() {
+        go("/create/over-750")
+    })
+</script>
+
+{% endblock %}

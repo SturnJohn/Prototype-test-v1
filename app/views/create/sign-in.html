@@ -10,7 +10,7 @@
         <div class="column-two-thirds">
             <h1 class="h1-large heading-large">Sign in</h1>
             <div class="form-group">
-                <label class="form-label" for="trailer-keeper-number"><strong class="bold-small">Trailer keeper number</strong></label>
+                <label class="form-label" for="trailer-keeper-number"><strong class="bold-small">User ID</strong></label>
                 <input class="form-control" id="trailer-keeper-number" name="trailer-keeper-number" type="text">
             </div>
             <div class="form-group">
@@ -40,7 +40,7 @@
         }        
         
         if(TRN && Pass){
-            go ("/dashboard/trailer-record");
+            go ("/register/trailer-record");
         }
     })
 
