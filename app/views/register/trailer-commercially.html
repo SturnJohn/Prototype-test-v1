@@ -33,9 +33,27 @@
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/register/register-a-trailer-summary")
-})
+    
+    $(".button").click(function() {
+
+        var input = $('input[name = radio-inline-group]:checked').val();
+        console.log(input);
+
+
+        if (input == "Yes") {
+            go("/register/trailer-reg-number");
+
+        } else {
+            if (input == "No") {
+            go("/register/trailer-commercially-no");
+
+            } else {
+                alert("select an option");
+            }
+
+        }
+    })
+    
 </script>
 
 {% endblock %}

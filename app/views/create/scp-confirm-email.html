@@ -7,7 +7,7 @@
     </div>
     <div class="grid-row">
         <div class="column-half">
-            <a href="scp-data" class="link-back">Back</a>
+            <a href="/create/scp-email-address" class="link-back">Back</a>
         </div>
         <div class="column-half">
             <p class="languages">English | <a href="#">Cymraeg</a></p>
@@ -22,7 +22,7 @@
                         For example, CF-DNCLRK.
                     </span>
                 </label>
-                <p class="margin-top-0 margin-top-2">CF- <input class="margin-left-0 form-control-150px form-control" id="ni-number" type="text" name="ni-number"></p>
+                <p class="margin-top-0 margin-top-2">CF- <input class="margin-left-0 form-control-150px form-control" id="email-code" type="text" name="example-email-code"></p>
                 
             </div>
             <details>
@@ -45,15 +45,15 @@
 <script>
     $(".button").click(function() {
 
-        var Email = $("#email-address").val();
-        console.log("Email = " + Email);
+        var code = $("#email-code").val();
+        console.log("code = " + code);
 
-        if (!Email) {
+        if (!code) {
             alert("email can not be empty");
         }
 
-        if (Email) {
-            go("/create/scp-authenticate-email");
+        if (code) {
+            go("/create/scp-email-confirmed");
         }
     })
 </script>

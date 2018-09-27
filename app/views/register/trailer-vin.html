@@ -38,9 +38,27 @@
 </main>
 
 <script>
-    $(".button").click(function() {
-        go("/register/register-a-trailer-manufacturer")
+    
+     $(".button").click(function() {
+
+        var REG = $("#reg-number").val();
+        var VIN = $("#vin-chassis-number").val();
+        console.log("REG = "+REG);
+        console.log("VIN = "+VIN);
+        
+        if(!REG){
+            alert("registration number can not be empty");
+        }
+        
+        if(!VIN){
+            alert("vin or chassis number can not be empty");
+        }        
+        
+        if(REG && VIN){
+            go ("/register/trailer-vin");
+        }
     })
+    
 </script>
 
 {% endblock %}

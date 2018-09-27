@@ -194,6 +194,9 @@ $path: "/public/images/";
 .form-control-150px {
     width: 150px;
 }
+.form-control-250px {
+    width: 250px;
+}
 
 .form-control-25 {
     width: 25%;
@@ -485,4 +488,14 @@ panel-h3-medium {
     border: 1px solid #BFC1C3;
     margin-top: 2em;
     margin-bottom: 2em;
+}
+
+.float-left {
+    float: left;
+}
+
+.open-all {
+    text-align: right;
+    font-size: 16px;
+    color: #005EA5;
 }

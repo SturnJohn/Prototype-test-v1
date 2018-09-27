@@ -23,13 +23,13 @@
                             <label for="reg-number-inline-no">No</label>
                         </div>
                     <div class="panel panel-border-narrow js-hidden" id="reg-number-yes">
-                        <label class="form-label" for="reg-number-inline-yes"><strong class="bold-small">Registration number</strong></label>
+                        <label class="form-label" for="reg-number"><strong class="bold-small">Registration number</strong></label>
                         <p class="margin-bottom-1 form-hint">For example, A1234567</p>
-                        <input class="form-control" name="reg-number-yes" type="text" id="reg-number-yes">
+                        <input class="form-control" name="reg-number" type="text" id="reg-number">
                     </div>
-                    <div class="panel panel-border-narrow js-hidden" id="reg-number-no">
-                        <label class="form-label" for="reg-number-inline-no"><strong class="bold-small">VIN or Chassis number</strong></label>
-                        <input class="form-control" name="reg-number-no" type="text" id="reg-number-no">
+                    <div class="panel panel-border-narrow js-hidden" id="vin-chassis-number">
+                        <label class="form-label" for="vin-chassis-number"><strong class="bold-small">VIN or Chassis number</strong></label>
+                        <input class="form-control" name="vin-chassis-number" type="text" id="vin-chassis-number">
                     </div>
 
                 </fieldset>
@@ -40,9 +40,27 @@
 </main>
 
 <script>
-    $(".button").click(function() {
-        go("/register/register-a-trailer-vin")
+    
+     $(".button").click(function() {
+
+        var REG = $("#reg-number").val();
+        var VIN = $("#vin-chassis-number").val();
+        console.log("REG = "+REG);
+        console.log("VIN = "+VIN);
+        
+        if(!REG){
+            alert("registration number can not be empty");
+        }
+        
+        if(!VIN){
+            alert("vin or chassis number can not be empty");
+        }        
+        
+        if(REG && VIN){
+            go ("/register/trailer-vin");
+        }
     })
+    
 </script>
 
 {% endblock %}

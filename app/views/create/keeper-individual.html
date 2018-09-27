@@ -12,9 +12,8 @@
 
             <div class="form-group">
                 <label class="form-label"><strong class="bold-small">Title</strong></label>
-                <input class="form-control-25 form-control" list="titles">
-                <datalist id="titles">
-                    <select>
+<!--                <input class="form-control-25 form-control" list="titles">-->
+                 <select class="form-control-25 form-control" id="select-box" name="select-box">
                     <option></option>
                     <option>Mr</option>
                     <option>Mrs</option>
@@ -22,11 +21,13 @@
                     <option>Ms</option>
                     <option data-target="other">Other</option>
                 </select>
-                </datalist>
                 <div class="margin-bottom-4 margin-top-2 panel panel-border-narrow" id="other">
-                    <label class="form-label" for="nationalities-other-country">Other titles</label>
-                    <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
-                </div>
+                         <label class="form-label" for="nationalities-other-country">Other titles</label>
+                         <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
+                     </div>
+            </div>
+            
+               
 
                 <div class="margin-top-3 form-group">
                     <label class="form-label" for="first-name-2"><strong class="bold-small">First names</strong></label><input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
@@ -36,7 +37,6 @@
                 </div>
             </div>
         </div>
-    </div>
             <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
 </main>
 
