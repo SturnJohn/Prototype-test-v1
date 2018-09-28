@@ -1,5 +1,8 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
+<script src="/public/javascripts/accordion.js"></script>
+
+
 <main id="content" role="main">
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -14,33 +17,101 @@
             <button class="minus-margin-top-1 margin-left-2 margin-bottom-3 blue-button button" type="submit">Go to payment</button>
 
             <p class="margin-bottom-2 margin-top-1">These trailers have been saved</p>
-            <p class="minus-margin-bottom-4 open-all">Open all</p>
+            <!--            <p class="minus-margin-bottom-4 open-all">Open all</p>-->
 
-            <div class="reg-box-third">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Registration number</th>
-                            <th>VIN</th>
-                            <th>Manufacturer</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="" scope="row">A1234567</td>
-                            <td class="">10012345678</td>
-                            <td class="">Concept Trailers</td>
-                            <td class="last-column"><a href="/change/change-company-name">Manage</a></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+
+            <div class="accordion">
+
+                <div class="accordion-section">
+
+                    <div class="accordion-section-header">
+                        <h2 class="blue-text padding-left-1 heading-medium">VIN: 1CPJS6WTYYE763728</h2>
+                    </div>
+                    <div class="accordion-section-body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Registration number</th>
+                                    <td>A1234567</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">VIN / Chassis number</th>
+                                    <td>10012345678</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Manufacturer</th>
+                                    <td>Concept Trailers</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Gross weight</th>
+                                    <td>3,750kg</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Unladen weight</th>
+                                    <td>1,250kg</td>
+                                    <td class="bold-small padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="accordion-footer">Remove trailer</td>
+                                    <td class="accordion-footer"></td>
+                                    <td class="accordion-footer"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="margin-top-2 accordion-section">
+
+                    <div class="accordion-section-header">
+                        <h2 class="blue-text padding-left-1 heading-medium">VIN: 3JBRO9NXILJ155719</h2>
+
+                    </div>
+                    <div class="accordion-section-body">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Registration number</th>
+                                    <td>A1234567</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">VIN / Chassis number</th>
+                                    <td>10012345678</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Manufacturer</th>
+                                    <td>Concept Trailers</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Gross weight</th>
+                                    <td>3,750kg</td>
+                                    <td class="padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <th class="padding-left-1" scope="row">Unladen weight</th>
+                                    <td>1,250kg</td>
+                                    <td class="bold-small padding-right-1 numeric"><a href="#" class="bold-xsmall">Change</a></td>
+                                </tr>
+                                <tr>
+                                    <td class="accordion-footer">Remove trailer</td>
+                                    <td class="accordion-footer"></td>
+                                    <td class="accordion-footer"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
 
-
-
-            <h3 class="my-trailers-title heading-medium">My trailers</h3>
-            <h2 class="heading-large">1 trailers</h2>
 
             <div class="table-full-column margin-bottom-2 minus-margin-top-2 column-full">
 
@@ -48,14 +119,37 @@
         </div>
 
         <div class="column-one-third">
-            <div class="reg-box-third"></div>
+            <div class="payment-summary">
+                <h3 class="margin-top-2 heading-medium">Payment summary</h3>
+                <p><span class="medium-number">1</span> x unregistered trailers (£26)</p>
+                <p><span class="medium-number">1</span> x acquired trailers (£21</p>
+                <p>Amount to pay</p>
+                <p class="margin-bottom-1 minus-margin-top-1 heading-large">£47</p>
 
+            </div>
         </div>
 
     </div>
 </main>
 
 <script>
+    if (
+        'addEventListener' in document &&
+        document.querySelectorAll
+    ) {
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var accordions = document.querySelectorAll('.accordion')
+
+            for (var i = accordions.length - 1; i >= 0; i--) {
+                new Accordion(accordions[i])
+            };
+
+        })
+
+    }
+
     $(".button").click(function() {
         go("/register/register-declaration")
     })

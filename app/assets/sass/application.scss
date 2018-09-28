@@ -8,6 +8,7 @@ $path: "/public/images/";
 
 // Take a look at in app/assets/sass/patterns/ to see which files are imported.
 @import 'patterns/check-your-answers';
+@import 'patterns/accordion';
 @import 'patterns/task-list';
 @import 'measurements';
 @import 'footer';
@@ -110,10 +111,6 @@ $path: "/public/images/";
     clear: both
 }
 
-.heading-xlarge {
-    margin-top: 0.3em;
-}
-
 .link-back {
     ;
     font-size: 16px;
@@ -159,6 +156,10 @@ $path: "/public/images/";
 
 .h1-xlarge {
     margin-top: 0.76em;
+}
+
+.heading-xlarge {
+    margin-top: 0.3em;
 }
 
 .h1-index {
@@ -297,6 +298,12 @@ panel-h3-medium {
 .big-number {
     font-size: 36px;
 }
+
+.medium-number {
+    font-size: 24px;
+    font-weight: 800;
+}
+
 .small-panel-quarter {
     width: auto;
     background-color: #EEEEEE;
@@ -351,6 +358,9 @@ panel-h3-medium {
 
 .blue-button {
     background-color: #0562A3;
+    &:hover {
+        background-color: #004f8c;
+    }
 }
   
 .reg-box-third {
@@ -359,6 +369,14 @@ panel-h3-medium {
     background-color: #EEEEEE;
     padding: 15px;
     height: 210px;
+    border: 4px solid #BFC1C3;
+}
+
+.payment-summary {
+    margin-top: 2.1em;
+    width: auto;
+    background-color: #EEEEEE;
+    padding: 15px;
     border: 4px solid #BFC1C3;
 }
 
@@ -494,8 +512,16 @@ panel-h3-medium {
     float: left;
 }
 
-.open-all {
-    text-align: right;
+.blue-text {
+    color: #0562A3; 
+}
+.middle-column {
+    padding-left: 0px;
+}
+.accordion-footer {
+    background-color: #F8F8F8;
+    color: #0562A3; 
     font-size: 16px;
-    color: #005EA5;
+    font-weight: 800;
+    padding-left: 0.5em;
 }
