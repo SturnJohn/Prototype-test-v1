@@ -36,26 +36,8 @@
 
 <script>
     $(".button").click(function() {
-
-        var GW = $("#gross-weight").val();
-        var UW = $("#unladen-weight").val();
-        console.log("GW = "+GW);
-        console.log("UW = "+UW);
-        
-        if(!GW){
-            alert("the gross weight entry must be entered");
-        }       
-        
-        if(!UW){
-            alert("the unladen weight entry must be entered");
-        }       
-        
-        if(GW && UW){
-            go ("/register/trailer-outside-uk");
-        }
+        go("/register/trailer-outside-uk")
     })
-    
-
 </script>
 
 

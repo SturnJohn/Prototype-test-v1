@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+​
+{% block page_title %} Trailer account {% endblock %}
+​
+{% block after_header %}
+{% endblock %}
+​
+​
+​
+​
+​
+{% block content %}
+  <main id="content" class="trailer-record" role="main">
+    <div class="grid-row">
+      <div class="column-full">
+        <span class="heading-section">
+          <span class="heading">
+            <h1 class="heading-large">
+              <span class="caption large">Name</span>
+              Trailer dashboard
+            </h1>
+          </span>
+          <span class="change">
+            <p><a href="/trailer-record/change-details"><strong>Change your<span id="record-type"> company</span> details</strong></a></p>
+          </span>
+​
+          <div class="clear"></div>
+        </span>
+​
+        <p id="no-trailers">You do not have any registered trailers.</p>
+​
+        <div class="form-group register">
+          <button class="button">Register trailers</button>
+        </div>
+​
+        <div class="form-group payment">
+          <button class="button">Go to trailers pending payment</button>
+        </div>
+​
+        <div id="trailer-bar"></div>
+​
+          
+          
+          <h2 class="heading-medium">registeredTrailers trailer<span class="plural"></span></h2>
+          
+          <table id="sortable-table"><thead><tr><th scope="col" onclick="sortTable(0)" id="reg" class="sort-default">Registration number</th><th scope="col" onclick="sortTable(1)" id="vin" class="sort-default"><abbr title="Vehicle Identification Number">VIN</abbr>/Chassis number</th><th scope="col" onclick="sortTable(2)" id="manu" class="sort-default">Manufacturer</th><th scope="col">&nbsp;</th></tr></thead><tbody>
+          
+          
+          
+        <span id="trailer-table">
+        </span>
+      </div>
+    </div>
+  </main>
+{% endblock %}
+​
+​
+​
+​
+​
+{% block body_end %}
+  <script type="text/javascript" src="/public/v6/javascripts/sortable-table.js"></script>
+​
+  <script type="text/javascript">
+    try {
+      $('.heading-large span').html(member.user.name).css('text-transform', 'capitalize');
+    } catch(err){
+      $('.caption.large').hide();
+    }
+​
+    try { var type = member.user.type; } catch(err){}
+    if (type == "company") {
+      $('#record-type').show();
+    } else if (type == "personal") {
+      $('#record-type').hide();
+    }
+​
+    // Change action button if pending trailers exist
+    getPendingTrailers();
+    if (pendingTrailers == 0) {
+      $('.form-group.payment').hide();
+      $('.form-group.register').show();
+    } else {
+      $('.form-group.payment').show();
+      $('.form-group.register').hide();
+    }
+​
+    delete member.currentTrailer;
+    delete member.currentTrailerPosition;
+​
+    getRegisteredTrailers();
+​
+    // Create trailer account table
+    try {
+      if (!registeredTrailers) {
+        $('#trailer-bar').hide();
+      } else {
+        $('#no-trailers').hide();
+​
+        if (registeredTrailers <= 1) {
+          var trailerRow = '<h2 class="heading-medium">' + registeredTrailers + ' trailer<span class="plural"></span></h2><table id="sortable-table"><thead><tr><th scope="col" id="reg">Registration number</th><th scope="col" id="vin"><abbr title="Vehicle Identification Number">VIN</abbr>/Chassis number</th><th scope="col" id="manu">Manufacturer</th><th scope="col">&nbsp;</th></tr></thead><tbody>';
+        } else {
+          var trailerRow = '<h2 class="heading-medium">' + registeredTrailers + ' trailer<span class="plural"></span></h2><table id="sortable-table"><thead><tr><th scope="col" onclick="sortTable(0)" id="reg" class="sort-default">Registration number</th><th scope="col" onclick="sortTable(1)" id="vin" class="sort-default"><abbr title="Vehicle Identification Number">VIN</abbr>/Chassis number</th><th scope="col" onclick="sortTable(2)" id="manu" class="sort-default">Manufacturer</th><th scope="col">&nbsp;</th></tr></thead><tbody>';
+        }
+​
+        // for (i = 0; i < member.trailers.length; i++) {
+        for (i = member.trailers.length - 1; i >= 0; i--) {
+          if (member.trailers[i].registered == true) {
+            trailerRow += '<tr>';
+            trailerRow += '<td scope="row"><span class="table-label">Registration</span><span class="table-details">' + member.trailers[i].reg + '</span><a href="#" class="manage-link" data="' + i + '">Manage</a></td>';
+            if (!member.trailers[i].vin) {
+            } else {
+              trailerRow += '<td scope="row"><span class="table-label"><abbr title="Vehicle Identification Number">VIN</abbr></span><span class="table-details">' + member.trailers[i].vin + '</span></td>';
+            }
+            if (!member.trailers[i].chassis) {
+            } else {
+              trailerRow += '<td scope="row"><span class="table-label"><abbr title="Vehicle Identification Number">VIN</abbr>/Chassis</span><span class="table-details">' + member.trailers[i].chassis + '</span></td>';
+            }
+            trailerRow += '<td scope="row"><span class="table-label">Manufacturer</span><span class="table-details">' + member.trailers[i].manufacturer + '</span></td>';
+            trailerRow += '<td scope="row" id="manage"><a href="#" class="manage" data="' + i + '">Manage</a></td>';
+            // trailerRow += '<a href="#" class="manage-link" data="' + i + '">Manage</a>';
+            trailerRow += '</tr>';
+          }
+        }
+​
+        $('#trailer-table').html(trailerRow + '</tbody></table>');
+      }
+    } catch(err){}
+​
+    $('td a.manage').click(function(e) {
+      e.preventDefault();
+      var trailer = $(this).attr('data');
+      member.currentTrailerPosition = trailer;
+      go('/trailer-record/manage');
+    });
+​
+    $('th#reg').click(function () {
+      if ($(this).hasClass('sort-default')) {
+        $(this).removeClass('sort-default').addClass('sort-a-z');
+      } else if ($(this).hasClass('sort-a-z')) {
+        $(this).removeClass('sort-a-z').addClass('sort-z-a');
+      } else {
+        $(this).removeClass('sort-z-a').addClass('sort-default');
+      }
+      $('th#vin').removeClass().addClass('sort-default');
+      $('th#manu').removeClass().addClass('sort-default');
+    });
+    $('th#vin').click(function () {
+      if ($(this).hasClass('sort-default')) {
+        $(this).removeClass('sort-default').addClass('sort-a-z');
+      } else if ($(this).hasClass('sort-a-z')) {
+        $(this).removeClass('sort-a-z').addClass('sort-z-a');
+      } else {
+        $(this).removeClass('sort-z-a').addClass('sort-default');
+      }
+      $('th#reg').removeClass().addClass('sort-default');
+      $('th#manu').removeClass().addClass('sort-default');
+    });
+    $('th#manu').click(function () {
+      if ($(this).hasClass('sort-default')) {
+        $(this).removeClass('sort-default').addClass('sort-a-z');
+      } else if ($(this).hasClass('sort-a-z')) {
+        $(this).removeClass('sort-a-z').addClass('sort-z-a');
+      } else {
+        $(this).removeClass('sort-z-a').addClass('sort-default');
+      }
+      $('th#reg').removeClass().addClass('sort-default');
+      $('th#vin').removeClass().addClass('sort-default');
+    });
+​
+    $('.button').click(next);
+​
+    function next() {
+      if (pendingTrailers == 0) {
+        go('/register/declaration');
+      } else {
+        go('/register/trailer-summary');
+    }
+    }
+  </script>
+{% endblock %}

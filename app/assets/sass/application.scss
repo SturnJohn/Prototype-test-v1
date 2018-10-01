@@ -195,6 +195,7 @@ $path: "/public/images/";
 .form-control-150px {
     width: 150px;
 }
+
 .form-control-250px {
     width: 250px;
 }
@@ -285,6 +286,7 @@ panel-h3-medium {
 .blue-dividing-line {
     border-bottom: 6px solid #0562A3;
 }
+
 .border-bottom {
     border-bottom: 1px solid #808080;
 }
@@ -295,6 +297,7 @@ panel-h3-medium {
     padding-left: 15px;
     margin-top: 0.45em;
 }
+
 .big-number {
     font-size: 36px;
 }
@@ -310,25 +313,30 @@ panel-h3-medium {
     padding: 15px;
     height: 100px;
 }
+
 .clear {
     font-size: 16px;
     float: right;
 }
+
 .input-box {
     margin-top: 1em;
     width: 100%;
 }
+
 .show {
     font-size: 16px;
     margin-top: 1em;
     padding: 0px;
 }
+
 .trailer-details {
     td {
         width: 20%;
         vertical-align: top;
     }
 }
+
 .page-of {
     float: right;
     font-size: 16px;
@@ -336,7 +344,7 @@ panel-h3-medium {
     padding-right: 358px;
 }
 
-.table-row-panel {  
+.table-row-panel {
     width: auto;
     background-color: #EEEEEE;
     padding: 15px;
@@ -362,7 +370,7 @@ panel-h3-medium {
         background-color: #004f8c;
     }
 }
-  
+
 .reg-box-third {
     margin-top: 2.1em;
     width: auto;
@@ -388,17 +396,20 @@ panel-h3-medium {
     background-size: contain;
     margin-bottom: 1em;
 }
+
 .pay-ref {
     margin-top: -2.4em;
-    padding-left: 200px; 
+    padding-left: 200px;
 }
+
 .total {
     margin-top: -2.4em;
-    padding-left: 200px; 
+    padding-left: 200px;
 }
+
 .year-input {
     margin-top: -3.3em;
-    padding-left: 180px; 
+    padding-left: 180px;
 }
 
 .register-confirmation {
@@ -424,13 +435,16 @@ panel-h3-medium {
 .vin-chassis-number {
     text-align: left;
 }
+
 .step-1 {
     padding-left: 52px;
 }
+
 .step-2 {
     padding-left: 89px;
     margin-top: -1.5em;
 }
+
 .log-out {
     margin-top: -2.4em;
     width: auto;
@@ -439,24 +453,27 @@ panel-h3-medium {
     font-size: 19px;
     font-weight: bold;
 }
+
 .languages {
     float: right;
     font-size: 16px;
     text-align: right;
     margin-top: 2em;
 }
+
 .ol-content {
     display: inline-block;
     max-width: calc(100% - 100px);
     margin-left: 20px;
 }
-.next-steps-list{
+
+.next-steps-list {
     li {
         margin-bottom: 20px;
-        span:first-of-type{
+        span:first-of-type {
             vertical-align: top;
         }
-        span:last-of-type{
+        span:last-of-type {
             margin-top: 8px;
         }
     }
@@ -485,23 +502,28 @@ panel-h3-medium {
 .dashboard-h1 {
     margin-top: 1.95em;
 }
+
 .company-name {
     color: #6F777A;
     margin-top: 3.73em;
     margin-bottom: -1em;
 }
+
 .my-trailers-title {
     font-weight: 500;
     color: #6F777A;
     margin-top: 2em;
 }
+
 .table-full-column {
     padding-left: 0px;
     padding-right: 0px;
 }
+
 .blue-dividing-line-third {
     border: 6px solid #0562A3;
 }
+
 .grey-line-1px {
     border: 1px solid #BFC1C3;
     margin-top: 2em;
@@ -513,15 +535,77 @@ panel-h3-medium {
 }
 
 .blue-text {
-    color: #0562A3; 
+    color: #0562A3;
 }
+
 .middle-column {
     padding-left: 0px;
 }
+
 .accordion-footer {
     background-color: #F8F8F8;
-    color: #0562A3; 
+    color: #0562A3;
     font-size: 16px;
     font-weight: 800;
     padding-left: 0.5em;
+}
+
+.register-confirmation-panel {
+    margin-bottom: 1em;
+    margin-top: 5.7em;
+    margin-bottom: 2.75em;
+    background-color: #28A197;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    color: white;
+    width: auto;
+    height: auto;
+    text-align: center;
+}
+
+.change-details {
+    font-size: 19px;
+    font-weight: 800;
+    text-align: right;
+    margin-top: 2.23em;
+    color: 005EA5;
+}
+
+.company-title {
+    color: #6F777B;
+    margin-top: 0.8em;
+    font-size: 24px;
+    text-align: right;
+    float: left;
+}
+
+.manage {
+    text-align: right;
+    font-size: 16px;
+    font-weight: 800;
+    font-weight: bold;
+    vertical-align: top;
+    color: #005EA5;
+}
+
+th::after {
+ content: '.';
+ color: transparent;
+ display: inline-block;
+ cursor: pointer;
+ width: 14px;
+ margin-bottom: -0.05em;
+ margin-left: .5em;
+ background-size: auto;
+}
+th.sort-default::after {
+ background: url('/public/images/sort-arrow-sprite-2x.png') 50% -50px;
+}
+th.sort-a-z::after {
+ background: url('/public/images/sort-arrow-sprite-2x.png') 50% -50px;
+ background-repeat: no-repeat;
+}
+th.sort-z-a::after {
+ background: url('/public/images/sort-arrow-sprite-2x.png') 50% -50px;
+ background-repeat: no-repeat;
 }

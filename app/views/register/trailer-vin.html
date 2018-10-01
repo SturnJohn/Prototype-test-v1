@@ -12,20 +12,20 @@
             <div class="form-group">
                 <fieldset class="inline">
                     <div class="multiple-choice" data-target="vin-number-yes">
-                        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                        <label for="radio-inline-1">Yes</label>
+                        <input id="radio-1" type="radio" name="vin-number" value="Yes">
+                        <label for="radio-1">Yes</label>
                     </div>
                     <div class="multiple-choice" data-target="vin-number-no">
-                        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                        <label for="radio-inline-2">No</label>
+                        <input id="radio-2" type="radio" name="vin-number" value="No">
+                        <label for="radio-2">No</label>
                     </div>
                     <div class="panel panel-border-narrow js-hidden" id="vin-number-yes">
-                        <label class="form-label" for="vin-number-inline-yes"><strong class="bold-small">VIN</strong></label>
-                        <input class="form-control" name="vin-number-yes" type="text" id="vin-number-yes">
+                        <label class="form-label" for="vin"><strong class="bold-small">VIN</strong></label>
+                        <input class="form-control" name="vin" type="text" id="vin">
                     </div>
                     <div class="panel panel-border-narrow js-hidden" id="vin-number-no">
-                        <label class="form-label" for="vin-number-inline-no"><strong class="bold-small">VIN or Chassis number</strong></label>
-                        <input class="form-control" name="vin-number-no" type="text" id="vin-number-no">
+                        <label class="form-label" for="vin-chassis"><strong class="bold-small">VIN or Chassis number</strong></label>
+                        <input class="form-control" name="vin-chassis" type="text" id="vin-chassis">
                     </div>
                 </fieldset>
             </div>
@@ -38,27 +38,31 @@
 </main>
 
 <script>
-    
-     $(".button").click(function() {
+    $(".button").click(function() {
 
-        var REG = $("#reg-number").val();
-        var VIN = $("#vin-chassis-number").val();
-        console.log("REG = "+REG);
-        console.log("VIN = "+VIN);
-        
-        if(!REG){
-            alert("registration number can not be empty");
-        }
-        
-        if(!VIN){
-            alert("vin or chassis number can not be empty");
-        }        
-        
-        if(REG && VIN){
-            go ("/register/trailer-vin");
+        var input = $('input[name=vin-number]:checked').val();
+        console.log(input);
+
+
+        if (input == "Yes") {
+            if ($("#vin").val()){
+                go("/register/trailer-vin-match");
+            } else {
+                alert("enter vin number");
+
+            }
+
+        } else if (input == "No") {
+                if ($("#vin-chassis").val()){
+                    go("/register/trailer-manufacturer");
+
+            } else {
+                alert("enter vin or chassis number");
+            }
+        } else { 
+            alert("choose an option");
         }
     })
-    
 </script>
 
 {% endblock %}

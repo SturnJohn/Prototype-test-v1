@@ -5,27 +5,65 @@
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
     </div>
-    <div><a href="#" class="link-back">Back</a>
-        <div class="grid-row">
-            <div class="column-two-thirds">
-                <div class="warning-panel">
-                    <h1 class="heading-large">You do not need to <br>register this trailer</h1>
+    <a href="/create/vienna-convention-part-2" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <h1 class="h1-large heading-large">Will any of these trailers be used commercially?</h1>
+            <details>
+                <summary><span class="summary">What do we mean by commercially?</span></summary>
+                <div class="panel panel-border-narrow">
+                    <p>A commercial trailer is a trailer used for the transport of goods or passengers’ belongings for commercial purposes, such as transport for hire and reward or own-account transport, or for other professional purposes.</p>
                 </div>
-            <p>You only have to create a trailer record to register non-commercial trailers that weigh over 3,500kg.</p>
-            <p>Under UK law you do not need to register your trailer, however you may be required to produce a UK Trailer Registration Certificate at foreign borders.</p>
-            <p>You can still create a trailer record if you want to.</p>
-            <button class="margin-bottom-3 button" type="submit">I still want to register</button>
-            <p class="margin-bottom-0"><a href="/index">Cancel and go to trailer record</a></p>
+                <div class="form-group">
+                    <div class="inline">
+                        <div class="multiple-choice">
+                            <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                            <label for="radio-inline-1">Yes</label>
+                        </div>
+                        <div class="multiple-choice">
+                            <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                            <label for="radio-inline-2">No</label>
+                        </div>
+                        <div class="padding-bottom-2 margin-top-2 panel panel-border-narrow">
+                            <h1 class="margin-bottom heading-medium">Do any of these trailers weigh over 3,500kg?</h1>
+                            <div class="inline">
+                                <div class="multiple-choice">
+                                    <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                                    <label for="radio-inline-1">Yes</label>
+                                </div>
+                                <div class="multiple-choice">
+                                    <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                                    <label for="radio-inline-2">No</label>
+                                </div>
                             </div>
-
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
         </div>
-
     </div>
 </main>
 
 <script>
     $(".button").click(function() {
-        go("/create/behalf-of-company")
+
+        var input = $('input[name = radio-inline-group]:checked').val();
+        console.log(input);
+
+
+        if (input == "Yes") {
+            go("/register/trailer-reg-number");
+
+        } else {
+            if (input == "No") {
+            go("/create/commercially-exit");
+
+            } else {
+                alert("select an option");
+            }
+
+        }
     })
 </script>
 
