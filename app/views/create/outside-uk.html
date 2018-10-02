@@ -8,19 +8,52 @@
     <a href="/create/over-750" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">Will any of these trailers be used outside of the UK?</h1>
-            <div class="margin-bottom-1 form-group">
-                <fieldset class="inline">
-                    <div class="multiple-choice">
-                        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                        <label for="radio-inline-1">Yes</label>
-                    </div>
-                    <div class="multiple-choice">
-                        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                        <label for="radio-inline-2">No</label>
-                    </div>
-                </fieldset>
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>No option has been selected for outside of the UK</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-user-id">Please select an option of Yes or No</a></li>
+
+                </ul>
+
             </div>
+
+            <h1 class="h1-large heading-large">Will any of these trailers be used outside of the UK?</h1>
+
+            <div class="form-group">
+
+
+                <div class="margin-top-2 form-group form-group-error">
+                    <fieldset class="inline">
+                        <legend id="example-user-id form-group-error">
+
+                            <span class="form-label-bold">No option has been selected for outside of the UK</span>
+                            <span class="error-message">Please select an option of Yes or No</span>
+
+                        </legend>
+                        <div class="margin-bottom-0 form-group">
+                            <fieldset class="inline">
+                                <div class="margin-top-2 multiple-choice">
+                                    <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                                    <label for="radio-inline-1">Yes</label>
+                                </div>
+                                <div class="margin-top-2 multiple-choice">
+                                    <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                                    <label for="radio-inline-2">No</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+
+
             <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
         </div>
     </div>
@@ -38,7 +71,7 @@
 
         } else {
             if (input == "No") {
-            go("/create/outside-uk-no");
+                go("/create/outside-uk-no");
 
             } else {
                 alert("select an option");

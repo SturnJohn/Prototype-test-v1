@@ -8,15 +8,59 @@
     <a href="trailer-keeper-number" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The User ID or Password has been typed incorrectly</p>
+
+                <ul class="error-summary-list">
+                    
+                    <li><a href="#example-user-id">Please re-enter your User ID</a></li>
+                    
+                    <li><a href="#example-password">Please re-enter your Password</a></li>
+
+                </ul>
+
+            </div>
+
             <h1 class="h1-large heading-large">Sign in</h1>
+
+
             <div class="form-group">
-                <label class="form-label" for="trailer-keeper-number"><strong class="bold-small">User ID</strong></label>
-                <input class="form-control" id="trailer-keeper-number" name="trailer-keeper-number" type="text">
+                <fieldset>
+
+                    <legend id="example-user-id">
+
+                        <span class="form-label-bold">The User ID has been typed incorrectly</span>
+                        <span class="error-message">Please re-enter your User ID</span>
+
+                    </legend>
+
+                    <div class="form-group form-group-error">
+                        <label class="form-label" for="trailer-keeper-number"><strong class="bold-small">User ID</strong></label>
+                        <input class="form-control" id="trailer-keeper-number" name="trailer-keeper-number" type="text">
+                    </div>
+                    
+                     <legend id="example-password">
+
+                        <span class="form-label-bold">The Password has been typed incorrectly</span>
+                        <span class="error-message">Please re-enter your Password</span>
+
+                    </legend>
+                    
+                    <div class="form-group  form-group-error">
+                        <label class="form-label" for="password"><strong class="bold-small">Password</strong></label>
+                        <input class="form-control" id="password" name="password" type="text">
+                    </div>
+
+                </fieldset>
             </div>
-            <div class="form-group">
-                <label class="form-label" for="password"><strong class="bold-small">Password</strong></label>
-                <input class="form-control" id="password" name="password" type="text">
-            </div>
+
+
+
+
             <p><a href="#">Forgotten password?</a></p>
             <button class="margin-bottom-0 button" type="submit">Sign in</button>
         </div>
@@ -28,22 +72,21 @@
 
         var TRN = $("#trailer-keeper-number").val();
         var Pass = $("#password").val();
-        console.log("TRN = "+TRN);
-        console.log("Pass = "+Pass);
-        
-        if(!TRN){
+        console.log("TRN = " + TRN);
+        console.log("Pass = " + Pass);
+
+        if (!TRN) {
             alert("trailer keeper number can not be empty");
         }
-        
-        if(!Pass){
+
+        if (!Pass) {
             alert("password can not be empty");
-        }        
-        
-        if(TRN && Pass){
-            go ("/register/trailer-record");
+        }
+
+        if (TRN && Pass) {
+            go("/register/trailer-record");
         }
     })
-
 </script>
 
 {% endblock %}
