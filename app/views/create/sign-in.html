@@ -1,5 +1,16 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
+<style>
+    .error-summary {
+        display: none;
+    }
+
+    .error-message {
+        display: none;
+    }
+</style>
+
+
 <main id="content" role="main">
 
     <div class="phase-banner">
@@ -16,9 +27,9 @@
                 <p>The User ID or Password has been typed incorrectly</p>
 
                 <ul class="error-summary-list">
-                    
+
                     <li><a href="#example-user-id">Please re-enter your User ID</a></li>
-                    
+
                     <li><a href="#example-password">Please re-enter your Password</a></li>
 
                 </ul>
@@ -27,42 +38,32 @@
 
             <h1 class="h1-large heading-large">Sign in</h1>
 
+            <form>
+                <div class="form-group">
 
-            <div class="form-group">
-                <fieldset>
+                    <fieldset class="minus-margin-bottom-4">
 
-                    <legend id="example-user-id">
+                        <div class="form-group">
+                            <label class="form-label" for="user-id"><strong class="bold-small">User ID</strong></label>
+                            <span class="error-message user-id">Please re-enter your User ID</span>
 
-                        <span class="form-label-bold">The User ID has been typed incorrectly</span>
-                        <span class="error-message">Please re-enter your User ID</span>
+                            <input class="form-control" id="user-id" name="user-id" type="text">
+                        </div>
 
-                    </legend>
+                        <div class="form-group">
+                            <label class="form-label" for="password"><strong class="bold-small">Password</strong></label>
+                            <span class="error-message password">Please re-enter your Password</span>
 
-                    <div class="form-group form-group-error">
-                        <label class="form-label" for="trailer-keeper-number"><strong class="bold-small">User ID</strong></label>
-                        <input class="form-control" id="trailer-keeper-number" name="trailer-keeper-number" type="text">
-                    </div>
-                    
-                     <legend id="example-password">
+                            <input class="form-control" id="password" name="password" type="text">
+                        </div>
 
-                        <span class="form-label-bold">The Password has been typed incorrectly</span>
-                        <span class="error-message">Please re-enter your Password</span>
+                    </fieldset>
 
-                    </legend>
-                    
-                    <div class="form-group  form-group-error">
-                        <label class="form-label" for="password"><strong class="bold-small">Password</strong></label>
-                        <input class="form-control" id="password" name="password" type="text">
-                    </div>
+                </div>
 
-                </fieldset>
-            </div>
-
-
-
-
-            <p><a href="#">Forgotten password?</a></p>
-            <button class="margin-bottom-0 button" type="submit">Sign in</button>
+            </form>
+            <button class="button" type="button">Sign-in</button>
+            <p class="margin-bottom-0"><a href="#">Forgotten password?</a></p>
         </div>
     </div>
 </main>
@@ -70,20 +71,25 @@
 <script>
     $(".button").click(function() {
 
-        var TRN = $("#trailer-keeper-number").val();
-        var Pass = $("#password").val();
-        console.log("TRN = " + TRN);
-        console.log("Pass = " + Pass);
+        var userid = $("input[name=user-id]").val();
+        var pass = $("input[name=password]").val();
+        var validInput = true;
 
-        if (!TRN) {
-            alert("trailer keeper number can not be empty");
+        if (!userid) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.user-id").css("display", "block");
+            $("input[name=user-id]").closest(".form-group").addClass("form-group-error");
         }
 
-        if (!Pass) {
-            alert("password can not be empty");
+        if (!pass) {
+            validInput = false;
+            $(".error-summary").css("display", "block");
+            $(".error-message.password").css("display", "block");
+            $("input[name=password]").closest(".form-group").addClass("form-group-error");
         }
 
-        if (TRN && Pass) {
+        if (validInput) {
             go("/register/trailer-record");
         }
     })
