@@ -1,5 +1,16 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
+
+<style>
+    .error-summary {
+        display: none;
+    }
+
+    .error-message {
+        display: none;
+    }
+</style>
+
 <main id="content" role="main">
 
     <div class="phase-banner">
@@ -10,28 +21,66 @@
             <p class="languages">English | <a href="#">Cymraeg</a></p>
         </div>
         <div class="column-two-thirds">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The User ID or Password has been typed incorrectly</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
+
+                    <li><a href="#example-scp-password">Re-enter your Password</a></li>
+
+                </ul>
+
+            </div>
+
             <h1 class="h1-xlarge heading-xlarge">Sign in using Government Gateway</h1>
-            <div class="form-group">
-                <label class="form-label" for="scp-user-id"><strong class="bold-small">User ID</strong>
-                    <span class="margin-bottom-1 form-hint">This could be up-to 12 characters. It is sometimes known as <br>a Government Gateway ID.</span>
-                </label>
-                <input class="form-control" id="scp-user-id" type="text" name="scp-user-id">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="scp-password"><strong class="bold-small">Password</strong></label>
-                <input class="form-control" id="scp-password" type="text" name="scp-password">
-            </div>
-            <button class="margin-top-3 button" type="submit">Sign in</button>
+
+
+            <form>
+                <div class="form-group">
+
+                    <fieldset class="minus-margin-bottom-4">
+
+                        <div class="form-group">
+                            <label class="form-label" for="scp-user-id"><strong class="bold-small">User ID</strong></label>
+                            
+                            <span class="error-message scp-user-id">Re-enter your User ID</span>
+
+                            <input class="form-control" id="scp-user-id" name="scp-user-id" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="scp-password"><strong class="bold-small">Password</strong></label>
+                            <span class="error-message scp-password">Re-enter your Password</span>
+
+                            <input class="form-control" id="scp-password" name="scp-password" type="text">
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+            </form>
+
+
+            <button class="margin-top-3 button" type="button">Sign in</button>
             <div>
                 <p><a href="#">Set up a user ID</a></p>
                 <h1 class="margin-top-4 heading-medium">Problems signing in</h1>
-                <p class="margin-bottom-3"><a href="#"><a href="#">Help with signing in</a></a></p>
+                <p class="margin-bottom-3"><a href="#"><a href="#">Help with signing in</a></a>
+                </p>
                 <p class="margin-top-1"><a href="#">I have forgotten my password</a>
-                <p class="minus-margin-top-1"><a href="#">I have forgotten my user ID</a><p/>
-                <p class="margin-bottom-3 minus-margin-top-1"><a href="#">I have forgotten my user ID and password</a></p>
-                <div class="padding-top-1">
-                    <p class="margin-bottom-0"><a href="#">Get help</a></p>
-                </div>
+                    <p class="minus-margin-top-1"><a href="#">I have forgotten my user ID</a>
+                        <p/>
+                        <p class="margin-bottom-3 minus-margin-top-1"><a href="#">I have forgotten my user ID and password</a></p>
+                        <div class="padding-top-1">
+                            <p class="margin-bottom-0"><a href="#">Get help</a></p>
+                        </div>
             </div>
         </div>
     </div>
@@ -40,24 +89,28 @@
 <script>
     $(".button").click(function() {
 
-        var UserID = $("#scp-user-id").val();
-        var Pass = $("#scp-password").val();
-        console.log("UserID = "+UserID);
-        console.log("Pass = "+Pass);
-        
-        if(!UserID){
-            alert("user id can not be empty");
+        var scpuserid = $("input[name=scp-user-id]").val();
+        var scppass = $("input[name=scp-password]").val();
+        var validInput = true;
+
+        if (!scpuserid) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.scp-user-id").css("display", "block");
+            $("input[name=scp-user-id]").closest(".form-group").addClass("form-group-error");
         }
-        
-        if(!Pass){
-            alert("password can not be empty");
-        }        
-        
-        if(UserID && Pass){
-            go ("/create/scp-email-address");
+
+        if (!scppass) {
+            validInput = false;
+            $(".error-summary").css("display", "block");
+            $(".error-message.scp-password").css("display", "block");
+            $("input[name=scp-password]").closest(".form-group").addClass("form-group-error");
+        }
+
+        if (validInput) {
+            go("/create/scp-email-address");
         }
     })
-
 </script>
 
 {% endblock %}

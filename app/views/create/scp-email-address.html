@@ -13,22 +13,59 @@
             <p class="languages">English | <a href="#">Cymraeg</a></p>
         </div>
         <div class="column-two-thirds">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The User ID or Password has been typed incorrectly</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
+
+                </ul>
+
+            </div>
+
             <h1 class="h1-large heading-large">What is your email address?</h1>
+
             <div class="form-group">
-                <label class="minus-margin-top-2 form-label" for="email-address">We will send you a code to confirm your email adresss.</label>
-                <input class="form-control-66 margin-top-1 form-control" id="email-address" name="email-address" type="email">
-            </div>
-            <div class="form-group">
-                <div class="multiple-choice">
-                    <input id="correct-email" name="correct-email" type="checkbox" value="true">
-                    <label for="checkbox-email-address">This email address is correct</label>
-                </div>
-            </div>
-            <div class="grid-row">
-                <div class="column-full">
-                    <button class="margin-top-2 button" type="submit">Continue</button>
+
+
+                <form>
+                    <div class="form-group">
+
+                        <fieldset class="minus-margin-bottom-4">
+
+                            <div class="form-group form-group-error">
+
+                                <span class="error-message scp-user-id ">Re-enter your User ID</span>
+                                <label class="form-label" for="email-address">We will send you a code to confirm your email adresss.</label>
+
+                                <input class="form-control-66 margin-top-1 form-control" id="email-address" name="email-address" type="email">
+
+
+<!--                                <span class="margin-top-4 error-message scp-password">Re-enter your Password</span>-->
+                                <div class="margin-top-2 multiple-choice">
+                                    <input id="correct-email" name="correct-email" type="checkbox" value="true">
+                                    <label for="checkbox-email-address">This email address is correct</label>
+                                </div>
+                            </div>
+                            
+                        </fieldset>
+
+                    </div>
+
+                    <div class="form-group">
+
+                    </div>
+
+                    <button class="margin-top-3 button" type="submit">Continue</button>
                     <p class="margin-bottom-0"><a href="#">Get help</a></p>
-                </div>
+
+                </form>
+
             </div>
         </div>
     </div>
@@ -38,17 +75,16 @@
     $(".button").click(function() {
 
         var Email = $("#email-address").val();
-        console.log("Email = "+Email);
-        
-        if(!Email){
+        console.log("Email = " + Email);
+
+        if (!Email) {
             alert("email can not be empty");
-        }      
-        
-        if(Email){
-            go ("/create/scp-confirm-email");
+        }
+
+        if (Email) {
+            go("/create/scp-confirm-email");
         }
     })
-
 </script>
 
 {% endblock %}

@@ -15,7 +15,7 @@
                 <p>No option has been selected for trailer record</p>
 
                 <ul class="error-summary-list">
-                    <li><a href="#example-personal-details">Please select an option of Yes or No</a></li>
+                    <li><a href="#example-personal-details">Select an option of Yes or No</a></li>
                 </ul>
 
             </div>
@@ -28,29 +28,30 @@
                 </div>
             </details>
             <div class="margin-top-3 form-group">
-                <div class="form-group form-group-error">
-                    <fieldset class="inline">
+                <form>
+                    <div class="form-group form-group-error">
+                        <fieldset class="inline">
 
-                        <legend id="example-personal-details">
+                            <legend id="example-personal-details">
 
-                            <span class="form-label-bold">No option has been selected for trailer record</span>
-                            <span class="error-message">Select an option of Yes or No</span>
+                                <span class="form-label-bold">No option has been selected for trailer record</span>
+                                <span class="error-message">Select an option of Yes or No</span>
 
-                        </legend>
+                            </legend>
 
-                        <div class="multiple-choice">
-                            <input id="radio-group-1" type="radio" name="radio-inline-group" value="Yes">
-                            <label for="radio-inline-1">Yes</label>
-                        </div>
+                            <div class="multiple-choice">
+                                <input id="radio-group-1" type="radio" name="radio-inline-group" value="Yes">
+                                <label for="radio-inline-1">Yes</label>
+                            </div>
 
-                        <div class="multiple-choice">
-                            <input id="radio-group-2" type="radio" name="radio-inline-group" value="No">
-                            <label for="radio-inline-2">No</label>
-                        </div>
+                            <div class="multiple-choice">
+                                <input id="radio-group-2" type="radio" name="radio-inline-group" value="No">
+                                <label for="radio-inline-2">No</label>
+                            </div>
 
-                    </fieldset>
-                </div>
-
+                        </fieldset>
+                    </div>
+                </form>
                 <input class="margin-bottom-0 margin-top-3 button" type="submit" value="Continue">
 
             </div>
@@ -67,11 +68,11 @@
 
 
         if (input == "Yes") {
-            go("/create/sign-in");
+            go("/create/scp-sign-in");
 
         } else {
             if (input == "No") {
-                go("/create/over-750");
+            go("/create/over-750");
 
             } else {
                 alert("select an option");
@@ -80,5 +81,6 @@
         }
     })
 </script>
+
 
 {% endblock %}
