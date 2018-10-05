@@ -8,11 +8,51 @@
     <a href="/create/gdpr" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">What is your company name?</h1>
-           <div class="form-group">
-                <input class="form-control" id="company-name" name="company-name" type="company-name">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The User ID or Password has been typed incorrectly</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
+
+                </ul>
+
             </div>
+
+            <form>
+                <div class="form-group">
+
+                    <fieldset class="minus-margin-bottom-4">
+
+                        <div class="form-group form-group-error">
+
+                            <span class="error-message scp-user-id">Re-enter your User ID</span>
+                            
+                            <h1 class="h1-large heading-large margin-top-1 margin-bottom-1">What is your company name?</h1>
+
+                            
+                            <div class="form-group">
+                                <input class="form-control" id="company-name" name="company-name" type="company-name">
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="form-group">
+
+                </div>
+
             <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
+
+
+            </form>
+
         </div>
     </div>
 </main>
@@ -21,15 +61,15 @@
     $(".button").click(function() {
 
         var Company = $("#company-name").val();
-        console.log("Company = "+Company);
-        
-        if(!Company){
+        console.log("Company = " + Company);
+
+        if (!Company) {
             alert("company name can not be empty");
         }
-            
-        
-        if(Company){
-            go ("/create/address");
+
+
+        if (Company) {
+            go("/create/address");
         }
     })
 

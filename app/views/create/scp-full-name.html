@@ -13,13 +13,50 @@
             <p class="languages">English | <a href="#">Cymraeg</a></p>
         </div>
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">What is your full name?</h1>
-            <div class="form-group">
-                <label class="margin-top-4 form-label" for="full-name"><strong class="bold-small">Full name</strong></label>
-                <input class="form-control" id="full-name" name="full-name" type="full-name">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The User ID or Password has been typed incorrectly</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
+
+                </ul>
+
             </div>
-            <button class="margin-top-3 button" type="submit">Sign in</button>
-            <p class="margin-bottom-0"><a href="#">Get help</a></p>
+
+            <h1 class="h1-large heading-large">What is your full name?</h1>
+
+            <form>
+                <div class="form-group">
+
+                    <fieldset class="minus-margin-bottom-4">
+
+                        <div class="form-group form-group-error">
+
+                            <span class="error-message scp-user-id ">Re-enter your User ID</span>
+
+                            <div class="form-group">
+                                <label class="margin-top-1 form-label" for="full-name"><strong class="bold-small">Full name</strong></label>
+                                <input class="form-control" id="full-name" name="full-name" type="full-name">
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="form-group">
+
+                </div>
+
+                <button class="margin-top-3 button" type="submit">Sign-in</button>
+                <p class="margin-bottom-0"><a href="#">Get help</a></p>
+
+            </form>
         </div>
     </div>
 </main>
@@ -28,15 +65,15 @@
     $(".button").click(function() {
 
         var Name = $("#full-name").val();
-        console.log("Name = "+Name);
-       
-        
-        if(!Name){
+        console.log("Name = " + Name);
+
+
+        if (!Name) {
             alert("full name can not be empty");
-        }        
-        
-        if(Name){
-            go ("/create/scp-password");
+        }
+
+        if (Name) {
+            go("/create/scp-password");
         }
     })
 

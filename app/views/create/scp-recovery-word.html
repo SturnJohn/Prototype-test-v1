@@ -9,7 +9,22 @@
         <div class="column-full">
             <p class="languages">English | <a href="#">Cymraeg</a></p>
         </div>
-        <div class="column-full">
+        <div class="column-two-thirds">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The User ID or Password has been typed incorrectly</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
+
+                </ul>
+
+            </div>
+
             <h1 class="margin-bottom-0 h1-large heading-large">Set up a recovery word</h1>
             <p class="margin-top-4">Make a note of this word in case you need it in the future.</p>
             <p>The word must:</p>
@@ -18,11 +33,34 @@
                 <li>not contain spaces or special characters</li>
                 <li>not contain numbers</li>
             </ul>
-            <div class="margin-bottom-2 form-group">
-                <label class="form-label" for="recovery-word"><strong class="bold-small">Recovery word</strong></label><input class="form-control-33 margin-top-0 form-control" id="recovery-word" name="recovery-word" type="recovery-word">
-            </div>
-            <button class="margin-top-3 button" type="submit">Continue</button>
-            <p class="margin-bottom-0"><a href="#">Get help</a></p>
+
+            <form>
+                <div class="form-group">
+
+                    <fieldset class="minus-margin-bottom-4">
+
+                        <div class="form-group form-group-error">
+
+                            <span class="error-message scp-user-id ">Re-enter your User ID</span>
+
+                            <div class="margin-bottom-2 form-group">
+                                <label class="form-label" for="recovery-word"><strong class="bold-small">Recovery word</strong></label><input class="form-control-33 margin-top-0 form-control" id="recovery-word" name="recovery-word" type="recovery-word">
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="form-group">
+
+                </div>
+
+                <button class="margin-top-3 button" type="submit">Continue</button>
+                <p class="margin-bottom-0"><a href="#">Get help</a></p>
+
+            </form>
+
         </div>
     </div>
 </main>
@@ -31,14 +69,14 @@
     $(".button").click(function() {
 
         var Recovery = $("#recovery-word").val();
-        console.log("Recovery = "+Recovery);  
-        
-        if(!Recovery){
+        console.log("Recovery = " + Recovery);
+
+        if (!Recovery) {
             alert("recovery word can not be empty");
-        }      
-        
-        if(Recovery){
-            go ("/create/scp-user-ID");
+        }
+
+        if (Recovery) {
+            go("/create/scp-user-ID");
         }
     })
 
