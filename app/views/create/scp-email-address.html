@@ -38,20 +38,21 @@
 
                         <fieldset class="minus-margin-bottom-4">
 
-                            <div class="form-group form-group-error">
+                            <div class="form-group">
 
-                                <span class="error-message scp-user-id ">Re-enter your User ID</span>
                                 <label class="form-label" for="email-address">We will send you a code to confirm your email adresss.</label>
-
-                                <input class="form-control-66 margin-top-1 form-control" id="email-address" name="email-address" type="email">
-
-
-                                <div class="margin-top-2 multiple-choice">
-                                    <input id="correct-email" name="correct-email" type="checkbox" value="true">
-                                    <label for="checkbox-email-address">This email address is correct</label>
+                                <div class="form-group-error">
+                                    <span class="margin-top-2 form-label-bold">No option has been selected for gross weight</span>
+                                    <span class="margin-top-1 error-message scp-user-id ">Enter your email address</span>
+                                    <input class="form-control-66 form-control form-control-error" id="email-address" name="email-address" type="email">
                                 </div>
-                            </div>
-                            
+
+                                    <div class="margin-top-4 multiple-choice">
+                                        <input id="correct-email" name="correct-email" type="checkbox" value="true">
+                                        <label for="checkbox-email-address">This email address is correct</label>
+                                    </div>
+                                </div>
+
                         </fieldset>
 
                     </div>
@@ -84,6 +85,7 @@
             go("/create/scp-confirm-email");
         }
     })
+
 </script>
 
 {% endblock %}
