@@ -18,32 +18,34 @@
 
                 <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
 
-                <p>The User ID or Password has been typed incorrectly</p>
+                <p>No email code has been provided</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
+                    <li><a href="#example-scp-user-id">Provide the code that was sent to you email address</a></li>
 
                 </ul>
 
             </div>
 
-            <h1 class="h1-large heading-large">Confirm your email address</h1>
+            <h1 class="margin-top-2 h1-large heading-large">Confirm your email address</h1>
             <p>We have sent a code to <strong class="bold-small">email@email.com</strong>.</p>
 
 
             <form>
-                <div class="form-group form-group-error">
-                    
-                     <span class="error-message scp-user-id margin-bottom-1">Re-enter your User ID</span>
+                <div class="form-group">
+                    <div class="form-group-error">
 
                         <label class="form-label" for="ni-number">Enter code
-                            <span class="minus-margin-bottom-2 form-hint">For example, CF-DNCLRK.</span>
-                        </label>
+                            <span class="form-hint">For example, CF-DNCLRK.</span>
                         
-                        <p class="margin-top-0 margin-top-2">CF- <input class="margin-left-0 form-control-150px form-control" id="email-code" type="text" name="example-email-code"></p>
+                        <span>No email code has been provided</span>
+                            </label>
 
-                    
+                        <span class="error-message scp-user-id">Provide the code that was sent to you email address</span>
+                        <p>CF- <input class="margin-left-0 form-control-150px form-control form-control-error" id="email-code" type="text" name="example-email-code"></p>
+                    </div>
+
 
                 </div>
 
@@ -86,6 +88,7 @@
             go("/create/scp-email-confirmed");
         }
     })
+
 </script>
 
 {% endblock %}

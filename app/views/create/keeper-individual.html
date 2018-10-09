@@ -14,13 +14,13 @@
 
                 <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
 
-                <p>The User ID or Password has been typed incorrectly</p>
+                <p>No tilte, first or last names have been entered</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
-                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
-                    <li><a href="#example-scp-user-id">Re-enter your User ID</a></li>
+                    <li><a href="#example-scp-user-id">Enter your title</a></li>
+                    <li><a href="#example-scp-user-id">Enter your first name</a></li>
+                    <li><a href="#example-scp-user-id">Enter your last name</a></li>
 
                 </ul>
 
@@ -34,9 +34,7 @@
                 <div class="form-group">
 
                     <div class="margin-bottom-4 form-group form-group-error">
-                        <span class="error-message scp-user-id">Re-enter your User ID</span>
-
-                        <label class="form-label"><strong class="bold-small">Title</strong></label>
+                        <label class="form-label"><strong class="bold-small">Title</strong><span class="error-message scp-user-id">Enter your title</span></label>
 
                         <select class="form-control-25 form-control" id="select-box" name="select-box">
                                 <option></option>
@@ -46,6 +44,7 @@
                                 <option>Ms</option>
                                 <option data-target="other">Other</option>
                             </select>
+                        
                         <div class="margin-top-2 panel panel-border-narrow" id="other">
                             <label class="form-label" for="nationalities-other-country">Other titles</label>
                             <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
@@ -55,14 +54,18 @@
 
 
                     <div class="margin-bottom-4  margin-top-3 form-group form-group-error">
-                        <span class="error-message scp-user-id">Re-enter your User ID</span>
 
-                        <label class="form-label" for="first-name-2"><strong class="bold-small">First names</strong></label><input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
+                        <label class="form-label" for="first-name-2"><strong class="bold-small">First names</strong><span class="error-message scp-user-id">Enter your first name</span></label>
+                        
+                        <input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
                     </div>
+                    
                     <div class="margin-bottom-2 form-group form-group-error">
-                        <span class="error-message scp-user-id">Re-enter your User ID</span>
 
-                        <label class="form-label" for="first-name-2"><strong class="bold-small">Last name</strong></label><input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
+
+                        <label class="form-label" for="first-name-2"><strong class="bold-small">Last name</strong><span class="error-message scp-user-id">Enter your last name</span></label>
+                        
+                        <input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
                     </div>
 
                     <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
@@ -78,6 +81,7 @@
 <script>
     $("option").on("click", function() {
                 $("option[type=other]").on("click", showpanel);
+
 </script>
 
 {% endblock %}

@@ -1,5 +1,15 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
+<style>
+    .error-summary {
+        display: none;
+    }
+
+    .error-message {
+        display: none;
+    }
+</style>
+
 <main id="content" role="main">
 
     <div class="phase-banner">
@@ -15,7 +25,7 @@
                 <p>No option has been selected for trailer record</p>
 
                 <ul class="error-summary-list">
-                    <li><a href="#example-personal-details">Select an option of Yes or No</a></li>
+                    <li><a href="#example-personal-details">Select an option of yes or no</a></li>
                 </ul>
 
             </div>
@@ -27,26 +37,21 @@
                     <p>A trailer record is where you can register your trailers, manage and update them.</p>
                 </div>
             </details>
-            <div class="margin-top-3 form-group">
+            <div class="margin-top-3">
                 <form>
-                    <div class="form-group form-group-error">
+                    <div class="form-group">
                         <fieldset class="inline">
 
-                            <legend id="example-personal-details">
-
-                                <span class="form-label-bold">No option has been selected for trailer record</span>
-                                <span class="error-message">Select an option of Yes or No</span>
-
-                            </legend>
+                            <legend id="example-personal-details"><span class="error-message">Select an option of yes or no</span></legend>
 
                             <div class="multiple-choice">
-                                <input id="radio-group-1" type="radio" name="radio-inline-group" value="Yes">
-                                <label for="radio-inline-1">Yes</label>
+                                <input id="radio-group-1" type="radio" name="radio-group" value="Yes">
+                                <label for="radio-group-1">Yes</label>
                             </div>
 
                             <div class="multiple-choice">
-                                <input id="radio-group-2" type="radio" name="radio-inline-group" value="No">
-                                <label for="radio-inline-2">No</label>
+                                <input id="radio-group-2" type="radio" name="radio-group" value="No">
+                                <label for="radio-group-2">No</label>
                             </div>
 
                         </fieldset>
@@ -60,26 +65,32 @@
     </div>
 </main>
 
+
 <script>
     $(".button").click(function() {
 
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
+                var input = $("input[name=radio-group]:checked").val();
+                var validInput = true;
 
+                if (!input) {
+                    validInput = false;
+                    $(".error-summary").css("display", "block").focus();
+                    $(".error-message").css("display", "block");
+                    $(".form-group").addClass("form-group-error");
+                    $('body').scrollTop();
+                } else {
+                    if (input == "Yes") {
+                        go("/create/scp-sign-in");
 
-        if (input == "Yes") {
-            go("/create/scp-sign-in");
-
-        } else {
-            if (input == "No") {
-            go("/create/over-750");
-
-            } else {
-                alert("select an option");
-            }
+                    } else {
+                        if (input == "No") {
+                            go("/create/over-750");
+                        }
+                    }
 
         }
-    })
+        })
+
 </script>
 
 

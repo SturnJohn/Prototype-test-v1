@@ -1,7 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 
-<!--
 <style>
     .error-summary {
         display: none;
@@ -11,7 +10,6 @@
         display: none;
     }
 </style>
--->
 
 <main id="content" role="main">
 
@@ -28,52 +26,57 @@
 
                 <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
 
-                <p>The User ID or Password has been typed incorrectly</p>
+                <p>The User ID or Password have not been provided</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-scp-user-id">Enter your User ID</a></li>
+                    <li><a href="#scp-user-id">Enter your User ID</a></li>
 
-                    <li><a href="#example-scp-password">Enter your Password</a></li>
+                    <li><a href="#scp-password">Enter your Password</a></li>
 
                 </ul>
 
             </div>
 
-            <h1 class="h1-xlarge heading-xlarge">Sign in using Government Gateway</h1>
+            <h1 class="margin-bottom-1 h1-xlarge heading-xlarge">Sign in using Government Gateway</h1>
 
 
             <form>
                 <div class="form-group">
 
                     <fieldset class="minus-margin-bottom-4">
-
-                        <div class="form-group form-group-error">
-                            <label class="form-label" for="scp-user-id"><strong class="bold-small">User ID</strong></label>
+                        <div class="form-group margin-top-1">
+                            <label class="margin-bottom-1 form-label" for="scp-user-id">
+                                <strong class="bold-small">User ID</strong>
+                                <span class="error-message scp-user-id">Enter your User ID</span>
+                            </label>
                             
-                            <span class="margin-top-1 error-message scp-user-id">Enter your User ID</span>
 
-                            <input class="form-control form-control-error" id="scp-user-id" name="scp-user-id" type="text">
+                            <input class="form-control" id="scp-user-id" name="scp-user-id" type="text">
                         </div>
 
-                        <div class="margin-top-4 form-group form-group-error">
-                            <label class="form-label" for="scp-password"><strong class="bold-small">Password</strong></label>
-                            <span class="margin-top-1 error-message scp-password">Enter your Password</span>
+                        <div class="form-group margin-top-2">
 
-                            <input class="form-control form-control-error" id="scp-password" name="scp-password" type="text">
+                            <label class="margin-bottom-1 margin-top-5 form-label" for="scp-password">
+                                <strong class="bold-small">Password</strong>
+                                <span class="error-message scp-user-id">Enter your Password</span>
+                            </label>
+                            
+
+                            <input class="form-control" id="scp-password" name="scp-user-id" type="text">
                         </div>
 
                     </fieldset>
 
                 </div>
+                <button class="margin-top-6 button" type="button">Sign in</button>
 
             </form>
 
 
-            <button class="margin-top-3 button" type="button">Sign in</button>
             <div>
                 <p><a href="#">Set up a user ID</a></p>
-                <h1 class="margin-top-4 heading-medium">Problems signing in</h1>
+                <h1 class="margin-top-6 heading-medium">Problems signing in</h1>
                 <p class="margin-bottom-3"><a href="#"><a href="#">Help with signing in</a></a>
                 </p>
                 <p class="margin-top-1"><a href="#">I have forgotten my password</a>
@@ -89,30 +92,35 @@
 </main>
 
 <script>
-//    $(".button").click(function() {
-//
-//        var scpuserid = $("input[name=scp-user-id]").val();
-//        var scppass = $("input[name=scp-password]").val();
-//        var validInput = true;
-//
-//        if (!scpuserid) {
-//            validInput = false;
-//            $(".error-summary").css("display", "block").focus();
-//            $(".error-message.scp-user-id").css("display", "block");
-//            $("input[name=scp-user-id]").closest(".form-group").addClass("form-group-error");
-//        }
-//
-//        if (!scppass) {
-//            validInput = false;
-//            $(".error-summary").css("display", "block");
-//            $(".error-message.scp-password").css("display", "block");
-//            $("input[name=scp-password]").closest(".form-group").addClass("form-group-error");
-//        }
-//
-//        if (validInput) {
-//            go("/create/scp-email-address");
-//        }
-//    })
+        $(".button").click(function() {
+    
+            var scpuserid = $("input[name=scp-user-id]").val();
+            var scppass = $("input[name=scp-password]").val();
+            var validInput = true;
+    
+            if (!scpuserid) {
+                validInput = false;
+                $(".error-summary").css("display", "block").focus();
+                $(".error-message.scp-user-id").css("display", "block");
+                $("input[name=scp-user-id]").closest(".form-group").addClass("form-group-error");
+                $(document).find("input").first().addClass("form-control-error");
+                $('body').scrollTop();
+            }
+    
+            if (!scppass) {
+                validInput = false;
+                $(".error-summary").css("display", "block");
+                $(".error-message.scp-password").css("display", "block");
+                $("input[name=scp-password]").closest(".form-group").addClass("form-group-error");
+                $(document).find("input").last().addClass("form-control-error");
+                $('body').scrollTop();
+            }
+    
+            if (validInput) {
+                go("/create/scp-email-address");
+            }
+        })
+
 </script>
 
 {% endblock %}

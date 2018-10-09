@@ -1,6 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
-<main id="content" role="main">    
+<main id="content" role="main">
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
@@ -8,12 +8,31 @@
     <a href="/create/confirm-address" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-full">
-            <h1 class="h1-large heading-large">What is your company email address?</h1>
 
-            <p class="margin-bottom-2">Confirmation of any transactions or notifications will be sent to this email address</p>
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
-            <div class="margin-bottom-2 form-group">
-                <input class="form-control-66 form-control" id="company-email" name="company-email" type="company-email">
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>No email address has been entered</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-scp-user-id">Enter your email address</a></li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="form-group-error">
+                <h1 class="h1-large heading-large">What is your company email address?</h1>
+
+                <p class="margin-bottom-0">Confirmation of any transactions or notifications will be sent to this email address</p>
+                <span class="error-message scp-user-id">Enter your email address</span>
+
+                <div class="margin-bottom-2 form-group">
+                    <input class="form-control-66 form-control form-control-error" id="company-email" name="company-email" type="company-email">
+                </div>
             </div>
         </div>
     </div>
@@ -25,14 +44,14 @@
     $(".button").click(function() {
 
         var CE = $("#company-email").val();
-        console.log("CE = "+CE);
-        
-        if(!CE){
+        console.log("CE = " + CE);
+
+        if (!CE) {
             alert("company email can not be empty");
-        }    
-        
-        if(CE){
-            go ("/create/check-your-answers-company");
+        }
+
+        if (CE) {
+            go("/create/check-your-answers-company");
         }
     })
 
