@@ -18,7 +18,7 @@
                 <p>No option has been selected for comercial use</p>
 
                 <ul class="error-summary-list">
-                    <li><a href="#example-personal-details">Select an option of Yes or No</a></li>
+                    <li><a href="#example-personal-details">Select an option of yes or no</a></li>
                 </ul>
 
             </div>
@@ -33,52 +33,61 @@
             </details>
 
 
-            <form>
-                <div class="margin-top-2 form-group form-group-error">
-                    <fieldset class="inline">
+            <div class="margin-top-2">
 
-                        <legend id="example-personal-details"><span class="form-label-bold">No option has been selected for comercial use</span><span class="error-message">Select an option of Yes or No</span></legend>
+                <form>
+                    <div class="form-group">
+                        <fieldset class="inline">
+                            <legend id="example-user-id">
+                                <span class="error-message">Select an option of yes or no</span>
+                            </legend>
 
-                        <div class="multiple-choice">
-                        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                        <label for="radio-inline-1">Yes</label>
+
+                            <div class="multiple-choice">
+                                <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                                <label for="radio-inline-1">Yes</label>
+                            </div>
+                            <div class="multiple-choice">
+                                <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                                <label for="radio-inline-2">No</label>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div class="multiple-choice">
-                        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                        <label for="radio-inline-2">No</label>
-                    </div>
 
-                    </fieldset>
-                </div>
+                </form>
+            </div>
 
-                <input class="margin-bottom-0 margin-top-3 button" type="submit" value="Continue">
-
-            </form>
-
+            <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
         </div>
     </div>
 </main>
 
+
 <script>
     $(".button").click(function() {
 
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
+        var input = $("input[name=radio-inline-group]:checked").val();
+        var validInput = true;
 
-
-        if (input == "Yes") {
-            go("/create/vienna-convention-part-2");
-
+        if (!input) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
         } else {
-            if (input == "No") {
-                go("/create/over-750");
+            if (input == "Yes") {
+                go("/create/behalf-of-company");
 
             } else {
-                alert("select an option");
+                if (input == "No") {
+                    go("/create/vienna-convention-no");
+                }
             }
 
         }
     })
 </script>
+
 
 {% endblock %}

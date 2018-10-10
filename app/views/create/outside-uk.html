@@ -1,5 +1,6 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
+
 <main id="content" role="main">
 
     <div class="phase-banner">
@@ -17,7 +18,7 @@
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-user-id">Select an option of Yes or No</a></li>
+                    <li><a href="#example-user-id">Select an option of yes or no</a></li>
 
                 </ul>
 
@@ -25,28 +26,29 @@
 
             <h1 class="h1-large heading-large">Will any of these trailers be used outside of the UK?</h1>
 
-            <div class="form-group">
+            <div class="margin-top-2">
 
+                <form>
+                    <div class="form-group">
+                        <fieldset class="inline">
+                            <legend id="example-user-id">
+                                <span class="error-message">Select an option of yes or no</span>
+                            </legend>
 
-                <div class="margin-top-2 form-group form-group-error">
-                    <fieldset class="inline">
-                        <legend id="example-user-id form-group-error"><span class="form-label-bold">No option has been selected for outside of the UK</span><span class="error-message">Select an option of Yes or No</span></legend>
-                        
-                        <div class="margin-bottom-0 form-group">
-                            <fieldset class="inline">
-                                <div class="multiple-choice">
-                                    <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                                    <label for="radio-inline-1">Yes</label>
-                                </div>
-                                <div class="multiple-choice">
-                                    <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                                    <label for="radio-inline-2">No</label>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </fieldset>
-                </div>
-
+                    
+                                    <div class="multiple-choice">
+                                        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                                        <label for="radio-inline-1">Yes</label>
+                                    </div>
+                                    <div class="multiple-choice">
+                                        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                                        <label for="radio-inline-2">No</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                    
+                
+                </form>
             </div>
 
 
@@ -58,23 +60,29 @@
 <script>
     $(".button").click(function() {
 
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
+        var input = $("input[name=radio-inline-group]:checked").val();
+        var validInput = true;
 
-
-        if (input == "Yes") {
-            go("/create/vienna-convention-part-1");
-
+        if (!input) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
         } else {
-            if (input == "No") {
-                go("/create/outside-uk-no");
+            if (input == "Yes") {
+                go("/create/vienna-convention-part-1");
 
             } else {
-                alert("select an option");
+                if (input == "No") {
+                    go("/create/outside-uk-no");
+                }
             }
 
         }
     })
+
 </script>
+
 
 {% endblock %}

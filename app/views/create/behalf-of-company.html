@@ -27,57 +27,65 @@
             </div>
             <h1 class="h1-large heading-large">Are you creating a trailer record on behalf of a company?</h1>
 
-            <form>
-                <div class="margin-top-2 form-group form-group-error">
-                    <fieldset>
 
-                        <legend id="example-personal-details"><span class="form-label-bold">No option has been selected for on behalf of a company</span><span class="error-message">Select an option of Yes or No</span></legend>
+            <div class="margin-top-2">
 
-                     
+                <form>
+                    <div class="form-group">
+                        <fieldset>
+                            <legend id="example-user-id">
+                                <span class="error-message">Select an option of yes or no</span>
+                            </legend>
+
+
                             <div class="multiple-choice">
                                 <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
                                 <label for="radio-inline-1">Yes, for a company</label>
                             </div>
-
-                            <div class="margin-top-1 multiple-choice">
+                            <div class="multiple-choice">
                                 <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
                                 <label for="radio-inline-2">No, for myself</label>
                             </div>
-                       
+                        </fieldset>
+                    </div>
 
-                    </fieldset>
-                </div>
-
-                <input class="margin-bottom-0 margin-top-3 button" type="submit" value="Continue">
-
-            </form>
+                </form>
+            </div>
 
 
+            <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
         </div>
     </div>
 </main>
 
+
+
 <script>
     $(".button").click(function() {
 
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
+        var input = $("input[name=radio-inline-group]:checked").val();
+        var validInput = true;
 
-
-        if (input == "Yes") {
-            go("/create/authenticate-company");
-
+        if (!input) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
         } else {
-            if (input == "No") {
-                go("/create/authenticate-individual");
+            if (input == "Yes") {
+                go("/create/authenticate-company");
 
             } else {
-                alert("select an option");
+                if (input == "No") {
+                    go("/create/authenticate-individual");
+                               }
             }
 
         }
     })
 
 </script>
+
 
 {% endblock %}

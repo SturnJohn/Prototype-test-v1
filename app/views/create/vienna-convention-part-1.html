@@ -28,10 +28,10 @@
             <span class="body-text">Select all the countries that apply</span>
 
             <form>
-                <div class="form-group form-group-error">
+                <div class="form-group">
                     <fieldset>
 
-                        <legend id="example-personal-details"><span class="form-label-bold">Are any of the checkboxes selected?</span><span class="error-message">Select one or more of the checkboxes</span></legend>
+                        <legend id="example-personal-details"><span class="error-message">Select one or more of the checkboxes</span></legend>
 
                         <div class="multiple-choice">
                             <input id="checkbox-ireland" name="countries" type="checkbox" value="Yes-republic-of-ireland">
@@ -59,12 +59,12 @@
                     </fieldset>
                 </div>
 
-                <input class="button" type="submit" value="Continue">
+                <button class="margin-bottom-0 margin-top-3 button"type="button">Continue</button>
 
             </form>
-
         </div>
     </div>
+
 </main>
 
 
@@ -75,82 +75,34 @@
     $('input#checkbox-no').click(function() {
         $('input[name=countries]').not(this).removeAttr('checked');
 
-        //             $(".button").click(function() {
-        //                go("/create/vienna-convention-part-2")
-
+    });
+    $('input[name=countries]').not('input#checkbox-no').click(function() {
+        $('input#checkbox-no').removeAttr('checked');
     });
 
-    //        });
-    //        $('.button').click(validate);
-    //        function validate() {
-    //            var value = $('input[name=countries]:checked').val();
-    //            if (!value) {
-    //                hideErrors();
-    //                showErrors();
-    //            } else {
-    //                next();
-    //            }
-    //            function next() {
-    //                if (value == 'none') {
-    //                    go('/create/used-commercially');
-    //                } else {
-    //                    member.countries = [];
-    //                    $('input[name=countries]:checked').each(function (num, el) {
-    //                        member.countries.push(el.getAttribute('value'));
-    //                    });
-    //                    go('/create/travelling-through');
-    //                }
-    //            }
-    //        }
+    $('.button').click(validate);
 
+    function validate() {
+        var value = $('input[name=countries]:checked').val();
+        if (!value) {
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
+        } else {
+            next();
+        }
 
-    //    $(".button").click(function() {
-    //
-    //        var countries = $('input[name = countries]:checked').val();
-    //        console.log(countries);
+        function next() {
+            if (value == 'No-countries') {
+                go('/create/commercially-yes');
+            } else {
 
+                go('/create/vienna-convention-part-2');
+            }
+        }
+    }
 
-
-
-
-    //        if (input == "Yes") {
-    //            go("/create/vienna-convention-part-2");
-    //
-    //        } else {
-    //            if (input == "No") {
-    //            go("/create/vienna-convention-no");
-    //
-    //            } else {
-    //                alert("select an option");
-    //            }
-    //
-    //        }
-    //    })
-
-
-
-    //Yes, I'm traveling to one or more of these countries
-    //    
-    //    $(".button").click(function() {
-    //
-    //        var input = $('input[name = checkbox-yes or checkbox-no]:checked').val();
-    //        console.log(input);
-    //
-    //
-    //        if (input == "Yes");
-    //
-    //        } else {
-    //            if (input == "No") {
-    //            go("/create/commercially-no");
-    //
-    //            } else {
-    //                alert("select an option");
-    //            }
-    //        
-    //        }
-    //    })
-    //    
-    //
 </script>
 
 {% endblock %}

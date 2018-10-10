@@ -24,31 +24,30 @@
 
             <h1 class="h1-large heading-large">Will you be travelling through <br>any other countries to get to <br>and from Spain?</h1>
 
+            <div class="margin-top-2">
 
+                <form>
+                    <div class="form-group">
+                        <fieldset class="inline">
 
+                            <legend id="example-personal-details">
+                                <span class="error-message">Select an option of Yes or No</span>
+                            </legend>
 
-            <form>
-                <div class="form-group form-group-error">
-                    <fieldset class="inline">
-
-                        <legend id="example-personal-details"><span class="form-label-bold">No option has been selected for other countries</span><span class="error-message">Select an option of Yes or No</span></legend>
-
-                        <div class="multiple-choice">
-                        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                        <label for="radio-inline-1">Yes</label>
+                            <div class="multiple-choice">
+                                <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
+                                <label for="radio-inline-1">Yes</label>
+                            </div>
+                            <div class="multiple-choice">
+                                <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
+                                <label for="radio-inline-2">No</label>
+                            </div>
+                            
+                        </fieldset>
                     </div>
-                    <div class="multiple-choice">
-                        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                        <label for="radio-inline-2">No</label>
-                    </div>
-
-                    </fieldset>
-                </div>
-
+                </form>
                 <input class="button" type="submit" value="Continue">
-
-            </form>
-
+            </div>
         </div>
     </div>
 </main>
@@ -56,23 +55,28 @@
 <script>
     $(".button").click(function() {
 
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
+        var input = $("input[name=radio-inline-group]:checked").val();
+        var validInput = true;
 
-
-        if (input == "Yes") {
-            go("/create/commercially-no");
-
+        if (!input) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
         } else {
-            if (input == "No") {
-                go("/create/vienna-convention-no");
+            if (input == "Yes") {
+                go("/create/commercially-no");
 
             } else {
-                alert("select an option");
+                if (input == "No") {
+                    go("/create/vienna-convention-no");
+                }
             }
 
         }
     })
+
 </script>
 
 {% endblock %}

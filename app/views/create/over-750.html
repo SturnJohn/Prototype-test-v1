@@ -1,5 +1,17 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
+<style>
+    .error-summary {
+        display: none;
+    }
+
+    .error-message {
+        display: none;
+    }
+
+</style>
+
+
 <main id="content" role="main">
 
     <div class="phase-banner">
@@ -17,7 +29,7 @@
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-gross-weight">Select an option of Yes or No</a></li>
+                    <li><a href="#example-gross-weight">Select an option of yes or no</a></li>
 
                 </ul>
 
@@ -25,19 +37,23 @@
 
             <h1 class="margin-bottom-1 h1-large heading-large">Do you have any trailers that weigh over 750kg in gross weight?</h1>
 
-            <div class="form-group">
+            <details>
+                <summary><span class="summary">What is gross weight?</span></summary>
+                <div class="panel panel-border-narrow">
+                    <p>This is specified by the manufacturer and it means the maximum weight the trailer is allowed to be when fully loaded. It is the unladen weight of the trailer plus the maximum permitted payload. It is also known as the Maximum Permissible Mass.</p>
 
-                    <details>
-                        <summary><span class="summary">What is gross weight?</span></summary>
-                        <div class="panel panel-border-narrow">
-                            <p>This is specified by the manufacturer and it means the maximum weight the trailer is allowed to be when fully loaded. It is the unladen weight of the trailer plus the maximum permitted payload. It is also known as the Maximum Permissible Mass.</p>
+                </div>
+            </details>
 
-                        </div>
-                    </details>
-                    <div class="margin-top-2 form-group form-group-error">
+
+            <div class="margin-top-2">
+                <form>
+                    <div class="form-group">
                         <fieldset class="inline">
-                            <legend id="example-gross-weight"><span class="form-label-bold">No option has been selected for gross weight</span><span class="error-message">Select an option of Yes or No</span></legend>
-                            
+                            <legend id="example-gross-weight">
+                                <span class="error-message">Select an option of yes or no</span>
+                            </legend>
+
                             <div class="multiple-choice">
                                 <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
                                 <label for="radio-inline-1">Yes</label>
@@ -48,7 +64,7 @@
                             </div>
                         </fieldset>
                     </div>
-
+                </form>
             </div>
 
 
@@ -60,23 +76,30 @@
 <script>
     $(".button").click(function() {
 
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
+        var input = $("input[name=radio-inline-group]:checked").val();
+        var validInput = true;
 
-
-        if (input == "Yes") {
-            go("/create/outside-uk");
-
+        if (!input) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
         } else {
-            if (input == "No") {
-                go("/create/over-750-no");
+            if (input == "Yes") {
+                go("/create/outside-uk");
 
             } else {
-                alert("select an option");
+                if (input == "No") {
+                    go("/create/over-750-no");
+                }
             }
 
         }
     })
+
 </script>
+
+
 
 {% endblock %}
