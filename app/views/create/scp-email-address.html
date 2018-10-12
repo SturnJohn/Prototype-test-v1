@@ -22,7 +22,8 @@
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-scp-user-id">Enter your email address</a></li>
+                    <li><a href="#scp-email-address">Enter your email address</a></li>
+                    <li><a href="#checkbox-email-address">Select box if email address is correct</a></li>
 
                 </ul>
 
@@ -36,18 +37,30 @@
 
                 <div class="form-group">
 
-                    <input class="margin-top-2 form-control" id="email-address" name="email-address" type="tel">
+                    <label class="margin-top-5 form-label" for="scp-email-address">
+                            
+                                <span class="error-message scp-email-address">Enter your email address</span>
+                            </label>
+                    <input class="form-control" id="scp-email-address" name="scp-email-address" type="text">
                 </div>
+
                 <div class="form-group">
+                    <span class="error-message scp-email-address">Select box if email address is correct</span>
+
                     <div class="multiple-choice">
-                        <input id="checkbox-email-address" name="email-address" type="checkbox" value="true">
-                        <label for="checkbox-email-address">This email address is correct</label>
+                        <input class="form-control" id="checkbox-email-address" name="scp-email-address" type="checkbox" value="true">
+
+                        <label for="checkbox-email-address">This email address is correct
+                        </label>
                     </div>
                 </div>
 
-                <button class="margin-top-3 button" type="submit">Continue</button>
-                <p class="margin-bottom-0"><a href="#">Get help</a></p>
+
+
+
+                <button class="margin-top-3 button" type="button">Continue</button>
             </form>
+            <p class="margin-bottom-0"><a href="#">Get help</a></p>
 
         </div>
 
@@ -55,44 +68,36 @@
 </main>
 
 <script>
-        $(".button").click(function() {
-    
-            var email = $("input[name=email-address]").val();
-            var validInput = true;
-    
-            if (!email) {
-                validInput = false;
-                $(".error-summary").css("display", "block").focus();
-                $(".error-message.email-address").css("display", "block");
-                $("input[name=email-address]").closest(".form-group").addClass("form-group-error");
-                $(document).find("input").first().addClass("form-control-error");
-                $('body').scrollTop();
-                
-            }
-    
-            if (validInput) {
-                go("/create/scp-confirm-email");
-            }
-        })
-
-</script>
-
-<!--
-<script>
     $(".button").click(function() {
 
-        var Email = $("#email-address").val();
-        console.log("Email = " + Email);
+        var scpemail = $("input[name=scp-email-address]").val();
+        var scpcheckemail = $("input[name=scp-email-address]:checked").val();
+        var validInput = true;
 
-        if (!Email) {
-            alert("email can not be empty");
+        if (!scpemail) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.scp-email-address").css("display", "block");
+            $("input[name=scp-email-address]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").first().addClass("form-control-error");
+            $('body').scrollTop();
         }
 
-        if (Email) {
+        if (!scpcheckemail) {
+            validInput = false;
+            $(".error-summary").css("display", "block");
+            $(".error-message.checkbox-email-address").css("display", "block");
+            $("input[name=scp-email-address]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").last().addClass("form-control-error");
+            $('body').scrollTop();
+        }
+
+        if (validInput) {
             go("/create/scp-confirm-email");
         }
     })
 </script>
--->
+
+
 
 {% endblock %}

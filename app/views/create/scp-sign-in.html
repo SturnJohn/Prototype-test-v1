@@ -16,7 +16,7 @@
 
                 <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
 
-                <p>The User ID or Password have not been provided</p>
+                <p>The User ID or Password have not been entered</p>
 
                 <ul class="error-summary-list">
 
@@ -59,6 +59,7 @@
                     </fieldset>
 
                 </div>
+                
                 <button class="margin-top-6 button" type="button">Sign in</button>
 
             </form>
@@ -85,7 +86,7 @@
         $(".button").click(function() {
     
             var scpuserid = $("input[name=scp-user-id]").val();
-            var scppass = $("input[name=scp-password]").val();
+            var scppass = $("input[name=scp-user-id]").val();
             var validInput = true;
     
             if (!scpuserid) {

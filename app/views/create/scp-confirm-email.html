@@ -22,7 +22,7 @@
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-scp-user-id">Provide the code that was sent to you email address</a></li>
+                    <li><a href="#scp-email-code">Enter the code that was sent to your email address</a></li>
 
                 </ul>
 
@@ -34,7 +34,7 @@
 
             <form>
                 <div class="form-group">
-                    <div class="form-group-error">
+                    <div>
 
                         <label class="form-label" for="ni-number">Enter code
                             <span class="form-hint">For example, CF-DNCLRK.</span>
@@ -42,8 +42,8 @@
                         <span>No email code has been provided</span>
                             </label>
 
-                        <span class="error-message scp-user-id">Provide the code that was sent to you email address</span>
-                        <p>CF- <input class="margin-left-0 form-control-150px form-control form-control-error" id="email-code" type="text" name="example-email-code"></p>
+                        <span class="error-message scp-email-code">Enter the code that was sent to your email address</span>
+                        <p>CF- <input class="margin-left-0 form-control-150px form-control" id="scp-email-code" type="text" name="scp-email-code"></p>
                     </div>
 
 
@@ -61,14 +61,10 @@
 
                 </div>
 
-                <button class="margin-top-3 button" type="submit">Confirm</button>
+                <button class="margin-top-3 button" type="button">Confirm</button>
                 <p class="margin-bottom-0"><a href="#">Get help</a></p>
 
             </form>
-
-
-
-
 
         </div>
     </div>
@@ -77,18 +73,22 @@
 <script>
     $(".button").click(function() {
 
-        var code = $("#email-code").val();
-        console.log("code = " + code);
+        var emailcode = $("input[name=scp-email-code]").val();
+        var validInput = true;
 
-        if (!code) {
-            alert("email can not be empty");
+        if (!emailcode) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.scp-email-code").css("display", "block");
+            $("input[name=scp-email-code]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").first().addClass("form-control-error");
+            $('body').scrollTop();
         }
 
-        if (code) {
+        if (validInput) {
             go("/create/scp-email-confirmed");
         }
     })
-
 </script>
 
 {% endblock %}
