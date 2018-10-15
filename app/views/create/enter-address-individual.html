@@ -8,8 +8,8 @@
     <a href="address" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            
-            
+
+
             <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
                 <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
@@ -18,44 +18,89 @@
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-scp-user-id">Enter your building or street</a></li>
-                    <li><a href="#example-scp-user-id">Enter your town or city</a></li>
-                    <li><a href="#example-scp-user-id">Enter your postcode</a></li>
+                    <li><a href="#building-street">Enter your building and street</a></li>
+                    <li><a href="#town-city">Enter your town or city</a></li>
+                    <li><a href="#postcode">Enter your postcode</a></li>
 
                 </ul>
 
             </div>
-            
-            <h1 class="h1-large heading-large">Enter your address</h1>
-            
-            
-            
-            
-            
-            
 
-            <div class="margin-bottom-5 form-group form-group-error">
-                <label class="form-label" for="first-name-2"><strong class="bold-small">Building and street</strong><span class="error-message scp-user-id">Enter your building or street</span></label>
-                <input class="margin-bottom-3 form-control-66 form-control form-control-error" id="first-name-2" name="first-name-2" type="text">
-                <input class="form-control-66 form-control form-control-error" id="first-name-2" name="first-name-2" type="text">
-            </div>
-            <div class="margin-bottom-5 form-group form-group-error">
-                <label class="form-label" for="last-name-2"><strong class="bold-small">Town or city</strong><span class="error-message scp-user-id">Enter your town or city</span></label>
-                <input class="form-control-33 form-control form-control-error" id="last-name-2" name="last-name-2" type="text">
-            </div>
-            <div class="margin-bottom-2 form-group form-group-error">
-                <label class="form-label" for="last-name-2"><strong class="bold-small">Postcode</strong><span class="error-message scp-user-id">Enter your postcode</span></label>
-                <input class="form-control-33 form-control form-control-error" id="last-name-2" name="last-name-2" type="text">
-            </div>
+            <h1 class="h1-large heading-large">Enter your address</h1>
+
+
+            <form>
+                <div class="form-group">
+
+                    <fieldset class="minus-margin-bottom-4">
+                        <div class="form-group margin-top-1">
+                            <label class="margin-bottom-1 form-label" for="building-street">
+                                <strong class="bold-small">Building and street</strong>
+                                <span class="error-message building-street">Enter your building and street</span>
+                            </label>
+
+
+                            <input class="margin-bottom-2 form-control-66 form-control" id="building-street" name="building-street" type="text">
+                            <input class="form-control-66 form-control" id="building-street" name="building-street" type="text">
+
+                        </div>
+
+                        <div class="margin-bottom-4 form-group">
+                            <label class="form-label" for="town-city"><strong class="bold-small">Town or city</strong><span class="error-message town-city">Enter your town or city</span></label>
+                            <input class="form-control-33 form-control" id="town-city" name="town-city" type="text">
+                        </div>
+                        
+                        <div class="margin-bottom-3 form-group">
+                            <label class="form-label" for="last-name-2"><strong class="bold-small">Postcode</strong><span class="error-message postcode">Enter your postcode</span></label>
+                            <input class="form-control-33 form-control" id="postcode" name="postcode" type="text">
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <button class="margin-bottom-0 margin-top-3 button" type="button">Continue</button>
+
+            </form>
+
         </div>
+
     </div>
-    <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/create/email-address")
-})
+    $(".button").click(function() {
+
+        var buildstreet = $("input[name=building-street]").val();
+        var towncity = $("input[name=town-city]").val();
+        var postcode = $("input[name=postcode]").val();
+        var validInput = true;
+
+        if (!buildstreet) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.building-street").css("display", "block");
+            $("input[name=building-street]").closest(".form-group").addClass("form-group-error");
+        }
+
+        if (!towncity) {
+            validInput = false;
+            $(".error-summary").css("display", "block");
+            $(".error-message.town-city").css("display", "block");
+            $("input[name=town-city]").closest(".form-group").addClass("form-group-error");
+        }
+
+        if (!postcode) {
+            validInput = false;
+            $(".error-summary").css("display", "block");
+            $(".error-message.postcode").css("display", "block");
+            $("input[name=postcode]").closest(".form-group").addClass("form-group-error");
+        }
+
+        if (validInput) {
+            go("/create/email-address-individual");
+        }
+    })
 </script>
 
 {% endblock %}

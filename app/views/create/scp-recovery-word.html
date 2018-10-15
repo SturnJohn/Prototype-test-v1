@@ -75,8 +75,8 @@
         if (!recoveryword) {
             validInput = false;
             $(".error-summary").css("display", "block").focus();
-            $(".error-message.scp-recovery-worde").css("display", "block");
-            $("input[name=sscp-recovery-word]").closest(".form-group").addClass("form-group-error");
+            $(".error-message.scp-recovery-word").css("display", "block");
+            $("input[name=scp-recovery-word]").closest(".form-group").addClass("form-group-error");
             $(document).find("input").first().addClass("form-control-error");
             $('body').scrollTop();
         }
