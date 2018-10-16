@@ -14,61 +14,61 @@
 
                 <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
 
-                <p>No tilte, first or last names have been entered</p>
+                <p>No name details have been entered</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#example-scp-user-id">Enter your title</a></li>
-                    <li><a href="#example-scp-user-id">Enter your first name</a></li>
-                    <li><a href="#example-scp-user-id">Enter your last name</a></li>
+                    <li><a href="#select-box">Enter your title</a></li>
+                    <li><a href="#first-name">Enter your first names</a></li>
+                    <li><a href="#last-name">Enter your last name</a></li>
 
                 </ul>
 
             </div>
 
 
-            <h1 class="h1-large heading-large">What’s is your name?</h1>
+            <h1 class="h1-large heading-large">What is your name?</h1>
 
 
             <form>
                 <div class="form-group">
 
-                    <div class="margin-bottom-4 form-group form-group-error">
-                        <label class="form-label"><strong class="bold-small">Title</strong><span class="error-message scp-user-id">Enter your title</span></label>
+                    <div class="margin-bottom-4 form-group">
+                        <label class="form-label"><strong class="bold-small">Title</strong><span class="error-message select-box">Enter your title</span></label>
 
                         <select class="form-control-25 form-control" id="select-box" name="select-box">
                                 <option></option>
-                                <option>Mr</option>
-                                <option>Mrs</option>
-                                <option>Miss</option>
-                                <option>Ms</option>
-                                <option data-target="other">Other</option>
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Other">Other</option>
                             </select>
-                        
+
                         <div class="margin-top-2 panel panel-border-narrow" id="other">
-                            <label class="form-label" for="nationalities-other-country">Other titles</label>
+                            <label class="form-label" for="nationalities-other-country">Other title</label>
                             <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
                         </div>
                     </div>
 
 
 
-                    <div class="margin-bottom-4  margin-top-3 form-group form-group-error">
+                    <div class="margin-bottom-4 margin-top-3 form-group">
 
-                        <label class="form-label" for="first-name-2"><strong class="bold-small">First names</strong><span class="error-message scp-user-id">Enter your first name</span></label>
-                        
-                        <input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
-                    </div>
-                    
-                    <div class="margin-bottom-2 form-group form-group-error">
+                        <label class="form-label" for="first-name"><strong class="bold-small">First names</strong><span class="error-message first-name">Enter your first names</span></label>
 
-
-                        <label class="form-label" for="first-name-2"><strong class="bold-small">Last name</strong><span class="error-message scp-user-id">Enter your last name</span></label>
-                        
-                        <input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
+                        <input class="form-control-66 form-control" id="first-name" name="first-name" type="text">
                     </div>
 
-                    <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
+                    <div class="margin-bottom-2 form-group">
+
+
+                        <label class="form-label" for="last-name"><strong class="bold-small">Last name</strong><span class="error-message last-name">Enter your last name</span></label>
+
+                        <input class="form-control-66 form-control" id="last-name" name="last-name" type="text">
+                    </div>
+
+                    <button class="margin-bottom-0 margin-top-3 button" type="button">Continue</button>
 
                 </div>
 
@@ -79,9 +79,60 @@
 </main>
 
 <script>
-    $("option").on("click", function() {
-                $("option[type=other]").on("click", showpanel);
+    
+    $('select').change(function() {
+        var title = $('#select-box option:selected').val();
 
+
+        if (title == 'Other') {
+            $('#other').show();
+
+        } else {
+            $('#other').hide();
+        }
+
+    });
+
+    $(".button").click(function() {
+
+        var title = $('select').val();
+        var firstname = $("input[name=first-name]").val();
+        var lastname = $("input[name=last-name]").val();
+
+        var validInput = true;
+
+        if (!title) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.select-box").css("display", "block");
+            $('select').closest(".form-group").addClass("form-group-error");
+            $(document).find("input").first().addClass("form-control-error");
+            $('body').scrollTop();
+
+        }
+        if (!firstname) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.first-name").css("display", "block");
+            $("input[name=first-name]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").first().addClass("form-control-error");
+            $('body').scrollTop();
+        }
+
+        if (!lastname) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.last-name").css("display", "block");
+            $("input[name=last-name]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").first().addClass("form-control-error");
+            $('body').scrollTop();
+        }
+
+        if (validInput) {
+            go("/create/address");
+        }
+    })
+    
 </script>
 
 {% endblock %}

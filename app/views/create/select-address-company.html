@@ -1,0 +1,70 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<main id="content" role="main">
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="/create/address" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>No address has been selected</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#example-scp-user-id">You have not selected an address</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>No address details have been entered</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#scp-address-select">Enter your building name or number</a></li>
+
+                </ul>
+
+            </div>
+
+            <h1 class="margin-bottom-1 h1-large heading-large">Select your address from the list</h1>
+            
+            <span class="error-message scp-address-select">Enter your building name or number</span>
+
+            <p class="error-message margin-bottom-2">You have not selected an address</p>
+            <ul class="list">
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">1 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">2 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">3 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">4 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">5 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">6 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">7 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">8 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">9 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">10 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">11 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">12 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">13 Example Close, Swansea, SA1 2BC</a></li>
+                <li class="margin-bottom-2"><a href="/create/confirm-address-company">14 Example Close, Swansea, SA1 2BC</a></li>
+            </ul>
+            <p>or</p>
+            <ul class="list">
+                <li class="margin-bottom-0"><a href="/create/enter-address-company">Enter address manually</a></li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

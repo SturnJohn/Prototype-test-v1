@@ -27,13 +27,15 @@
 
             <form>
                 <div class="form-group">
-                   
-                    <h1 class="h1-large heading-large">What is your company name?</h1>
+
+                    <h1 class="h1-large heading-large">What is the name of your company?</h1>
+
                     <fieldset>
-                     
-                                <label class="form-label" for="company-name">
-                                    <span class="error-message">Enter your full name</span></label>
-                                <input class="form-control form-control-66" id="company-name" name="company-name" type="company-name">                        
+
+                        <label class="form-label" for="company-name">
+                            <span class="error-message minus-margin-top-3">Enter your company name</span></label>
+                        
+                        <input class="form-control form-control-66" id="company-name" name="company-name" type="company-name">
 
                     </fieldset>
 
@@ -66,7 +68,7 @@
         }
 
         if (validInput) {
-            go("/create/enter-address-company");
+            go("/create/company-address");
         }
     })
 </script>

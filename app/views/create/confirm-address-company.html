@@ -14,15 +14,17 @@
             <h3 class="minus-margin-top-1 heading-medium">SA1 2BC</h3>
         </div>
     </div>
-    <button class="margin-bottom-0 margin-top-3 button" type="submit">Yes, continue</button>
+    <button class="margin-bottom-0 margin-top-3 button" type="button">Yes, continue</button>
     
      <p class="margin-top-6 margin-bottom-0"><a href="/create/enter-address-manually">This address is not correct</a></p>
 </main>
 
 <script>
+    
 $(".button").click( function(){
-    go("/create/email-address-individual")
+    go("/create/email-address-company")
 })
+    
 </script>
 
 {% endblock %}
