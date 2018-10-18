@@ -11,23 +11,24 @@
         </div>
         <div class="column-two-thirds">
             <div class="confirmation-panel-below-banner confirmation-panel">
-                <h1 class="h1-large heading-large">Email address updated</h1>
+                <h1 class="h1-large heading-large">Company email address <br>changed successfully</h1>
             </div>
-            <p class="large">A confirmation email has been sent to <strong class="bold-small">haulage.company@email.com</strong>.</p>
-            <p>All future confirmations and email correspondance will be sent to your new email address.</p>
-            <p>Please note that your Government Gateway email address has not changed. You will still need your old email address to sign in.</p>
+            
+            <p class="large">A confirmation email has been sent to <strong class="bold-small">email@email.com</strong>.</p>
+      
         </div>
     </div>
 
 
-    <button class="margin-top-3 button" type="submit">Return to company details</button>
-    <p class="margin-bottom-0"><a href="/register/trailer-keeper-record">Return to trailer record</a></p>
+    <button class="margin-top-3 button" type="submit">Go to company details</button>
+    <p class="margin-bottom-0"><a href="/register/trailer-keeper-record">Go to trailer record</a></p>
 </main>
 
 <script>
     $(".button").click(function() {
         go("/dashboard/company-details")
     })
+
 </script>
 
 {% endblock %}
