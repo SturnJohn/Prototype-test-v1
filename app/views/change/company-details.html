@@ -1,16 +1,14 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
-
 <main id="content" role="main">
+    <h4 class="log-out heading-small">Log out</h4>
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
     </div>
-    <a href="/create/email-address-company" class="link-back">Back</a>
-    <div class="grid-row">
-        <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">Check your answers</h1>
-            <h3 class="heading-medium">Your company details</h3>
+   <div class="grid-row">
+        <div class="margin-top-4 column-two-thirds">
+            <h1 class="dashboard-h1 h1-xlarge heading-xlarge">Your company details</h1>
         </div>
-        <div class="margin-bottom-2 minus-margin-top-4 column-full">
+        <div class="margin-bottom-2 minus-margin-top-2 column-two-thirds">
             <table>
                 <thead>
                     <tr>
@@ -23,28 +21,28 @@
                     <tr>
                         <td class="columns-third" scope="row">Company name</td>
                         <td class="bold second-column">Haulage Company</td>
-                        <td class="last-column"><a href="/change/company-name">Change</a></td>
+                        <td class="last-column"><a href="/change/change-company-name">Change</a></td>
                     </tr>
                     <tr>
                         <th class="first-column columns-third" scope="row">Company address</th>
                         <td class="bold">Unit 123 <br>2 Example Close <br>Swansea <br>SA1 2BC</td>
-                        <td class="last-column"><a href="/change/company-address">Change</a></td>
+                        <td class="last-column"><a href="/change/change-company-address">Change</a></td>
                     </tr>
                     <tr>
                         <th class="columns-third" scope="row">Email address</th>
                         <td class="bold second-column">email@email.com</td>
-                        <td class="last-column"><a href="/change/company-email-address">Change</a></td>
+                        <td class="last-column"><a href="/change/change-email-address">Change</a></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <button class="margin-bottom-0 margin-top-3 button" type="submit">Create trailer keeper record</button>
+    <button class="margin-bottom-0 margin-top-3 button" type="submit">Return to trailer record</button>
 </main>
 
 <script>
     $(".button").click(function() {
-        go("/create/confirmation")
+        go("/register/trailer-record")
     })
 </script>
 

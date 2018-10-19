@@ -8,24 +8,94 @@
     <a href="keeper-company" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">What’s your new address?</h1>
 
-            <div class="form-group">
-                <label class="form-label" for="first-name-2"><strong class="bold-small">Building name or number (optional)</strong></label>
-                <input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The company details have not been entered correctly</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#change-build-name-no">Enter your building name or number</a></li>
+                    <li><a href="#change-postcode">Enter your postcode</a></li>
+
+                </ul>
+
             </div>
-            <div class="form-group">
-                <label class="form-label" for="last-name-2"><strong class="bold-small">Postcode</strong></label><input class="minus-margin-bottom-1 form-control-33  form-control" id="last-name-2" name="last-name-2" type="text">
-            </div>
+
+
+            <h1 class="h1-large heading-large">What’s your new address?</h1>
+            
+            
+            <form>
+                <div class="form-group">
+
+                    <fieldset class="minus-margin-bottom-4">
+                        <div class="form-group margin-top-1">
+                            <label class="margin-bottom-1 form-label" for="change-build-name-no">
+                                <strong class="bold-small">Building name or number (optional)</strong>
+                                <span class="error-message change-build-name-no">Enter your building name or number</span>
+                            </label>
+                            
+
+                            <input class="minus-margin-top-1 form-control" id="change-build-name-no" name="change-build-name-no" type="text">
+                        </div>
+
+                        <div class="form-group margin-top-2">
+
+                            <label class="margin-bottom-1 margin-top-2 form-label" for="change-postcode">
+                                <strong class="bold-small">Postcode</strong>
+                                <span class="error-message change-postcode">Enter your postcode</span>
+                            </label>
+                            
+
+                            <input class="minus-margin-top-1 form-control" id="change-postcode" name="change-postcode" type="text">
+                        </div>
+
+                    </fieldset>
+
+                </div>
+                
+                <button class="margin-top-3 margin-bottom-0 button" type="button">Find UK address</button>
+
+            </form> 
+            
         </div>
     </div>
-    <button class="margin-bottom-0 margin-top-3 button" type="submit">Find UK address</button>
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/change/company-address-select")
-})
+    
+     $(".button").click(function() {
+    
+            var buildnameno = $("input[name=change-build-name-no]").val();
+            var changepost = $("input[name=change-postcode]").val();
+            var validInput = true;
+    
+            if (!buildnameno) {
+                validInput = false;
+                $(".error-summary").css("display", "block").focus();
+                $(".error-message.change-build-name-no").css("display", "block");
+                $("input[name=change-build-name-no]").closest(".form-group").addClass("form-group-error");
+                $(document).find("input").first().addClass("form-control-error");
+                $('body').scrollTop();
+            }
+    
+            if (!changepost) {
+                validInput = false;
+                $(".error-summary").css("display", "block");
+                $(".error-message.change-postcode").css("display", "block");
+                $("input[name=change-postcode]").closest(".form-group").addClass("form-group-error");
+                $(document).find("input").last().addClass("form-control-error");
+                $('body').scrollTop();
+            }
+    
+            if (validInput) {
+                go("/change/company-address-select");
+            }
+        })
+    
 </script>
 
 {% endblock %}

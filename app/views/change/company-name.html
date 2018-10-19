@@ -1,30 +1,89 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
 <main id="content" role="main">
-                <h4 class="log-out heading-small">Log out</h4>
 
     <div class="phase-banner">
         <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
     </div>
     <div class="grid-row">
         <div class="column-half">
-            <a href="scp-email-confirmed" class="link-back">Back</a>
+            <a href="/create/scp-email-confirmed" class="link-back">Back</a>
+        </div>
+        <div class="column-half">
+            <p class="languages">English | <a href="#">Cymraeg</a></p>
         </div>
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">Change your company name</h1>
-            <div class="form-group">
-                <label class="margin-top-4 form-label" for="first-name-2"><strong class="bold-small">Company name</strong></label>
-                <input class="form-control" id="first-name-2" name="first-name-2" type="text">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The company name has been typed incorrectly</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#change-company-name">Enter your company name</a></li>
+
+                </ul>
+
             </div>
-            <button class="margin-bottom-0 margin-top-3 button" type="submit">Save and continue</button>
+
+            <h1 class="h1-large heading-large">Change your company name</h1>
+
+            <form>
+                <div class="form-group">
+
+                    <fieldset class="minus-margin-bottom-4">
+
+                        <div class="form-group">
+
+                            <div class="form-group">
+                                <label class="margin-top-1 form-label" for="change-company-name"><strong class="bold-small">Company name</strong><span class="error-message change-company-name">Enter your company name</span></label>
+                                <input class="form-control" id="change-company-name" name="change-company-name" type="full-name">
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <div class="form-group">
+
+                </div>
+
+                <button class="margin-top-3 button" type="button">Save and continue</button>
+                <p class="margin-bottom-0"><a href="#">Get help</a></p>
+
+            </form>
         </div>
     </div>
 </main>
 
 <script>
-$(".button").click( function(){
-    go("/change/company-name-saved")
-})
+    
+    $(".button").click(function() {
+
+        var companyname = $("input[name=change-company-name]").val();
+        var validInput = true;
+
+        if (!companyname) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.change-company-name").css("display", "block");
+            $("input[name=change-company-name]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").first().addClass("form-control-error");
+            $('body').scrollTop();
+        }
+
+        if (validInput) {
+            go("/change/company-name-saved");
+        }
+    })
+    
 </script>
 
 {% endblock %}
+
+
+
+
