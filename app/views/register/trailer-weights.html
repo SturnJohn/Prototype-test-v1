@@ -8,35 +8,104 @@
     <a href="vienna-convention-part-2" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+
+                <p>The User ID or Password have not been entered</p>
+
+                <ul class="error-summary-list">
+
+                    <li><a href="#gross-weight">Enter your gross trailer weight</a></li>
+                    <li><a href="#Unladen-weight">Enter your unladen trailer weight</a></li>
+
+                </ul>
+
+            </div>
+
             <h1 class="h1-large heading-large">Enter trailer weights</h1>
 
-            <label class="form-label" for="first-name-2"><strong class="bold-small">Gross weight (kg)</strong></label>
-            <input class="form-control-66 form-control" id="gross-weight" name="gross-weight" type="gross-weight">
+            <form>
+                <div class="form-group">
 
-            <details class="margin-top-2">
-                <summary><span class="summary">What is gross weight?</span></summary>
-                <div class="panel panel-border-narrow">
-                    <p>This is specified by the manufacturer and it means the maximum weight the trailer is allowed to be when fully loaded. It is the unladen weight of the trailer plus the maximum permitted payload. It is also known as the Maximum Permissible Mass.</p>
+                    <fieldset class="minus-margin-bottom-4">
+                        <div class="form-group margin-top-1">
+                            <label class="margin-bottom-1 form-label" for="gross-weight">
+                                <strong class="bold-small">Gross weight (kg)</strong>
+                                <span class="error-message gross-weight">Enter your gross trailer weight</span>
+                            </label>
+
+
+                            <input class="minus-margin-top-1 form-control-66 form-control" id="gross-weight" name="gross-weight" type="text">
+
+                            <details class="margin-bottom-4 margin-top-2">
+                                <summary><span class="summary">What is gross weight?</span></summary>
+                                <div class="panel panel-border-narrow">
+                                    <p>This is specified by the manufacturer and it means the maximum weight the trailer is allowed to be when fully loaded. It is the unladen weight of the trailer plus the maximum permitted payload. It is also known as the Maximum Permissible Mass.</p>
+                                </div>
+                            </details>
+
+                        </div>
+
+                        <div class="form-group margin-top-2">
+
+                            <label class="margin-bottom-1 margin-top-2 form-label" for="Unladen-weight">
+                                <strong class="bold-small">Unladen weight (kg)</strong>
+                                <span class="error-message Unladen-weight">Enter your unladen trailer weight</span>
+                            </label>
+
+
+                            <input class="minus-margin-top-1 form-control" id="Unladen-weight" name="Unladen-weight" type="text">
+                            
+                            <details class="margin-top-2">
+                                <summary><span class="summary">What is unladen weight?</span></summary>
+                                <div class="panel panel-border-narrow">
+                                    <p>The weight of an empty trailer, including any permanent modifications.</p>
+                                </div>
+                            </details>
+
+                        </div>
+
+                    </fieldset>
+
                 </div>
-            </details>
 
-            <label class="margin-top-4 form-label" for="unladen-weight"><strong class="bold-small">Unladen weight (kg)</strong></label>
-            <input class="margin-bottom-2 form-control-66 form-control" id="unladen-weight" name="unladen-weight" type="unladen-weight">
+                <button class="margin-top-3 button" type="button">Continue</button>
 
-            <details>
-                <summary><span class="summary">What is unladen weight?</span></summary>
-                <div class="panel panel-border-narrow">
-                    <p>The weight of an empty trailer, including any permanent modifications.</p>
-                </div>
-            </details>
+            </form>
+
         </div>
     </div>
-    <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
 </main>
 
 <script>
     $(".button").click(function() {
-        go("/register/trailers-pending-payment")
+
+        var gross = $("input[name=gross-weight]").val();
+        var unladen = $("input[name=Unladen-weight]").val();
+        var validInput = true;
+
+        if (!gross) {
+            validInput = false;
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.gross-weight").css("display", "block");
+            $("input[name=gross-weight]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").first().addClass("form-control-error");
+            $('body').scrollTop();
+        }
+
+        if (!unladen) {
+            validInput = false;
+            $(".error-summary").css("display", "block");
+            $(".error-message.Unladen-weight").css("display", "block");
+            $("input[name=Unladen-weight]").closest(".form-group").addClass("form-group-error");
+            $(document).find("input").last().addClass("form-control-error");
+            $('body').scrollTop();
+        }
+
+        if (validInput) {
+            go("/register/trailer-outside-uk");
+        }
     })
 </script>
 

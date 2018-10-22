@@ -8,6 +8,20 @@
     <a href="vienna-convention-part-2" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-full">
+            
+             <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured!</h2>
+
+                <p>No option has been selected for outside the UK</p>
+
+                <ul class="error-summary-list">
+                    <li><a href="#example-personal-details">Select an option of yes or no</a></li>
+                </ul>
+
+            </div>
+            
+            
             <h1 class="h1-large heading-large">Will this trailer be used outside the UK?</h1>
         </div>
         <div class="column-two-thirds">
@@ -30,26 +44,32 @@
 </main>
 
 <script>
-
+    
     $(".button").click(function() {
 
-        var input = $('input[name = outside-uk]:checked').val();
-        console.log(input);
+                var input = $("input[name=radio-group]:checked").val();
+                var validInput = true;
 
-        if (input == "Yes") {
-            go("/create/vienna-convention-part-1");
+                if (!input) {
+                    validInput = false;
+                    $(".error-summary").css("display", "block").focus();
+                    $(".error-message").css("display", "block");
+                    $(".form-group").addClass("form-group-error");
+                    $('body').scrollTop();
+                } else {
+                    if (input == "Yes") {
+                        go("/register/vienna-convention-part-1");
 
-        } else {
-            if (input == "No") {
-            go("/register/trailer-outside-uk-exit");
-
-            } else {
-                alert("select an option");
-            }
+                    } else {
+                        if (input == "No") {
+                            go("/register/trailer-outside-uk-exit");
+                        }
+                    }
 
         }
-    })
+        })
 
 </script>
+    
 
 {% endblock %}

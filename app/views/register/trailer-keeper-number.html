@@ -1,0 +1,97 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<style>
+    .error-summary {
+        display: none;
+    }
+
+    .error-message {
+        display: none;
+    }
+</style>
+
+<main id="content" role="main">
+
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="/index" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured!</h2>
+
+                <p>No option has been selected for trailer record</p>
+
+                <ul class="error-summary-list">
+                    <li><a href="#example-personal-details">Select an option of yes or no</a></li>
+                </ul>
+
+            </div>
+
+            <h1 class="h1-large heading-large">Do you have a trailer record?</h1>
+            <details>
+                <summary><span class="summary">What is a trailer record?</span></summary>
+                <div class="panel panel-border-narrow">
+                    <p>A trailer record is where you can register your trailers, manage and update them.</p>
+                </div>
+            </details>
+            <div class="margin-top-3">
+                <form>
+                    <div class="form-group">
+                        <fieldset class="inline">
+
+                            <legend id="example-personal-details"><span class="error-message">Select an option of yes or no</span></legend>
+
+                            <div class="multiple-choice">
+                                <input id="radio-group-1" type="radio" name="radio-group" value="Yes">
+                                <label for="radio-group-1">Yes</label>
+                            </div>
+
+                            <div class="multiple-choice">
+                                <input id="radio-group-2" type="radio" name="radio-group" value="No">
+                                <label for="radio-group-2">No</label>
+                            </div>
+
+                        </fieldset>
+                    </div>
+                </form>
+                <input class="margin-bottom-0 margin-top-3 button" type="submit" value="Continue">
+
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+<script>
+    $(".button").click(function() {
+
+                var input = $("input[name=radio-group]:checked").val();
+                var validInput = true;
+
+                if (!input) {
+                    validInput = false;
+                    $(".error-summary").css("display", "block").focus();
+                    $(".error-message").css("display", "block");
+                    $(".form-group").addClass("form-group-error");
+                    $('body').scrollTop();
+                } else {
+                    if (input == "Yes") {
+                        go("/register/scp-sign-in");
+
+                    } else {
+                        if (input == "No") {
+                            go("/create/over-750");
+                        }
+                    }
+
+        }
+        })
+
+</script>
+
+
+{% endblock %}
