@@ -8,52 +8,109 @@
     <a href="vienna-convention-part-2" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">Will this trailer be used commercially?</h1>
+
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured!</h2>
+
+                <p>No option has been selected for commercial use</p>
+
+                <ul class="error-summary-list">
+                    <li><a href="#radio-group-1">Select an option of yes or no</a></li>
+                </ul>
+
+            </div>
+
+            <h1 class="h1-large heading-large">Will any of these trailers be used commercially?</h1>
             <details>
                 <summary><span class="summary">What do we mean by commercially?</span></summary>
                 <div class="panel panel-border-narrow">
-                    <p>A commercial trailer is a trailer used for the transport of goods or passengers’ belongings for commercial purposes, such as transport for hire and reward or own-account transport, or for other professional purposes.</p>
-                </div>
-                <div class="form-group">
-                    <div class="inline">
-                        <div class="multiple-choice">
-                            <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                            <label for="radio-inline-1">Yes</label>
-                        </div>
-                        <div class="multiple-choice">
-                            <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                            <label for="radio-inline-2">No</label>
-                        </div>
-                    </div>
+                    <p>A commercial trailer is a trailer used for the transport of goods <br>or passengers’ belongings for commercial purposes, such as <br>transport for hire and reward or own-account transport, or for <br>other professional purposes.</p>
                 </div>
             </details>
-            <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
+            <div class="margin-top-1">
+
+                <form>
+                    <div class="form-group 1">
+                        <fieldset class="inline">
+                            <span class="error-message 1">Select an option of yes or no</span>
+
+                            <div class="multiple-choice">
+                                <input id="radio-yes" type="radio" name="radio-group-1" value="Yes">
+                                <label for="radio-yes">Yes</label>
+                            </div>
+                            <div class="multiple-choice" data-target="radio-group-no">
+                                <input id="radio-no" type="radio" name="radio-group-1" value="No">
+                                <label for="radio-no">No</label>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div class="form-group 2">
+                        <fieldset class="inline">
+                            <div class="margin-top-2 panel panel-border-narrow js-hidden" id="radio-group-no">
+
+                                <h1 class="margin-bottom heading-medium">Do any of these trailers weigh over 3,500kg?</h1>
+                                <span class="error-message 2">Select an option of yes or no</span>
+                                <div class="inline">
+                                    <div class="multiple-choice">
+                                        <input id="radio-yes-2" type="radio" name="radio-group-2" value="Yes">
+                                        <label for="radio-yes-2">Yes</label>
+                                    </div>
+                                    <div class="multiple-choice">
+                                        <input id="radio-no-2" type="radio" name="radio-group-2" value="No">
+                                        <label for="radio-no-2">No</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </div>
+
+                </form>
+                <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
+            </div>
         </div>
     </div>
 </main>
 
+
+
 <script>
-    
     $(".button").click(function() {
 
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
+        var input1 = $("input[name=radio-group-1]:checked").val();
+        var input2 = $("input[name=radio-group-2]:checked").val();
+
+        if (input1 == "Yes") {
+            go("/register/company-or-individual");
 
 
-        if (input == "Yes") {
-            go("/register/trailer-reg-number");
+        } else if (input1 == "No") {
+            if (input2 == "Yes") {
+                go("/register/company-or-individual");
 
-        } else {
-            if (input == "No") {
-            go("/register/trailer-commercially-no");
+            } else if (input2 == "No") {
+                go("/register/trailer-commercially-no");
+
 
             } else {
-                alert("select an option");
+                $(".error-summary").css("display", "block").focus();
+                $(".error-message.1").hide();
+                $(".error-message.2").css("display", "block");
+                $(".panel-border-narrow").addClass("form-group-error");
+                $(".form-group.1").removeClass("form-group-error");
+                $('body').scrollTop();
             }
 
+        } else {
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message.1").css("display", "block");
+            $(".form-group.1").addClass("form-group-error");
+            $('body').scrollTop();
         }
-    })
-    
+    });
 </script>
 
 {% endblock %}

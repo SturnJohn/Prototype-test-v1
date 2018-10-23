@@ -70,10 +70,8 @@
     $(".button").click(function() {
 
                 var input = $("input[name=radio-group]:checked").val();
-                var validInput = true;
 
                 if (!input) {
-                    validInput = false;
                     $(".error-summary").css("display", "block").focus();
                     $(".error-message").css("display", "block");
                     $(".form-group").addClass("form-group-error");
