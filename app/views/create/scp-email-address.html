@@ -22,8 +22,9 @@
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#scp-email-address">Enter your email address</a></li>
-                    <li><a href="#checkbox-email-address">Select box if email address is correct</a></li>
+                    <li><a href="#scp-email">Enter your email address</a></li>
+                    
+                    <li><a href="#checkbox-email">Select box if email address is correct</a></li>
 
                 </ul>
 
@@ -36,37 +37,84 @@
             <form>
 
                 <div class="form-group">
-
-                    <label class="margin-top-5 form-label" for="scp-email-address">
+                    
+                    <fieldset class="minus-margin-bottom-4">
+                        <div>
+                            <label class="form-label" for="scp-user-email">
                             
-                                <span class="error-message scp-email-address">Enter your email address</span>
+                                <span class="error-message scp-email">Enter your email address</span>
                             </label>
-                    <input class="form-control" id="scp-email-address" name="scp-email-address" type="text">
+
+                            <input class="form-control" id="scp-email" name="scp-user-email" type="text">
+                        </div>
+
+                        <div class="margin-top-3 form-group">
+                            <span class="error-message checkbox-email">Select box if email address is correct</span>
+
+                            <div class="multiple-choice">
+                                <input class="form-control" id="checkbox-email" name="scp-email-checkbox" type="checkbox" value="true">
+
+                                <label for="checkbox-email">This email address is correct</label>
+                            </div>
+                        </div>
+                    </fieldset>
                 </div>
-
-                <div class="form-group">
-                    <span class="error-message scp-email-address">Select box if email address is correct</span>
-
-                    <div class="multiple-choice">
-                        <input class="form-control" id="checkbox-email-address" name="scp-email-address" type="checkbox" value="true">
-
-                        <label for="checkbox-email-address">This email address is correct
-                        </label>
-                    </div>
-                </div>
-
-
-
 
                 <button class="margin-top-3 button" type="button">Continue</button>
+
             </form>
+
             <p class="margin-bottom-0"><a href="#">Get help</a></p>
 
-        </div>
 
+
+        </div>
     </div>
+
 </main>
 
+<script type="text/javascript">
+    // Run validation script
+    $('.button').click(validate);
+
+    // Validation script
+    function validate() {
+        var validInput = true; // Set input to true (Only for input fields)
+        var value = $('input[name=scp-user-email]').val(); // Store value from input field as "value"
+        var value = $('input[name=scp-email-checkbox]').val(); // Store value from input field as "value"
+
+        // If value is blank or undefined
+        if (!value) {
+            validInput = false; // Set input to false so validInput doesnt run next()
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
+        }
+
+        // Only if validInput is true
+        if (validInput) {
+            if (member.user === undefined) {
+                member.user = {};
+            }
+            member.user.email = value; // This stores 'value' in member
+            member.user.email_check = value; // This stores 'value' in member
+            next(); // Runs next()
+        }
+
+        // Routing if validInput = true
+        function next() {
+
+            go('/create/scp-confirm-email');
+
+        }
+
+    }
+</script>
+
+
+
+<!--
 <script>
     $(".button").click(function() {
 
@@ -97,6 +145,7 @@
         }
     })
 </script>
+-->
 
 
 

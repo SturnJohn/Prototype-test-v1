@@ -20,7 +20,7 @@
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#scp-user-id">Enter your User ID</a></li>
+                    <li><a href="#scp-id">Enter your User ID</a></li>
 
                     <li><a href="#scp-password">Enter your Password</a></li>
 
@@ -32,7 +32,6 @@
 
 
             <form>
-                <div class="form-group">
 
                     <fieldset class="minus-margin-bottom-4">
                         <div class="form-group margin-top-1">
@@ -40,26 +39,25 @@
                                 <strong class="bold-small">User ID</strong>
                                 <span class="error-message scp-user-id">Enter your User ID</span>
                             </label>
-                            
 
-                            <input class="form-control" id="scp-user-id" name="scp-user-id" type="text">
+
+                            <input class="form-control" id="scp-id" name="scp-user-id" type="text">
                         </div>
 
                         <div class="form-group margin-top-2">
 
                             <label class="margin-bottom-1 margin-top-5 form-label" for="scp-password">
                                 <strong class="bold-small">Password</strong>
-                                <span class="error-message scp-user-id">Enter your Password</span>
+                                <span class="error-message scp-password">Enter your Password</span>
                             </label>
-                            
 
-                            <input class="form-control" id="scp-password" name="scp-user-id" type="text">
+
+                            <input class="form-control" id="scp-password" name="scp-user-password" type="password">
                         </div>
 
                     </fieldset>
 
-                </div>
-                
+
                 <button class="margin-top-6 button" type="button">Sign in</button>
 
             </form>
@@ -82,6 +80,55 @@
     </div>
 </main>
 
+<script type="text/javascript">
+    // Run validation script
+    $('.button').click(validate);
+
+    // Validation script
+    function validate() {
+        var validInput = true; // Set input to true (Only for input fields)
+        var value = $('input[name=scp-user-id]').val(); // Store value from input field as "value"
+        var value = $('input[name=scp-user-password]').val(); // Store value from input field as "value"
+
+        // If value is blank or undefined
+        if (!value) {
+            validInput = false; // Set input to false so validInput doesnt run next()
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
+        }
+
+        // Only if validInput is true
+        if (validInput) {
+            if (member.user === undefined) {
+                member.user = {};
+            }
+            member.user.id = value; // This stores 'value' in member
+            member.user.password = value; // This stores 'value' in member
+            next(); // Runs next()
+        }
+
+        // Routing if validInput = true
+        function next() {
+
+            go('/create/scp-email-address');
+
+        }
+
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+<!--
 <script>
         $(".button").click(function() {
     
@@ -113,5 +160,6 @@
         })
 
 </script>
+-->
 
 {% endblock %}

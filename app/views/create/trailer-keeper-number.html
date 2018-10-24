@@ -46,8 +46,9 @@
 
                         </fieldset>
                     </div>
+                    <input class="button margin-bottom-0 margin-top-3" type="button" value="Continue">
+
                 </form>
-                <input class="margin-bottom-0 margin-top-3 button" type="submit" value="Continue">
 
             </div>
 
@@ -56,6 +57,54 @@
 </main>
 
 
+<script type="text/javascript">
+    // Run validation script
+    $('.button').click(validate);
+
+
+    // Validation script
+    function validate() {
+        var value = $('input[name=radio-group]:checked').val();         // Store value from input field as "value"
+
+        if (value == 'Yes') {
+            next();
+            
+        } else if (value == 'No') {
+            next();
+            
+        } else {
+
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
+
+        }
+
+        function next() {
+            
+              if (member === undefined) {
+                member = {};
+            }
+            
+            member.record = value;
+            
+            if (value == 'Yes') {
+                go('/create/scp-sign-in');
+                
+            } else if (value == 'No') {
+                go('/create/over-750');
+            }
+        }
+    }
+    
+</script>
+
+
+
+
+
+<!--
 <script>
     $(".button").click(function() {
 
@@ -64,10 +113,7 @@
 
                 if (!input) {
                     validInput = false;
-                    $(".error-summary").css("display", "block").focus();
-                    $(".error-message").css("display", "block");
-                    $(".form-group").addClass("form-group-error");
-                    $('body').scrollTop();
+                    
                 } else {
                     if (input == "Yes") {
                         go("/create/scp-sign-in");
@@ -82,6 +128,7 @@
         })
 
 </script>
+-->
 
 
 {% endblock %}
