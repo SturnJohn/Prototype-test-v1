@@ -12,17 +12,16 @@
         </div>
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="group" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
                 <p>The User ID or Password have not been entered</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#scp-id">Enter your User ID</a></li>
-
-                    <li><a href="#scp-password">Enter your Password</a></li>
+                    <li class="error-message question a hide"><a href="#scp-id">Enter your User ID</a></li>
+                    <li class="error-message qemailAddress b hide"><a href="#scp-password">Enter your Password</a></li>
 
                 </ul>
 
@@ -32,134 +31,111 @@
 
 
             <form>
+                <div class="form-group" id="question">
 
-                    <fieldset class="minus-margin-bottom-4">
-                        <div class="form-group margin-top-1">
-                            <label class="margin-bottom-1 form-label" for="scp-user-id">
-                                <strong class="bold-small">User ID</strong>
-                                <span class="error-message scp-user-id">Enter your User ID</span>
-                            </label>
+                    <fieldset id="inputfields">
+
+                        <div class="form-group margin-bottom-4" id="qemailAddress">
+                            <label class="form-label-bold margin-top-2" for="emailAddress">User ID</label>
+
+                            <span class="form-hint">This could be up to 12 characters. It is sometimes known as a Govermenmt Gateway ID.</span>
 
 
-                            <input class="form-control" id="scp-id" name="scp-user-id" type="text">
+                            <span class="error-message b">Provide your User ID</span>
+
+                            <input class="form-control margin-top-1" id="emailAddress" name="emailAddress" type="text" value="">
                         </div>
+                        <div class="form-group" id="qemailAddressConfirm">
+                            <label class="form-label-bold" for="emailAddressConfirm">Password</label>
 
-                        <div class="form-group margin-top-2">
+                            <span class="error-message c">Re-type your password for confirmation</span>
 
-                            <label class="margin-bottom-1 margin-top-5 form-label" for="scp-password">
-                                <strong class="bold-small">Password</strong>
-                                <span class="error-message scp-password">Enter your Password</span>
-                            </label>
-
-
-                            <input class="form-control" id="scp-password" name="scp-user-password" type="password">
+                            <input class="form-control" id="emailAddressConfirm" name="emailAddressConfirm" type="password" value="">
                         </div>
-
                     </fieldset>
+                </div>
 
-
-                <button class="margin-top-6 button" type="button">Sign in</button>
+                <div class="form-group margin-bottom-0">
+                    <input id="Sign-in" name="Sign-in" class="button margin-bottom-0 margin-top-0" type="button" value="Sign-in">
+                </div>
 
             </form>
 
-
             <div>
-                <p><a href="#">Set up a user ID</a></p>
-                <h1 class="margin-top-6 heading-medium">Problems signing in</h1>
-                <p class="margin-bottom-3"><a href="#"><a href="#">Help with signing in</a></a>
-                </p>
-                <p class="margin-top-1"><a href="#">I have forgotten my password</a>
-                    <p class="minus-margin-top-1"><a href="#">I have forgotten my user ID</a>
-                        <p/>
-                        <p class="margin-bottom-3 minus-margin-top-1"><a href="#">I have forgotten my user ID and password</a></p>
-                        <div class="padding-top-1">
-                            <p class="margin-bottom-0"><a href="#">Get help</a></p>
-                        </div>
+                <p  class="margin-top-4"><a href="#">Set up a user ID</a></p>
+                <h1 class="margin-top-4 heading-medium">Problems signing in</h1>
+                
+                <ul class="margin-bottom-0">
+                    
+                    
+                    
+                    <li class="margin-bottom-1"><a href="#??">Help with signing in</a></li>
+                    <li class="margin-bottom-1"><a href="#??">I have forgotten my password</a></li>
+                    <li class="margin-bottom-1"><a href="#??">I have forgotten my user ID</a></li>
+                    <li><a href="#??">I have forgotten my user ID and password</a></li>
+                    <li class="margin-top-4"><a href="#??">Get help</a></li>
+
+                </ul>
+                    
             </div>
+
         </div>
     </div>
+
 </main>
 
+
 <script type="text/javascript">
-    // Run validation script
     $('.button').click(validate);
 
-    // Validation script
+    $('input[name="scp-user-id"]').change(function() {
+        if ($(this).val() === 'Yes') {
+            $('#inputfields').show();
+            hideErrors();
+        } else {
+            $('#inputfields').hide();
+        }
+    });
+
     function validate() {
-        var validInput = true; // Set input to true (Only for input fields)
-        var value = $('input[name=scp-user-id]').val(); // Store value from input field as "value"
-        var value = $('input[name=scp-user-password]').val(); // Store value from input field as "value"
 
-        // If value is blank or undefined
-        if (!value) {
-            validInput = false; // Set input to false so validInput doesnt run next()
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
-        }
+        validInput = true;
 
-        // Only if validInput is true
-        if (validInput) {
-            if (member.user === undefined) {
-                member.user = {};
+        hideErrors();
+
+        var value = $('input[name=yes-no]:checked').val();
+        //        var email = $('#emailAddress').val();
+        //        var emailConfirm = $('#emailAddressConfirm').val();
+
+        if (value === 'Yes') {
+            if (!email) {
+                showErrors('#qemailAddress', '.error-message.b');
             }
-            member.user.id = value; // This stores 'value' in member
-            member.user.password = value; // This stores 'value' in member
-            next(); // Runs next()
+
+            if (!emailConfirm) {
+                showErrors('#qemailAddressConfirm', '.error-message.c');
+            }
+
+            if ((email !== emailConfirm) && validInput) {
+                showErrors('#inputfields', '.error-message.d');
+            }
+
+            if (validInput) {
+                next();
+            }
+
+        } else if (value === 'No') {
+            go('#');
+        } else {
+            showErrors('#question', '.error-message.a');
         }
+    }
 
-        // Routing if validInput = true
-        function next() {
-
-            go('/create/scp-email-address');
-
-        }
-
+    function next() {
+        go('/register/trailer-record');
     }
 </script>
 
 
-
-
-
-
-
-
-
-
-<!--
-<script>
-        $(".button").click(function() {
-    
-            var scpuserid = $("input[name=scp-user-id]").val();
-            var scppass = $("input[name=scp-user-id]").val();
-            var validInput = true;
-    
-            if (!scpuserid) {
-                validInput = false;
-                $(".error-summary").css("display", "block").focus();
-                $(".error-message.scp-user-id").css("display", "block");
-                $("input[name=scp-user-id]").closest(".form-group").addClass("form-group-error");
-                $(document).find("input").first().addClass("form-control-error");
-                $('body').scrollTop();
-            }
-    
-            if (!scppass) {
-                validInput = false;
-                $(".error-summary").css("display", "block");
-                $(".error-message.scp-password").css("display", "block");
-                $("input[name=scp-password]").closest(".form-group").addClass("form-group-error");
-                $(document).find("input").last().addClass("form-control-error");
-                $('body').scrollTop();
-            }
-    
-            if (validInput) {
-                go("/create/scp-email-address");
-            }
-        })
-
-</script>
--->
 
 {% endblock %}

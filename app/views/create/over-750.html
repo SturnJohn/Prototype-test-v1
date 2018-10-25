@@ -73,6 +73,50 @@
     </div>
 </main>
 
+<script type="text/javascript">
+    // Run validation script
+    $('.button').click(validate);
+
+
+    // Validation script
+    function validate() {
+        var value = $('input[name=radio-group]:checked').val();         // Store value from input field as "value"
+
+        if (value == 'Yes') {
+            next();
+            
+        } else if (value == 'No') {
+            next();
+            
+        } else {
+
+            $(".error-summary").css("display", "block").focus();
+            $(".error-message").css("display", "block");
+            $(".form-group").addClass("form-group-error");
+            $('body').scrollTop();
+
+        }
+
+        function next() {
+            
+              if (member === undefined) {
+                member = {};
+            }
+            
+            member.record = value;
+            
+            if (value == 'Yes') {
+                go('/create/outside-uk');
+                
+            } else if (value == 'No') {
+                go('/create/over-750-no');
+            }
+        }
+    }
+    
+</script>
+
+<!--
 <script>
     $(".button").click(function() {
 
@@ -99,6 +143,7 @@
     })
 
 </script>
+-->
 
 
 
