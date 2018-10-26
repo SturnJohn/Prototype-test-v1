@@ -14,17 +14,17 @@
         </div>
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem </h2>
 
                 <p>An email address has not been provided</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#scp-email">Enter your email address</a></li>
-                    
-                    <li><a href="#checkbox-email">Select box if email address is correct</a></li>
+                    <li class="error-message a"><a href="#">Enter your email address</a></li>
+
+                    <li class="error-message b"><a href="#">Select box if email address is correct</a></li>
 
                 </ul>
 
@@ -37,34 +37,43 @@
             <form>
 
                 <div class="form-group">
-                    
-                    <fieldset class="minus-margin-bottom-4">
-                        <div>
-                            <label class="form-label" for="scp-user-email">
-                            
-                                <span class="error-message scp-email">Enter your email address</span>
-                            </label>
 
-                            <input class="form-control" id="scp-email" name="scp-user-email" type="text">
+                    <fieldset>
+
+                        <div class="form-group" id="qemail">
+                            <label class="form-label" for="email"> </label>
+
+                            <span class="error-message a">Enter your email address</span>
+
+
+                            <input class="form-control" id="email" name="email" type="text">
                         </div>
 
-                        <div class="margin-top-3 form-group">
-                            <span class="error-message checkbox-email">Select box if email address is correct</span>
+            
+                        <div class="form-group margin-top-3" id="qcheckemail">
+
+                            <span class="error-message b">Select box if email address is correct</span>
 
                             <div class="multiple-choice">
-                                <input class="form-control" id="checkbox-email" name="scp-email-checkbox" type="checkbox" value="true">
-
-                                <label for="checkbox-email">This email address is correct</label>
+                                <input name="checkemail" type="checkbox" value="true">
+                                <label for="qcheckemail">This email address is correct</label>
                             </div>
+
+
                         </div>
+
+
                     </fieldset>
                 </div>
 
-                <button class="margin-top-3 button" type="button">Continue</button>
-
+                
+                
+                
+                <input id="Continue" name="Continue" class="button margin-bottom-0 margin-top-0" type="button" value="Continue">
+                
             </form>
 
-            <p class="margin-bottom-0"><a href="#">Get help</a></p>
+            <p class="margin-top-3 margin-bottom-0"><a href="#">Get help</a></p>
 
 
 
@@ -74,79 +83,33 @@
 </main>
 
 <script type="text/javascript">
-    // Run validation script
     $('.button').click(validate);
 
-    // Validation script
     function validate() {
-        var validInput = true; // Set input to true (Only for input fields)
-        var value = $('input[name=scp-user-email]').val(); // Store value from input field as "value"
-        var value = $('input[name=scp-email-checkbox]').val(); // Store value from input field as "value"
 
-        // If value is blank or undefined
-        if (!value) {
-            validInput = false; // Set input to false so validInput doesnt run next()
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
+        validInput = true;
+
+        hideErrors();
+
+        var email = $('input[name=email]').val();
+        var check = $('multiple-choice', '#qcheckemail').val();
+
+        if (!email) {
+            showErrors('#qemail', '.error-message.a');
         }
 
-        // Only if validInput is true
+        if (!check) {
+            showErrors('#qcheckemail', '.error-message.b');
+        }
+
         if (validInput) {
-            if (member.user === undefined) {
-                member.user = {};
-            }
-            member.user.email = value; // This stores 'value' in member
-            member.user.email_check = value; // This stores 'value' in member
-            next(); // Runs next()
-        }
-
-        // Routing if validInput = true
-        function next() {
-
+            member.email = userid;
+            //            member.password = pass;
             go('/create/scp-confirm-email');
-
         }
 
     }
 </script>
-
-
-
-<!--
-<script>
-    $(".button").click(function() {
-
-        var scpemail = $("input[name=scp-email-address]").val();
-        var scpcheckemail = $("input[name=scp-email-address]:checked").val();
-        var validInput = true;
-
-        if (!scpemail) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.scp-email-address").css("display", "block");
-            $("input[name=scp-email-address]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
-        }
-
-        if (!scpcheckemail) {
-            validInput = false;
-            $(".error-summary").css("display", "block");
-            $(".error-message.checkbox-email-address").css("display", "block");
-            $("input[name=scp-email-address]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").last().addClass("form-control-error");
-            $('body').scrollTop();
-        }
-
-        if (validInput) {
-            go("/create/scp-confirm-email");
-        }
-    })
-</script>
--->
-
 
 
 {% endblock %}

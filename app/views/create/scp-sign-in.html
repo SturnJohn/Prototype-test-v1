@@ -20,8 +20,8 @@
 
                 <ul class="error-summary-list">
 
-                    <li class="error-message question a hide"><a href="#scp-id">Enter your User ID</a></li>
-                    <li class="error-message qemailAddress b hide"><a href="#scp-password">Enter your Password</a></li>
+                    <li class="error-message a"><a href="#">Enter your User ID</a></li>
+                    <li class="error-message b"><a href="#">Enter your Password</a></li>
 
                 </ul>
 
@@ -31,26 +31,27 @@
 
 
             <form>
-                <div class="form-group" id="question">
+                <div class="form-group">
 
-                    <fieldset id="inputfields">
+                    <fieldset>
 
-                        <div class="form-group margin-bottom-4" id="qemailAddress">
-                            <label class="form-label-bold margin-top-2" for="emailAddress">User ID</label>
+                        <div class="form-group margin-bottom-4" id="quserid">
+                            <label class="form-label-bold margin-top-2" for="userid">User ID</label>
 
                             <span class="form-hint">This could be up to 12 characters. It is sometimes known as a Govermenmt Gateway ID.</span>
 
 
-                            <span class="error-message b">Provide your User ID</span>
+                            <span class="error-message a">Enter your User ID</span>
 
-                            <input class="form-control margin-top-1" id="emailAddress" name="emailAddress" type="text" value="">
+                            <input class="form-control" id="userid" name="userid" type="text" value="">
                         </div>
-                        <div class="form-group" id="qemailAddressConfirm">
-                            <label class="form-label-bold" for="emailAddressConfirm">Password</label>
+                        
+                        <div class="form-group" id="qpassword">
+                            <label class="form-label-bold" for="password">Password</label>
 
-                            <span class="error-message c">Re-type your password for confirmation</span>
+                            <span class="error-message b">Enter your Password</span>
 
-                            <input class="form-control" id="emailAddressConfirm" name="emailAddressConfirm" type="password" value="">
+                            <input class="form-control" id="password" name="password" type="password" value="">
                         </div>
                     </fieldset>
                 </div>
@@ -88,51 +89,29 @@
 <script type="text/javascript">
     $('.button').click(validate);
 
-    $('input[name="scp-user-id"]').change(function() {
-        if ($(this).val() === 'Yes') {
-            $('#inputfields').show();
-            hideErrors();
-        } else {
-            $('#inputfields').hide();
-        }
-    });
-
     function validate() {
 
         validInput = true;
 
         hideErrors();
 
-        var value = $('input[name=yes-no]:checked').val();
-        //        var email = $('#emailAddress').val();
-        //        var emailConfirm = $('#emailAddressConfirm').val();
+        var userid = $('input[name=userid]').val();
+        var pass = $('input[name=password]').val();
 
-        if (value === 'Yes') {
-            if (!email) {
-                showErrors('#qemailAddress', '.error-message.b');
-            }
-
-            if (!emailConfirm) {
-                showErrors('#qemailAddressConfirm', '.error-message.c');
-            }
-
-            if ((email !== emailConfirm) && validInput) {
-                showErrors('#inputfields', '.error-message.d');
-            }
-
-            if (validInput) {
-                next();
-            }
-
-        } else if (value === 'No') {
-            go('#');
-        } else {
-            showErrors('#question', '.error-message.a');
+        if (!userid) {
+            showErrors('#quserid', '.error-message.a');
         }
-    }
 
-    function next() {
-        go('/register/trailer-record');
+        if (!pass) {
+            showErrors('#qpassword', '.error-message.b');
+        }
+
+        if (validInput) {
+            member.userid = userid;
+            member.password = pass;
+            go('/register/trailer-record');
+        }
+
     }
 </script>
 
