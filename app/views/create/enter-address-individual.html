@@ -12,15 +12,15 @@
 
             <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
-                <p>No address details have been entered</p>
+                <p>No address details have been provided</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#building-street">Enter your building and street</a></li>
-                    <li><a href="#town-city">Enter your town or city</a></li>
-                    <li><a href="#postcode">Enter your postcode</a></li>
+                    <li class="error-message a"><a href="#">Enter your building and street</a></li>
+                    <li class="error-message b"><a href="#">Enter your town or city</a></li>
+                    <li class="error-message c"><a href="#">Enter your postcode</a></li>
 
                 </ul>
 
@@ -32,26 +32,35 @@
             <form>
                 <div class="form-group">
 
-                    <fieldset class="minus-margin-bottom-4">
-                        <div class="form-group margin-top-1">
-                            <label class="margin-bottom-1 form-label" for="building-street">
-                                <strong class="bold-small">Building and street</strong>
-                                <span class="error-message building-street">Enter your building and street</span>
-                            </label>
+                    <fieldset>
 
+                        <div class="form-group margin-top-1" id="buildingstreet">
 
-                            <input class="margin-bottom-2 form-control-66 form-control" id="building-street" name="building-street" type="text">
-                            <input class="form-control-66 form-control" id="building-street" name="building-street" type="text">
+                            <label class="margin-bottom-1 form-label-bold" for="building-street">Building and street</label>
+
+                            <span class="error-message a">Enter your building and street</span>
+
+                            <input class="margin-bottom-2 form-control-66 form-control" id="buildingstreet" name="building-street" type="text">
+
+                            <input class="form-control-66 form-control" id="buildingstreet" name="building-street" type="text">
 
                         </div>
 
-                        <div class="margin-bottom-4 form-group">
-                            <label class="form-label" for="town-city"><strong class="bold-small">Town or city</strong><span class="error-message town-city">Enter your town or city</span></label>
-                            <input class="form-control-33 form-control" id="town-city" name="town-city" type="text">
+
+                        <div class="form-group" id="towncity">
+
+                            <label class="form-label-bold" for="town-city">Town or city</label>
+
+                            <span class="error-message b">Enter your town or city</span>
+
+                            <input class="form-control-33 form-control" id="towncity" name="town-city" type="text">
                         </div>
-                        
-                        <div class="margin-bottom-3 form-group">
-                            <label class="form-label" for="last-name-2"><strong class="bold-small">Postcode</strong><span class="error-message postcode">Enter your postcode</span></label>
+
+                        <div class="form-group  margin-bottom-0" id="postcode">
+                            <label class="form-label-bold" for="last-name-2">Postcode</label>
+
+                            <span class="error-message c">Enter your postcode</span>
+
                             <input class="form-control-33 form-control" id="postcode" name="postcode" type="text">
                         </div>
 
@@ -59,7 +68,7 @@
 
                 </div>
 
-                <button class="margin-bottom-0 margin-top-3 button" type="button">Continue</button>
+                <button class="margin-bottom-0 button" type="button">Continue</button>
 
             </form>
 
@@ -68,39 +77,40 @@
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        var buildstreet = $("input[name=building-street]").val();
-        var towncity = $("input[name=town-city]").val();
-        var postcode = $("input[name=postcode]").val();
-        var validInput = true;
+    function validate() {
+
+        validInput = true;
+
+        hideErrors();
+
+        var buildstreet = $('input[name=building-street]').val();
+        var towncity = $('input[name=town-city]').val();
+        var post = $('input[name=postcode]').val();
 
         if (!buildstreet) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.building-street").css("display", "block");
-            $("input[name=building-street]").closest(".form-group").addClass("form-group-error");
+            showErrors('#buildingstreet', '.error-message.a');
         }
 
         if (!towncity) {
-            validInput = false;
-            $(".error-summary").css("display", "block");
-            $(".error-message.town-city").css("display", "block");
-            $("input[name=town-city]").closest(".form-group").addClass("form-group-error");
+            showErrors('#towncity', '.error-message.b');
         }
 
-        if (!postcode) {
-            validInput = false;
-            $(".error-summary").css("display", "block");
-            $(".error-message.postcode").css("display", "block");
-            $("input[name=postcode]").closest(".form-group").addClass("form-group-error");
+        if (!post) {
+            showErrors('#postcode', '.error-message.c');
         }
 
         if (validInput) {
-            go("/create/email-address-individual");
+            member.buildingstreet = buildstreet;
+            member.townorcity = towncity;
+            member.postcode = post;
+            go('/create/confirm-address');
         }
-    })
+
+    }
 </script>
+
 
 {% endblock %}

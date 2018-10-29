@@ -9,16 +9,16 @@
     <div class="grid-row">
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
-                <p>No address details have been entered</p>
+                <p>No address details have been provided</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#scp-building-name">Enter your building name or number</a></li>
-                    <li><a href="#scp-postcode">Enter your postcode</a></li>
+                    <li class="error-message a"><a href="#scp-building-name">Enter your building name or number</a></li>
+                    <li class="error-message b"><a href="#scp-postcode">Enter your postcode</a></li>
 
                 </ul>
 
@@ -31,19 +31,19 @@
 
                     <fieldset class="minus-margin-bottom-4">
 
-                        <div class="form-group">
-                            <label class="form-label" for="scp-building-name"><strong class="bold-small">Building name or number</strong></label>
+                        <div class="form-group" id="buildname">
+                            <label class="form-label-bold" for="build-name">Building name or number</label>
 
-                            <span class="error-message scp-building-name">Enter your building name or number</span>
+                            <span class="error-message a">Enter your building name or number</span>
 
-                            <input class="form-control" id="scp-building-name" name="scp-building-name" type="text">
+                            <input class="form-control" id="build-name" name="build-name" type="text">
                         </div>
 
-                        <div class="form-group">
-                            <label class="form-label" for="scp-postcode"><strong class="bold-small">Postcode</strong></label>
-                            <span class="error-message scp-postcode">Enter your postcode</span>
+                        <div class="form-group" id="postcode">
+                            <label class="form-label-bold" for="spostcode">Postcode</label>
+                            <span class="error-message b">Enter your postcode</span>
 
-                            <input class="form-control" id="scp-postcode" name="scp-postcode" type="text">
+                            <input class="form-control" id="postcode" name="postcode" type="text">
                         </div>
 
                     </fieldset>
@@ -60,31 +60,34 @@
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        var buildname = $("input[name=scp-building-name]").val();
-        var postcode = $("input[name=scp-postcode]").val();
-        var validInput = true;
+    function validate() {
 
-        if (!buildname) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.scp-building-name").css("display", "block");
-            $("input[name=scp-building-name]").closest(".form-group").addClass("form-group-error");
+        validInput = true;
+
+        hideErrors();
+
+        var nameno = $('input[name=build-name]').val();
+        var post = $('input[name=postcode]').val();
+
+        if (!nameno) {
+            showErrors('#buildname', '.error-message.a');
         }
 
-        if (!postcode) {
-            validInput = false;
-            $(".error-summary").css("display", "block");
-            $(".error-message.scp-postcode").css("display", "block");
-            $("input[name=scp-postcode]").closest(".form-group").addClass("form-group-error");
+        if (!post) {
+            showErrors('#postcode', '.error-message.b');
         }
 
         if (validInput) {
-            go("/create/select-address");
+            member.buildingnamenumber = nameno;
+            member.postcode = post;
+            go('/create/select-address');
         }
-    })
+
+    }
 </script>
+
 
 {% endblock %}

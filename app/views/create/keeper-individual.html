@@ -12,15 +12,15 @@
 
             <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
-                <p>No name details have been entered</p>
+                <p>No name details have been provided</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#select-box">Enter your title</a></li>
-                    <li><a href="#first-name">Enter your first names</a></li>
-                    <li><a href="#last-name">Enter your last name</a></li>
+                    <li class="error-message a"><a href="#">Enter your title</a></li>
+                    <li class="error-message b"><a href="#">Enter your first names</a></li>
+                    <li class="error-message c"><a href="#l">Enter your last name</a></li>
 
                 </ul>
 
@@ -32,11 +32,14 @@
 
             <form>
                 <div class="form-group">
+                    <fieldset>
 
-                    <div class="margin-bottom-4 form-group">
-                        <label class="form-label"><strong class="bold-small">Title</strong><span class="error-message select-box">Enter your title</span></label>
+                        <div class="margin-bottom-4 form-group" id="select-title">
+                            <label class="form-label-bold">Title</label>
+                            
+                            <span class="error-message a">Enter your title</span>
 
-                        <select class="form-control-25 form-control" id="select-box" name="select-box">
+                            <select class="form-control-25 form-control" id="select-box" name="select-box">
                                 <option></option>
                                 <option value="Mr">Mr</option>
                                 <option value="Mrs">Mrs</option>
@@ -45,32 +48,36 @@
                                 <option value="Other">Other</option>
                             </select>
 
-                        <div class="margin-top-2 panel panel-border-narrow" id="other">
-                            <label class="form-label" for="nationalities-other-country">Other title</label>
-                            <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
+                            <div class="margin-top-2 panel panel-border-narrow" id="other">
+                                <label class="form-label" for="nationalities-other-country">Other title</label>
+                                <input class="form-control" type="text" id="nationalities-other-country" name="nationalities-other-country">
+                            </div>
                         </div>
-                    </div>
 
 
 
-                    <div class="margin-bottom-4 margin-top-3 form-group">
+                        <div class="margin-bottom-4 margin-top-3 form-group" id="first-name">
 
-                        <label class="form-label" for="first-name"><strong class="bold-small">First names</strong><span class="error-message first-name">Enter your first names</span></label>
+                            <label class="form-label-bold" for="first-name">First names</label>
+                            
+                            <span class="error-message b">Enter your first names</span>
 
-                        <input class="form-control-66 form-control" id="first-name" name="first-name" type="text">
-                    </div>
+                            <input class="form-control-66 form-control" id="firs-tname" name="first-name" type="text">
+                        </div>
 
-                    <div class="margin-bottom-2 form-group">
+                        <div class="margin-bottom-2 form-group" id="last-name">
 
 
-                        <label class="form-label" for="last-name"><strong class="bold-small">Last name</strong><span class="error-message last-name">Enter your last name</span></label>
+                            <label class="form-label-bold" for="last-name">Last name</label>
+                                
+                                <span class="error-message c">Enter your last name</span>
 
-                        <input class="form-control-66 form-control" id="last-name" name="last-name" type="text">
-                    </div>
-
-                    <button class="margin-bottom-0 margin-top-3 button" type="button">Continue</button>
-
+                            <input class="form-control-66 form-control" id="last-name" name="last-name" type="text">
+                        </div>
+                    </fieldset>
                 </div>
+                
+                <button class="margin-bottom-0 margin-top-3 button" type="button">Continue</button>
 
             </form>
         </div>
@@ -79,7 +86,6 @@
 </main>
 
 <script>
-    
     $('select').change(function() {
         var title = $('#select-box option:selected').val();
 
@@ -93,46 +99,40 @@
 
     });
 
-    $(".button").click(function() {
+    $('.button').click(validate);
 
-        var title = $('select').val();
-        var firstname = $("input[name=first-name]").val();
-        var lastname = $("input[name=last-name]").val();
+    function validate() {
 
-        var validInput = true;
+        validInput = true;
+
+        hideErrors();
+
+        var title = $('input[name=select-title]').val();
+        var firstname = $('input[name=first-name]').val();
+        var lastname = $('input[name=last-name]').val();
+
 
         if (!title) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.select-box").css("display", "block");
-            $('select').closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
-
-        }
+            showErrors('#select-title', '.error-message.a');
+        }  
+        
         if (!firstname) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.first-name").css("display", "block");
-            $("input[name=first-name]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
+            showErrors('#first-name', '.error-message.b');
+        }
+        
+        if (!lastname) {
+            showErrors('#last-name', '.error-message.c');
         }
 
-        if (!lastname) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.last-name").css("display", "block");
-            $("input[name=last-name]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
-        }
 
         if (validInput) {
-            go("/create/address");
+            member.title = title;
+            member.firstname = firstname;
+            member.lastname = lastname;
+            go('/create/address');
         }
-    })
-    
+
+    }
 </script>
 
 {% endblock %}

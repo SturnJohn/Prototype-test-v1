@@ -11,15 +11,15 @@
         </div>
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
-                <p>You have not eneterd a recovery word</p>
+                <p>You have not provided a recovery word</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#scp-recovery-word">Enter your recovery word</a></li>
+                    <li class="error-message a"><a href="#">Enter your recovery word</a></li>
 
                 </ul>
 
@@ -37,27 +37,20 @@
             <form>
                 <div class="form-group">
 
-                  
+                    <fieldset>
 
-                        <div class="form-group">
+                            <div class="margin-bottom-2 form-group" id="recovery">
+                                <label class="form-label-bold" for="recovery-word">Recovery word</label>      
+                                
+                                    <span class="error-message a">Enter your recovery word</span>
+                                <input class="form-control-33 margin-top-0 form-control" id="recovery-word" name="recovery-word" type="recovery-word">
+                            </div>  
 
-                            <div class="margin-bottom-2 form-group">
-                                <label class="form-label" for="recovery-word">
-                                    <strong class="bold-small">Recovery word</strong>               
-                                    <span class="error-message scp-recovery-word">Enter your recovery word</span></label>
-                                <input class="form-control-33 margin-top-0 form-control" id="scp-recovery-word" name="scp-recovery-word" type="recovery-word">
-                            </div>
-                        </div>
-
-                  
+                </fieldset>
 
                 </div>
 
-                <div class="form-group">
-
-                </div>
-
-                <button class="margin-top-3 button" type="button">Continue</button>
+                <button class="margin-top-1 button" type="button">Continue</button>
                 <p class="margin-bottom-0"><a href="#">Get help</a></p>
 
             </form>
@@ -66,25 +59,29 @@
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var recoveryword = $("input[name=scp-recovery-word]").val();
-        var validInput = true;
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        if (!recoveryword) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.scp-recovery-word").css("display", "block");
-            $("input[name=scp-recovery-word]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
+    function validate() {
+
+        validInput = true;
+
+        hideErrors();
+
+        var recovery = $('input[name=recovery-word]').val();
+
+        if (!recovery) {
+            showErrors('#recovery', '.error-message.a');
         }
+
 
         if (validInput) {
-            go("/create/scp-user-id");
+            member.recoveryword = recovery;
+            go('/create/scp-user-id');
         }
-    })
+
+    }
 </script>
 
 

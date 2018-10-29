@@ -10,36 +10,46 @@
         <div class="column-two-thirds">
             <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
-                <p>No address details have been entered</p>
+                <p>No address details have been provided</p>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#building-name-no">Enter your building name or number</a></li>
-                    <li><a href="#postcode">Enter your postcode</a></li>
+                    <li class="error-message a"><a href="#building-name-no">Enter your building name or number</a></li>
+                    <li class="error-message b"><a href="#postcode">Enter your postcode</a></li>
 
                 </ul>
 
             </div>
-            
+
             <h1 class="h1-large heading-large">Find your company address</h1>
-            
+
             <form>
                 <div class="form-group">
+                    <fieldset>
 
-                    <div class="margin-bottom-4 form-group">
+                        <div class="margin-bottom-4 form-group" id="compbuildname">
+
+                            <label class="form-label-bold" for="comp-build-name">Building name or number</label>
+                            
+                            <span class="error-message a">Enter your building name or number</span>
+                            
+                            <input class="form-control-33 form-control" id="compbuildname" name="comp-build-name" type="building-name">
+                        </div>
+
+                        <div class="margin-bottom-4 form-group" id="postcode">
+
+                            <label class="form-label-bold" for="postcode">Postcode</label>
+                            
+                            <span class="error-message b">Enter your postcode</span>
+                            
+                            <input class="form-control-33 form-control" id="postcode" name="postcode" type="postcode">
+
+                        </div>
                         
-                        <label class="margin-top-1 form-label" for="building-name-no"><strong class="bold-small">Building name or number</strong><span class="error-message building-name-no">Enter your building name or number</span></label>
-                        <input class="form-control-33 form-control" id="building-name-no" name="building-name-no" type="building-name">
-                    </div>
+                    </fieldset>
                     
-                    <div class="margin-bottom-4 form-group">
-    
-                        <label class="form-label" for="postcode"><strong class="bold-small">Postcode</strong><span class="error-message postcode">Enter your postcode</span></label><input class="form-control-33 form-control" id="postcode" name="postcode" type="postcode">
-                        
-                    </div>
-
                     <button class="margin-bottom-0 margin-top-3 button" type="button">Find UK address</button>
 
                 </div>
@@ -49,37 +59,35 @@
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var buildnameno = $("input[name=building-name-no]").val();
-        var postcode = $("input[name=postcode]").val();
-        var validInput = true;
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        if (!buildnameno) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.building-name-no").css("display", "block");
-            $("input[name=building-name-no]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
-        }
-        
-        if (!postcode) {
-             validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.postcode").css("display", "block");
-            $("input[name=postcode]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").addClass("form-control-error");
-            $('body').scrollTop();
+    function validate() {
+
+        validInput = true;
+
+        hideErrors();
+
+        var compnameno = $('input[name=comp-build-name]').val();
+        var post = $('input[name=postcode]').val();
+
+        if (!compnameno) {
+            showErrors('#compbuildname', '.error-message.a');
         }
 
+        if (!post) {
+            showErrors('#postcode', '.error-message.b');
+        }
 
         if (validInput) {
-            go("/create/select-address-company");
+            member.companybuildingnamenumber = compnameno;
+            member.postcode = post;
+            go('/create/select-address-company');
         }
-    })
-    
+
+    }
 </script>
+
 
 {% endblock %}

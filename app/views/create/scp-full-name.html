@@ -16,9 +16,9 @@
 
             <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">There was a problem</h2>
 
-                <p>The User ID or Password has been typed incorrectly</p>
+                <p>Your full name has not been provided</p>
 
                 <ul class="error-summary-list">
 
@@ -35,15 +35,15 @@
 
                     <fieldset class="minus-margin-bottom-4">
 
-                        <div class="form-group">
+                        <div class="form-group" id="fullname">
 
                             <div class="form-group">
-                                <label class="margin-top-1 form-label" for="scp-full-name">
-                                    <strong class="bold-small">Full name</strong>
+                                <label class="margin-top-1 form-label" for="full-name"><strong class="bold-small">Full name</strong></label>
+                                
                                     
-                                    <span class="error-message scp-full-name">Enter your full name</span>
-                                </label>
-                                <input class="form-control" id="scp-full-name" name="scp-full-name" type="full-name">
+                                    <span class="error-message a">Enter your full name</span>
+                                
+                                <input class="form-control" id="full-name" name="full-name" type="full-name">
                             </div>
                         </div>
 
@@ -63,25 +63,30 @@
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var fullname = $("input[name=scp-full-name]").val();
-        var validInput = true;
+<script type="text/javascript">
+    $('.button').click(validate);
+
+    function validate() {
+
+        validInput = true;
+
+        hideErrors();
+
+        var fullname = $('input[name=full-name]').val();
 
         if (!fullname) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message.scp-full-name").css("display", "block");
-            $("input[name=scp-full-name]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
+            showErrors('#fullname', '.error-message.a');
         }
 
         if (validInput) {
-            go("/create/scp-password");
+            member.fullname = userid;
+            //            member.password = pass;
+            go('/create/scp-password');
         }
-    })
+
+    }
 </script>
+
 
 {% endblock %}

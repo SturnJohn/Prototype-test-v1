@@ -8,30 +8,110 @@
     <a href="address" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
+
+                <p>No address details have been provided</p>
+
+                <ul class="error-summary-list">
+
+                    <li class="error-message a"><a href="#">Enter your building and street</a></li>
+                    <li class="error-message b"><a href="#">Enter your town or city</a></li>
+                    <li class="error-message c"><a href="#">Enter your postcode</a></li>
+
+                </ul>
+
+            </div>
+
+
+
             <h1 class="h1-large heading-large">Enter your company address</h1>
 
-            <div class="form-group">
-                <label class="form-label" for="first-name-2"><strong class="bold-small">Building and street</strong></label>
-                <input class="margin-bottom-3 form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
-                <input class="form-control-66 form-control" id="first-name-2" name="first-name-2" type="text">
-            </div>
-            <div class="form-group">
-                <label class="form-label" for="last-name-2"><strong class="bold-small">Town or city</strong></label>
-                <input class="form-control-33 form-control" id="last-name-2" name="last-name-2" type="text">
-            </div>
-            <div class="margin-bottom-2 form-group">
-                <label class="form-label" for="last-name-2"><strong class="bold-small">Postcode</strong></label>
-                <input class="form-control-33 form-control" id="last-name-2" name="last-name-2" type="text">
-            </div>
+            <form>
+                <div class="form-group">
+
+                    <fieldset>
+
+                        <div class="form-group margin-top-1" id="buildingstreet">
+
+                            <label class="margin-bottom-1 form-label-bold" for="building-street">Building and street</label>
+
+                            <span class="error-message a">Enter your building and street</span>
+
+                            <input class="margin-bottom-2 form-control-66 form-control" id="buildingstreet" name="building-street" type="text">
+
+                            <input class="form-control-66 form-control" id="buildingstreet" name="building-street" type="text">
+
+                        </div>
+
+
+                        <div class="form-group" id="towncity">
+
+                            <label class="form-label-bold" for="town-city">Town or city</label>
+
+                            <span class="error-message b">Enter your town or city</span>
+
+                            <input class="form-control-33 form-control" id="towncity" name="town-city" type="text">
+                        </div>
+
+                        <div class="form-group margin-bottom-0" id="postcode">
+                            <label class="form-label-bold" for="last-name-2">Postcode</label>
+
+                            <span class="error-message c">Enter your postcode</span>
+
+                            <input class="form-control-33 form-control" id="postcode" name="postcode" type="text">
+                        </div>
+
+                    </fieldset>
+
+                </div>
+
+                <button class="margin-bottom-0 button" type="button">Continue</button>
+
+            </form>
+
         </div>
+
     </div>
-    <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
 </main>
 
-<script>
-$(".button").click( function(){
-    go("/create/email-address")
-})
+
+<script type="text/javascript">
+    $('.button').click(validate);
+
+    function validate() {
+
+        validInput = true;
+
+        hideErrors();
+
+        var buildstreet = $('input[name=building-street]').val();
+        var towncity = $('input[name=town-city]').val();
+        var post = $('input[name=postcode]').val();
+
+        if (!buildstreet) {
+            showErrors('#buildingstreet', '.error-message.a');
+        }
+
+        if (!towncity) {
+            showErrors('#towncity', '.error-message.b');
+        }
+
+        if (!post) {
+            showErrors('#postcode', '.error-message.c');
+        }
+
+        if (validInput) {
+            member.buildingstreet = buildstreet;
+            member.townorcity = towncity;
+            member.postcode = post;
+            go('/create/confirm-address-company');
+        }
+
+    }
 </script>
+
 
 {% endblock %}

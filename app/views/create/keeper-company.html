@@ -11,9 +11,9 @@
 
             <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
-                <p>No company name has been entered</p>
+                <p>No company name has been provided</p>
 
                 <ul class="error-summary-list">
 
@@ -26,52 +26,56 @@
 
 
             <form>
-                <div class="form-group">
 
-                    <h1 class="h1-large heading-large">What is the name of your company?</h1>
+                <fieldset>
 
-                    <fieldset>
+                    <div class="form-group" id="companyname">
 
-                        <label class="form-label" for="company-name">
-                            <span class="error-message minus-margin-top-3">Enter your company name</span></label>
-                        
-                        <input class="form-control form-control-66" id="company-name" name="company-name" type="company-name">
+                        <h1 class="h1-large heading-large">What is the name of your company?</h1>
 
-                    </fieldset>
+                        <span class="error-message a minus-margin-top-3">Enter your company name</span>
 
-                </div>
+                        <input class="form-control form-control-66" id="companyname" name="company-name" type="company-name">
+                    </div>
+
+                </fieldset>
+
+
 
                 <button class="margin-top-3 button" type="button">Sign-in</button>
 
             </form>
 
-
-
-
         </div>
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var compname = $("input[name=company-name]").val();
-        var validInput = true;
+
+<script type="text/javascript">
+    $('.button').click(validate);
+
+    function validate() {
+
+        validInput = true;
+
+        hideErrors();
+
+        var compname = $('input[name=user-id]').val();
 
         if (!compname) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $("fieldset").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").first().addClass("form-control-error");
-            $('body').scrollTop();
+            showErrors('#companyname', '.error-message.a');
         }
 
         if (validInput) {
-            go("/create/company-address");
+            member.companyname = compname;
+            go('/create/company-address');
         }
-    })
+
+    }
 </script>
+
+
 
 
 {% endblock %}
