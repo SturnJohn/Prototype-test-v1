@@ -8,127 +8,96 @@
     <a href="/index" class="link-back">Back</a>
     <div class="grid-row">
         <div class="column-two-thirds">
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured!</h2>
+
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
+
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
                 <p>No option has been selected for trailer record</p>
 
                 <ul class="error-summary-list">
-                    <li><a href="#example-personal-details">Select an option of yes or no</a></li>
+
+                    <li class="error-message a"><a href="#example-personal-details">No option has been selected for Yes or No</a></li>
                 </ul>
 
             </div>
 
-            <h1 class="h1-large heading-large">Do you have a trailer record?</h1>
-            <details>
-                <summary><span class="summary">What is a trailer record?</span></summary>
-                <div class="panel panel-border-narrow">
-                    <p>A trailer record is where you can register your trailers, manage and update them.</p>
-                </div>
-            </details>
-            <div class="margin-top-3">
-                <form>
-                    <div class="form-group">
-                        <fieldset class="inline">
 
-                            <legend id="example-personal-details"><span class="error-message">Select an option of yes or no</span></legend>
 
-                            <div class="multiple-choice">
-                                <input id="radio-group-1" type="radio" name="radio-group" value="Yes">
-                                <label for="radio-group-1">Yes</label>
-                            </div>
+            <fieldset id="trailerrecord">
 
-                            <div class="multiple-choice">
-                                <input id="radio-group-2" type="radio" name="radio-group" value="No">
-                                <label for="radio-group-2">No</label>
-                            </div>
+                <legend>
+                    <h1 class="h1-large heading-large">Do you have a trailer record?</h1>
+                </legend>
 
-                        </fieldset>
+                <details>
+                    <summary class="summary">What is a trailer record?</summary>
+
+                    <div class="panel panel-border-narrow">
+                        <p>A trailer record is where you can register your trailers, manage and update them.</p>
                     </div>
-                    <input class="button margin-bottom-0 margin-top-3" type="button" value="Continue">
 
-                </form>
+                </details>
 
-            </div>
+
+                <div class="margin-top-3 margin-bottom-2 inline" id="trailerrecord">
+
+                    <span class="error-message a minus-margin-top-3">Select an option for Yes or No</span>
+
+                    <div class="multiple-choice">
+                        <input id="radio-group-1" type="radio" name="trailer-record" value="Yes">
+                        <label for="radio-group-1">Yes</label>
+                    </div>
+
+                    <div class="multiple-choice">
+                        <input id="radio-group-2" type="radio" name="trailer-record" value="No">
+                        <label for="radio-group-2">No</label>
+                    </div>
+                </div>
+
+            </fieldset>
+
+
+
+            <button class="margin-bottom-0 button" type="button">Continue</button>
 
         </div>
+
+
     </div>
+
 </main>
 
 
 <script type="text/javascript">
-    // Run validation script
     $('.button').click(validate);
 
 
-    // Validation script
     function validate() {
-        var value = $('input[name=radio-group]:checked').val();         // Store value from input field as "value"
 
-        if (value == 'Yes') {
-            next();
-            
-        } else if (value == 'No') {
-            next();
-            
-        } else {
+        validInput = true;
 
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
+        hideErrors();
 
+        var trailerrecord = $('input[name=trailer-record]:checked').val();
+
+        if (!trailerrecord) {
+            showErrors('#trailerrecord', '.error-message.a');
         }
 
-        function next() {
-            
-              if (member === undefined) {
-                member = {};
-            }
-            
-            member.record = value;
-            
+        if (validInput) {
+            member.trailerrecord = trailerrecord;
+
             if (value == 'Yes') {
                 go('/create/scp-sign-in');
-                
+
             } else if (value == 'No') {
                 go('/create/over-750');
             }
         }
     }
-    
 </script>
-
-
-
-
-
-<!--
-<script>
-    $(".button").click(function() {
-
-                var input = $("input[name=radio-group]:checked").val();
-                var validInput = true;
-
-                if (!input) {
-                    validInput = false;
-                    
-                } else {
-                    if (input == "Yes") {
-                        go("/create/scp-sign-in");
-
-                    } else {
-                        if (input == "No") {
-                            go("/create/over-750");
-                        }
-                    }
-
-        }
-        })
-
-</script>
--->
 
 
 {% endblock %}
