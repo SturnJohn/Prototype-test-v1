@@ -10,10 +10,9 @@
     <div class="grid-row">
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
-                    An error has occured! </h2>
+                     <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
                 <p>No option has been selected for comercial use</p>
 
@@ -24,70 +23,86 @@
             </div>
 
 
-            <h1 class="margin-bottom-1 h1-large heading-large">Will any of these trailers be used commercially?</h1>
-            <details>
-                <summary><span class="summary">What do we mean by commercially?</span></summary>
-                <div class="panel panel-border-narrow">
-                    <p>A commercial trailer is a trailer used for the transport of goods or passengers’ belongings for commercial purposes, such as transport for hire and reward or own-account transport, or for other professional purposes.</p>
-                </div>
-            </details>
+            <div class="form-group" id="commercially">
 
 
-            <div class="margin-top-2">
-
-                <form>
-                    <div class="form-group">
-                        <fieldset class="inline">
-                            <legend id="example-user-id">
-                                <span class="error-message">Select an option of yes or no</span>
-                            </legend>
+                <fieldset>
 
 
-                            <div class="multiple-choice">
-                                <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                                <label for="radio-inline-1">Yes</label>
-                            </div>
-                            <div class="multiple-choice">
-                                <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                                <label for="radio-inline-2">No</label>
-                            </div>
-                        </fieldset>
+                    <legend>
+                        <h1 class="margin-bottom-1 h1-large heading-large">Will any of these trailers be used commercially?</h1>
+                    </legend>
+
+                    <details>
+                        <summary class="summary">What do we mean by commercially?</summary>
+
+                        <div class="margin-bottom-2 panel panel-border-narrow">
+                            <p>A commercial trailer is a trailer used for the transport of goods or passengers’ belongings for commercial purposes, such as transport for hire and reward or own-account transport, or for other professional purposes.</p>
+                        </div>
+
+                    </details>
+
+
+                    <div class="margin-top-3 inline">
+
+                        <span class="error-message a minus-margin-top-2">Select an option for Yes or No</span>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-1" type="radio" name="used-commercially" value="Yes">
+                            <label for="radio-group-1">Yes</label>
+                        </div>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-2" type="radio" name="used-commercially" value="No">
+                            <label for="radio-group-2">No</label>
+                        </div>
                     </div>
 
-                </form>
+                </fieldset>
+
             </div>
 
-            <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
+            <button class="margin-bottom-0 button" type="button">Continue</button>
+
         </div>
+
+
     </div>
+
 </main>
 
 
-<script>
-    $(".button").click(function() {
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        var input = $("input[name=radio-inline-group]:checked").val();
-        var validInput = true;
 
-        if (!input) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
-        } else {
-            if (input == "Yes") {
-                go("/create/behalf-of-company");
+    function validate() {
 
-            } else {
-                if (input == "No") {
-                    go("/create/vienna-convention-no");
-                }
-            }
+        validInput = true;
 
+        hideErrors();
+
+        var value = $('input[name=used-commercially]:checked').val();
+
+        if (!value) {
+            showErrors('#commercially', '.error-message.a');
         }
-    })
+
+        if (value) {
+            member.commercially = value;
+
+            if (value == 'Yes') {
+                go('/create/behalf-of-company');
+
+            } else if (value == 'No') {
+                go('/create/vienna-convention-no');
+            }
+        }
+    }
 </script>
+
+
+
 
 
 {% endblock %}

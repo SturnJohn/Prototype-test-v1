@@ -18,47 +18,50 @@
 
                 <ul class="error-summary-list">
 
-                    <li class="error-message a"><a href="#example-personal-details">No option has been selected for Yes or No</a></li>
+                    <li><a href="#example-personal-details">No option has been selected for Yes or No</a></li>
                 </ul>
 
             </div>
 
+            <div class="form-group" id="trailerrecord">
 
 
-            <fieldset id="trailerrecord">
+                <fieldset>
 
-                <legend>
-                    <h1 class="h1-large heading-large">Do you have a trailer record?</h1>
-                </legend>
 
-                <details>
-                    <summary class="summary">What is a trailer record?</summary>
 
-                    <div class="panel panel-border-narrow">
-                        <p>A trailer record is where you can register your trailers, manage and update them.</p>
+                    <legend>
+                        <h1 class="margin-bottom-1 h1-large heading-large">Do you have a trailer record?</h1>
+                    </legend>
+
+                    <details>
+                        <summary class="summary">What is a trailer record?</summary>
+
+                        <div class="margin-bottom-2 panel panel-border-narrow">
+                            <p>A trailer record is where you can register your trailers, manage and update them.</p>
+                        </div>
+
+                    </details>
+
+
+                    <div class="margin-top-3 inline">
+
+                        <span class="error-message a minus-margin-top-2">Select an option for Yes or No</span>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-1" type="radio" name="trailer-record" value="Yes">
+                            <label for="radio-group-1">Yes</label>
+                        </div>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-2" type="radio" name="trailer-record" value="No">
+                            <label for="radio-group-2">No</label>
+                        </div>
                     </div>
 
-                </details>
+                </fieldset>
 
-
-                <div class="margin-top-3 margin-bottom-2 inline" id="trailerrecord">
-
-                    <span class="error-message a minus-margin-top-3">Select an option for Yes or No</span>
-
-                    <div class="multiple-choice">
-                        <input id="radio-group-1" type="radio" name="trailer-record" value="Yes">
-                        <label for="radio-group-1">Yes</label>
-                    </div>
-
-                    <div class="multiple-choice">
-                        <input id="radio-group-2" type="radio" name="trailer-record" value="No">
-                        <label for="radio-group-2">No</label>
-                    </div>
-                </div>
-
-            </fieldset>
-
-
+            </div>
 
             <button class="margin-bottom-0 button" type="button">Continue</button>
 
@@ -80,14 +83,14 @@
 
         hideErrors();
 
-        var trailerrecord = $('input[name=trailer-record]:checked').val();
+        var value = $('input[name=trailer-record]:checked').val();
 
-        if (!trailerrecord) {
+        if (!value) {
             showErrors('#trailerrecord', '.error-message.a');
         }
 
-        if (validInput) {
-            member.trailerrecord = trailerrecord;
+        if (value) {
+            member.trailerrecord = value;
 
             if (value == 'Yes') {
                 go('/create/scp-sign-in');

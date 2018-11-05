@@ -10,9 +10,9 @@
     <div class="grid-row">
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+               <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
                 <p>No option has been selected for outside of the UK</p>
 
@@ -23,66 +23,87 @@
                 </ul>
 
             </div>
+            
 
-            <h1 class="h1-large heading-large">Will any of these trailers be used outside of the UK?</h1>
+            <div class="form-group" id="outsideuk">
 
-            <div class="margin-top-2">
 
-                <form>
-                    <div class="form-group">
-                        <fieldset class="inline">
-                            <legend id="example-user-id">
-                                <span class="error-message">Select an option of yes or no</span>
-                            </legend>
+                <fieldset>
 
-                    
-                                    <div class="multiple-choice">
-                                        <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                                        <label for="radio-inline-1">Yes</label>
-                                    </div>
-                                    <div class="multiple-choice">
-                                        <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                                        <label for="radio-inline-2">No</label>
-                                    </div>
-                                </fieldset>
-                            </div>
-                    
-                
-                </form>
+
+                    <legend>
+                        <h1 class="margin-bottom-1 h1-large heading-large">Will any of these trailers be used outside of the UK?</h1>
+                    </legend>
+
+                    <details>
+                        <summary class="summary">What is a trailer record?</summary>
+
+                        <div class="margin-bottom-2 panel panel-border-narrow">
+                            <p>A trailer record is where you can register your trailers, manage and update them.</p>
+                        </div>
+
+                    </details>
+
+
+                    <div class="margin-top-3 inline">
+
+                        <span class="error-message a minus-margin-top-2">Select an option for Yes or No</span>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-1" type="radio" name="outside-uk" value="Yes">
+                            <label for="radio-group-1">Yes</label>
+                        </div>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-2" type="radio" name="outside-uk" value="No">
+                            <label for="radio-group-2">No</label>
+                        </div>
+                    </div>
+
+                </fieldset>
+
             </div>
 
+            <button class="margin-bottom-0 button" type="button">Continue</button>
 
-            <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
         </div>
+
+
     </div>
+
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var input = $("input[name=radio-inline-group]:checked").val();
-        var validInput = true;
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        if (!input) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
-        } else {
-            if (input == "Yes") {
-                go("/create/vienna-convention-part-1");
 
-            } else {
-                if (input == "No") {
-                    go("/create/outside-uk-no");
-                }
-            }
+    function validate() {
 
+        validInput = true;
+
+        hideErrors();
+
+        var value = $('input[name=outside-uk]:checked').val();
+
+        if (!value) {
+            showErrors('#outsideuk', '.error-message.a');
         }
-    })
 
+        if (value) {
+            member.outsideuk = value;
+
+            if (value == 'Yes') {
+                go('/create/vienna-convention-part-1');
+
+            } else if (value == 'No') {
+                go('/create/outside-uk-no');
+            }
+        }
+    }
 </script>
+
+
 
 
 {% endblock %}

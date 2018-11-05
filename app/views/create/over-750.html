@@ -1,17 +1,5 @@
 {% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
 
-<style>
-    .error-summary {
-        display: none;
-    }
-
-    .error-message {
-        display: none;
-    }
-
-</style>
-
-
 <main id="content" role="main">
 
     <div class="phase-banner">
@@ -21,9 +9,9 @@
     <div class="grid-row">
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
                 <p>No option has been selected for gross weight</p>
 
@@ -35,116 +23,81 @@
 
             </div>
 
-            <h1 class="margin-bottom-1 h1-large heading-large">Do you have any trailers that weigh over 750kg in gross weight?</h1>
-
-            <details>
-                <summary><span class="summary">What is gross weight?</span></summary>
-                <div class="panel panel-border-narrow">
-                    <p>This is specified by the manufacturer and it means the maximum weight the trailer is allowed to be when fully loaded. It is the unladen weight of the trailer plus the maximum permitted payload. It is also known as the Maximum Permissible Mass.</p>
-
-                </div>
-            </details>
+            <div class="form-group" id="over750">
 
 
-            <div class="margin-top-2">
-                <form>
-                    <div class="form-group">
-                        <fieldset class="inline">
-                            <legend id="example-gross-weight">
-                                <span class="error-message">Select an option of yes or no</span>
-                            </legend>
+                <fieldset>
 
-                            <div class="multiple-choice">
-                                <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                                <label for="radio-inline-1">Yes</label>
-                            </div>
-                            <div class="multiple-choice">
-                                <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                                <label for="radio-inline-2">No</label>
-                            </div>
-                        </fieldset>
+                    <legend>
+                        <h1 class="margin-bottom-1 h1-large heading-large">Do you have any trailers that weigh over 750kg in gross weight?</h1>
+                    </legend>
+
+                    <details>
+                        <summary class="summary">What is gross weight?</summary>
+
+                        <div class="margin-bottom-2 panel panel-border-narrow">
+                            <p>This is specified by the manufacturer and it means the maximum weight the trailer is allowed to be when fully loaded. It is the unladen weight of the trailer plus the maximum permitted payload. It is also known as the Maximum Permissible Mass.</p>
+
+                        </div>
+                        
+                    </details>
+                
+
+                     <div class="margin-top-3 inline">
+
+                        <span class="error-message a minus-margin-top-2">Select an option for Yes or No</span>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-1" type="radio" name="over-750" value="Yes">
+                            <label for="radio-group-1">Yes</label>
+                        </div>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-2" type="radio" name="over-750" value="No">
+                            <label for="radio-group-2">No</label>
+                        </div>
                     </div>
-                </form>
+
+                </fieldset>
+
             </div>
 
+            <button class="margin-bottom-0 button" type="button">Continue</button>
 
-            <button class="margin-bottom-0 margin-top-2 button" type="submit">Continue</button>
         </div>
+
+
     </div>
+
 </main>
 
 <script type="text/javascript">
-    // Run validation script
     $('.button').click(validate);
 
-
-    // Validation script
     function validate() {
-        var value = $('input[name=radio-group]:checked').val();         // Store value from input field as "value"
 
-        if (value == 'Yes') {
-            next();
-            
-        } else if (value == 'No') {
-            next();
-            
-        } else {
+        validInput = true;
 
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
+        hideErrors();
 
+        var value = $('input[name=over-750]:checked').val();
+
+        if (!value) {
+            showErrors('#over750', '.error-message.a');
         }
 
-        function next() {
-            
-              if (member === undefined) {
-                member = {};
-            }
-            
-            member.record = value;
-            
+        if (value) {
+            member.over750 = value;
+
             if (value == 'Yes') {
                 go('/create/outside-uk');
-                
+
             } else if (value == 'No') {
                 go('/create/over-750-no');
             }
         }
     }
-    
 </script>
-
-<!--
-<script>
-    $(".button").click(function() {
-
-        var input = $("input[name=radio-inline-group]:checked").val();
-        var validInput = true;
-
-        if (!input) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
-        } else {
-            if (input == "Yes") {
-                go("/create/outside-uk");
-
-            } else {
-                if (input == "No") {
-                    go("/create/over-750-no");
-                }
-            }
-
-        }
-    })
-
-</script>
--->
-
 
 
 {% endblock %}

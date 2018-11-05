@@ -9,74 +9,82 @@
     <div class="grid-row">
         <div class="column-two-thirds">
 
-            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">
-                    An error has occured! </h2>
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
                 <p>No option has been selected for other countries</p>
 
                 <ul class="error-summary-list">
+
                     <li><a href="#example-personal-details">Select an option of Yes or No</a></li>
                 </ul>
 
             </div>
 
-            <h1 class="h1-large heading-large">Will you be travelling through <br>any other countries to get to <br>and from Spain?</h1>
+            <div class="form-group" id="othercountries">
 
-            <div class="margin-top-2">
 
-                <form>
-                    <div class="form-group">
-                        <fieldset class="inline">
+                <fieldset>
 
-                            <legend id="example-personal-details">
-                                <span class="error-message">Select an option of Yes or No</span>
-                            </legend>
+                    <legend>
+                        <h1 class="margin-bottom-1 h1-large heading-large">Will you be travelling through <br>any other countries to get to <br>and from Spain?</h1>
+                    </legend>
 
-                            <div class="multiple-choice">
-                                <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                                <label for="radio-inline-1">Yes</label>
-                            </div>
-                            <div class="multiple-choice">
-                                <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                                <label for="radio-inline-2">No</label>
-                            </div>
-                            
-                        </fieldset>
+
+                    <div class="margin-top-2 inline">
+
+                        <span class="error-message a minus-margin-top-2">Select an option for Yes or No</span>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-1" type="radio" name="other-countries" value="Yes">
+                            <label for="radio-group-1">Yes</label>
+                        </div>
+
+                        <div class="multiple-choice">
+                            <input id="radio-group-2" type="radio" name="other-countries" value="No">
+                            <label for="radio-group-2">No</label>
+                        </div>
                     </div>
-                </form>
-                <input class="button" type="submit" value="Continue">
+
+                </fieldset>
+
             </div>
+
+            <button class="margin-bottom-0 button" type="button">Continue</button>
         </div>
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var input = $("input[name=radio-inline-group]:checked").val();
-        var validInput = true;
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        if (!input) {
-            validInput = false;
-            $(".error-summary").css("display", "block").focus();
-            $(".error-message").css("display", "block");
-            $(".form-group").addClass("form-group-error");
-            $('body').scrollTop();
-        } else {
-            if (input == "Yes") {
-                go("/create/commercially-no");
 
-            } else {
-                if (input == "No") {
-                    go("/create/vienna-convention-no");
-                }
-            }
+    function validate() {
 
+        validInput = true;
+
+        hideErrors();
+
+        var value = $('input[name=other-countries]:checked').val();
+
+        if (!value) {
+            showErrors('#othercountries', '.error-message.a');
         }
-    })
 
+        if (value) {
+            member.othercountries = value;
+
+            if (value == 'Yes') {
+                go('/create/commercially-no');
+
+            } else if (value == 'No') {
+                go('/create/vienna-convention-no');
+            }
+        }
+    }
 </script>
+
 
 {% endblock %}
