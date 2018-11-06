@@ -28,7 +28,7 @@
                 <fieldset>
 
                     <legend>
-                        <h1 class="margin-bottom-1 h1-large heading-large">Will you be travelling through <br>any other countries to get to <br>and from Spain?</h1>
+                        <h1 class="margin-bottom-1 h1-large heading-large">Will you be travelling through <br>any other countries to get to <br>and from <span id="countries"></span>?</h1>
                     </legend>
 
 
@@ -58,6 +58,19 @@
 
 
 <script type="text/javascript">
+    
+    if (member.countries) {
+        var countries = '';
+        for (i = 0; i < member.countries.length; i++ ) {
+            if (i == member.countries.length - 1) {
+                countries += member.countries[i];
+            } else {
+                countries += member.countries[i] + ', ';
+            }
+        }
+        $('#countries').html(countries);
+    }
+    
     $('.button').click(validate);
 
 

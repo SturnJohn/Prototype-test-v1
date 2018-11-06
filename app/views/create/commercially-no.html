@@ -15,18 +15,21 @@
 
                 <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
 
-                <p>No option has been selected for trailer record</p>
 
                 <ul class="error-summary-list">
 
-                    <li class="error-message-a"><a href="#example-personal-details">No option has been selected for Yes or No</a></li>
 
-                    <li class="error-message-b"><a href="#example-personal-details">No option has been selected for Yes or No</a></li>
+                    <li class="error-message a"><a href="#example-personal-details">No option has been selected for commercial use</a></li>
+                    
+                    
+                    <li class="error-message b"><a href="#example-personal-details">No option has been selected for over 3,500kg</a></li>
+                    
+
                 </ul>
 
             </div>
 
-            <div class="form-group" id="commercially">
+            <div class="inline form-group" id="commercially">
 
                 <fieldset class="margin-bottom-0">
 
@@ -34,51 +37,67 @@
                         <h1 class="margin-bottom-1 h1-large heading-large">Will any of these trailers be used commercially?</h1>
                     </legend>
 
-                    <details>
+                    <details class="margin-bottom-2">
                         <summary class="summary">What do we mean by commercially?</summary>
 
                         <div class="margin-bottom-2 panel panel-border-narrow">
                             <p>A commercial trailer is a trailer used for the transport of goods or passengers’ belongings for commercial purposes, such as transport for hire and reward or own-account transport, or for other professional purposes.</p>
                         </div>
-
-                        <div class="margin-bottom-0 form-group">
-                            
-                            <div class="inline">
-                                
-                                 <span class="error-message a minus-margin-top-2">Select an option for Yes or No</span>
-                                
-                                <div class="multiple-choice">
-                                    <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                                    <label for="radio-inline-1">Yes</label>
-                                </div>
-                                
-                                <div class="multiple-choice" data-target="over-3500">
-                                    <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                                    <label for="radio-inline-2">No</label>
-                                </div>
-                                
-                                <div class="padding-bottom-2 margin-top-2 panel panel-border-narrow js-hidden" id="over-3500">
-                                    
-                                    <h1 class="margin-bottom-0 heading-medium">Do any of these trailers weigh over 3,500kg?</h1>
-                                    <div class="inline">
-                                        <div class="multiple-choice">
-                                            <input id="radio-inline-1" type="radio" name="radio-inline-group" value="Yes">
-                                            <label for="radio-inline-1">Yes</label>
-                                        </div>
-                                        <div class="multiple-choice">
-                                            <input id="radio-inline-2" type="radio" name="radio-inline-group" value="No">
-                                            <label for="radio-inline-2">No</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </details>
+
+
+                    <span class="error-message a minus-margin-top-2">Select an option for Yes or No</span>
+
+
+                    <div class="multiple-choice">
+                        <input id="commercial-y" type="radio" name="commercial" value="Yes">
+                        <label for="commercial-y">Yes</label>
+                    </div>
+
+
+                    <div class="multiple-choice" data-target="commercial-no">
+                        <input id="commercial-n" type="radio" name="commercial" value="No">
+                        <label for="commercial-n">No</label>
+                    </div>
+
+
+
                 </fieldset>
+
             </div>
 
 
+
+            <div class="margin-bottom-1 inline form-group" id="3500">
+
+                <fieldset>
+
+                    <div class="padding-top-0 margin-top-0 panel panel-border-narrow js-hidden" id="commercial-no">
+
+                        <h1 class="margin-bottom-2 heading-medium">Do any of these trailers weigh over 3,500kg?</h1>
+
+                        <span class="error-message b minus-margin-top-2">Select an option for Yes or No</span>
+
+                        <div class="multiple-choice">
+
+                            <input id="over-3500-y" type="radio" name="over3500" value="Yes">
+                            <label for="over-3500-y">Yes</label>
+                        </div>
+
+                        <div class="multiple-choice">
+                            <input id="over-3500-n" type="radio" name="over3500" value="No">
+                            <label for="over-3500-n">No</label>
+
+                        </div>
+                    </div>
+
+
+                </fieldset>
+
+            </div>
+
             <button class="margin-bottom-0 margin-top-3 button" type="submit">Continue</button>
+
 
         </div>
     </div>
@@ -90,60 +109,44 @@
 <script type="text/javascript">
     $('.button').click(validate);
 
-
     function validate() {
 
         validInput = true;
 
         hideErrors();
 
-        var value = $('input[name=used-commercially]:checked').val();
-        var value = $('input[name=over-3500]:checked').val();
+        var commercial = $('input[name=commercial]:checked').val();
 
-        if (!value) {
+        if (!commercial) {
             showErrors('#commercially', '.error-message.a');
         }
 
-        if (!value) {
-            showErrors('#over3500', '.error-message.b');
-        }
+        if (commercial) {
+            member.commercial = commercial;
 
-        if (value) {
-            member.commercially = value;
-            member.over3500 = value;
-
-            if (value == 'Yes') {
+            if (commercial == 'Yes') {
                 go('/create/behalf-of-company');
+            } else {
+                
+                var over3500 = $('input[name=over3500]:checked').val();
 
-            } else if (value == 'No') {
-                go('/create/commercially-exit');
+                if (!over3500) {
+                    showErrors('#3500', '.error-message.b');
+                }
+
+                if (over3500) {
+                    member.over3500 = over3500;
+
+                    if (over3500 == 'Yes') {
+                        go('/create/behalf-of-company');
+
+                    } else if (over3500 == 'No') {
+                        go('/create/commercially-exit');
+                    }
+                }
             }
         }
     }
 </script>
-
-<!--
-<script>
-    $(".button").click(function() {
-
-        var input = $('input[name = radio-inline-group]:checked').val();
-        console.log(input);
-
-
-        if (input == "Yes") {
-            go("/create/");
-
-        } else {
-            if (input == "No") {
-            go("/create/");
-
-            } else {
-                alert("select an option");
-            }
-
-        }
-    })
-</script>
--->
 
 {% endblock %}
