@@ -61,15 +61,14 @@
 
         hideErrors();
 
-        var userid = $('input[name=company-email]').val();
+        var companyemail = $('input[name=company-email]').val();
 
-        if (!userid) {
+        if (!companyemail) {
             showErrors('#companyemail', '.error-message.a');
         }
 
         if (validInput) {
-            member.userid = userid;
-            member.password = pass;
+            member.companyemail = companyemail;
             go('/create/check-your-answers-company');
         }
 

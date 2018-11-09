@@ -88,29 +88,30 @@
         hideErrors();
 
         var buildstreet = $('input[name=building-street]').val();
-        var towncity = $('input[name=town-city]').val();
-        var post = $('input[name=postcode]').val();
+        var townorcity = $('input[name=town-city]').val();
+        var postcode = $('input[name=postcode]').val();
 
         if (!buildstreet) {
             showErrors('#buildingstreet', '.error-message.a');
         }
 
-        if (!towncity) {
+        if (!townorcity) {
             showErrors('#towncity', '.error-message.b');
         }
 
-        if (!post) {
+        if (!postcode) {
             showErrors('#postcode', '.error-message.c');
-        }
 
-        if (validInput) {
-            member.buildingstreet = buildstreet;
-            member.townorcity = towncity;
-            member.postcode = post;
+        } else {
+            member.buildingstreet = buildingstreet;
+            member.townorcity = townorcity;
+            member.postcode = postcode;
+
             go('/create/confirm-address-company');
         }
 
     }
+    
 </script>
 
 

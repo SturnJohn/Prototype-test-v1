@@ -38,7 +38,7 @@
                         <div class="form-group margin-bottom-4" id="quserid">
                             <label class="form-label-bold margin-top-2" for="userid">User ID</label>
 
-                            <span class="form-hint">This could be up to 12 characters. It is sometimes known as a Govermenmt Gateway ID.</span>
+                            <span class="form-hint">This could be up to 12 characters. It is sometimes known <br>as a Govermenmt Gateway ID.</span>
 
 
                             <span class="error-message a">Enter your User ID</span>
@@ -109,7 +109,7 @@
         if (validInput) {
             member.userid = userid;
             member.password = pass;
-            go('/register/trailer-record');
+            go('/create/scp-email-address');
         }
 
     }

@@ -92,7 +92,7 @@
         hideErrors();
 
         var email = $('input[name=email]').val();
-        var check = $('multiple-choice', '#qcheckemail').val();
+        var check = $('input[name=checkemail]:checked').val();
 
         if (!email) {
             showErrors('#qemail', '.error-message.a');
@@ -103,8 +103,8 @@
         }
 
         if (validInput) {
-            member.email = userid;
-            //            member.password = pass;
+            member.email = email;
+            member.check = check;
             go('/create/scp-confirm-email');
         }
 
