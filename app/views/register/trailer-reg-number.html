@@ -7,58 +7,113 @@
     </div>
     <a href="vienna-convention-part-2" class="link-back">Back</a>
     <div class="grid-row">
+
         <div class="column-two-thirds">
-            <h1 class="h1-large heading-large">Does this trailer have a registration number?</h1>
-            
-            <p>This is not the registration number of the pulling cab or the identification number issued by DVSA known as the ‘C’ number or ministry ID number.</p>
 
-            <div class="form-group">
-                <fieldset class="inline">
-                    <div class="multiple-choice" data-target="reg-number-yes">
-                        <input id="reg-number-inline-yes" type="radio" name="reg-number" value="Yes">
-                        <label for="reg-number-inline-yes">Yes</label>
-                    </div>
-                    <div class="multiple-choice" data-target="reg-number-no">
-                            <input id="reg-number-inline-no" type="radio" name="reg-number" value="No">
-                            <label for="reg-number-inline-no">No</label>
-                        </div>
-                    <div class="panel panel-border-narrow js-hidden" id="reg-number-yes">
-                        <label class="form-label" for="reg-number"><strong class="bold-small">Registration number</strong></label>
-                        <p class="margin-bottom-1 form-hint">For example, A1234567</p>
-                        <input class="form-control" name="reg-number" type="text" id="reg-number">
-                    </div>
 
-                </fieldset>
+            <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
+
+                <h1 class="heading-medium error-summary-heading" id="error-summary-heading">There was a problem</h1>
+
+                <ul class="error-summary-list">
+
+                    <li class="error-message a"><a href="#example-personal-details">No option has been selected for Yes or No</a></li>
+
+                    <li class="error-message b"><a href="#example-personal-details">No Registration Number has been entered</a></li>
+
+                </ul>
+
             </div>
-            <button class="margin-bottom-0 margin-top-2 button" type="submit">Continue</button>
+        </div>
+
+        <div class="column-full">
+
+            <fieldset>
+                <legend>
+                    <h1 class="h1-large heading-large">Does this trailer have a registration number?
+                    </h1>
+                </legend>
+
+                <P class="minus-margin-top-1">This format is 1 letter (excluding the letter ‘C’), followed by 7 numbers.
+                </P>
+
+                <p class="minus-margin-top-1">Here is an example of a trailer registration number.
+                </p>
+
+                <div class="margin-bottom-4 trn-image">
+                </div>
+
+
+
+                <div class="form-group" id="trn">
+
+                    <span class="minus-margin-bottom-1 error-message a">Select an option for Yes or No</span>
+
+                    <div class="margin-top-2 inline">
+                        <div class="multiple-choice" data-target="trn-y">
+                            <input id="trn-yes" type="radio" name="trn" value="Yes">
+                            <label for="trn-yes">Yes</label>
+                        </div>
+
+                        <div class="inline multiple-choice">
+                            <input id="trn-no" type="radio" name="trn" value="No">
+                            <label for="trn-no">No</label>
+                        </div>
+
+                        <div class="panel panel-border-narrow js-hidden" id="trn-y">
+
+                            <span class="minus-margin-bottom-1 error-message b">Select an option for Yes or No</span>
+
+                            <label class="form-label" for="regnumber"><strong class="bold-small">Registration number</strong></label>
+
+                            <input class="form-control-25 form-control" name="reg-number" type="text" id="regnumber">
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <button class="margin-bottom-0 margin-top-2 button" type="button">Continue</button>
+
         </div>
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var input = $('input[name = reg-number]:checked').val();
-        console.log(input);
+<script type="text/javascript">
+    $('.button').click(validate);
 
+    function validate() {
 
-        if (input == "Yes") {
-            if ($("#reg-number").val()){
-                go("/register/trailer-vin");
-            } else {
-                alert("enter reg number");
+        validInput = true;
 
-            }
+        hideErrors();
+
+        var trn = $('input[name=trn]:checked').val();
+
+        if (!trn) {
+            showErrors('#trn', '.error-message.a');
 
         } else {
-            if (input == "No") {
-            go("/register/trailer-vin");
+            member.trn = trn;
 
-            } else {
-                alert("choose an option");
+            if (trn == 'No') {
+                go('/register/trailer-reg-not-found');
+//
+//                var regnumber = $('input[name=reg-number]').val();
+//
+//                if (!regnumber) {
+//                    showErrors('#regnumber', '.error-message.b');
+//                }
+//
+//                if (regnumber) {
+//                    member.regnumber = regnumber;
+//                    go('/register/trailer-vin');
+//                }
             }
         }
-    })
+    }
 </script>
+
 
 {% endblock %}

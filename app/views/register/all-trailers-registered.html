@@ -1,0 +1,73 @@
+{% extends "layout.html" %} {% block page_title %} Blank page {% endblock %} {% block content %}
+
+<script src="/public/javascripts/accordion.js"></script>
+
+
+<main id="content" role="main">
+    <div class="phase-banner">
+        <p><strong class="phase-tag">ALPHA</strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span></p>
+    </div>
+    <a href="/register/trailer-record" class="link-back">Back</a>
+    <div class="grid-row">
+        <div class="column-two-thirds">
+
+             <div class="warning-panel">
+                <h1 class="heading-large">You cannot register these trailers</h1>
+            </div>          
+
+            <table class="minus-margin-top-2">
+                <thead>
+                    <tr>
+                        <th>VIN/Chassis number</th>
+                        <th>Manufacturer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7WHLR0YJAMY137232</td>
+                        <td>Concept Trailers</td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td>7AKGU0LZLKC024966</td>
+                        <td>Dennis</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="margin-bottom-1 margin-top-4">All trailers have been removed because they’ve been registered since they were saved.</p>
+
+            <button class="margin-top- margin-bottom-3 button" type="submit">Go to trailer dashboard</button>
+
+        </div>
+
+  
+
+    </div>
+</main>
+
+<script>
+    if (
+        'addEventListener' in document &&
+        document.querySelectorAll
+    ) {
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var accordions = document.querySelectorAll('.accordion')
+
+            for (var i = accordions.length - 1; i >= 0; i--) {
+                new Accordion(accordions[i])
+            };
+
+        })
+
+    }
+
+    $(".button").click(function() {
+        go("/register/trailer-payment")
+    })
+</script>
+
+{% endblock %}

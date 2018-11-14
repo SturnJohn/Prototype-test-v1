@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="150px" height="118px" viewBox="0 0 150 118" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.3 (67297) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 9</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Register" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-9">
+            <g id="Group-8" transform="translate(75.000000, 59.000000) rotate(-360.000000) translate(-75.000000, -59.000000) translate(0.000000, 0.000000)">
+                <rect id="Rectangle-2" stroke="#005EA5" stroke-width="6" fill="#FFFFFF" x="3" y="3" width="144" height="112" rx="9.70262097"></rect>
+                <text id="A123" font-family="CharlesWrightBoldCaps, Charles Wright Bold Caps" font-size="40.75" font-weight="bold" fill="#005EA5">
+                    <tspan x="31.62" y="52">A123</tspan>
+                </text>
+                <text id="4567" font-family="CharlesWrightBoldCaps, Charles Wright Bold Caps" font-size="40.75" font-weight="bold" fill="#005EA5">
+                    <tspan x="24.785" y="94">4567</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -645,3 +645,12 @@ th.sort-z-a::after {
 .left-input {
     margin-left: 120px;
 }
+
+.trn-image {
+    width: 500px;
+    height: 120px;
+    background-image: url("/public/images/trn.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-bottom: 1em;
+}

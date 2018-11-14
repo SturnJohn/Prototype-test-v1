@@ -9,15 +9,13 @@
     <div class="grid-row">
         <div class="column-two-thirds">
             
-                <div class="error-summary" role="alert" aria-labelledby="error-summary-heading-example-1" tabindex="-1">
+                <div class="error-summary" role="alert" aria-labelledby="error-summary-heading" tabindex="-1">
 
-                <h2 class="heading-medium error-summary-heading" id="error-summary-heading-example-1">An error has occured! </h2>
-
-                <p>The checkbox has not been selected</p>
+                <h2 class="heading-medium error-summary-heading" id="error-summary-heading">An error has occured! </h2>
 
                 <ul class="error-summary-list">
 
-                    <li><a href="#scp-user-id">Select the box if you have read the declaration</a></li>
+                    <li class="error-message a"><a href="#">Select the box if you have read the declaration</a></li>
                 </ul>
 
             </div>
@@ -38,10 +36,10 @@
 
             <p>If you’re still unsure, you can <a href="/register/trailer-weights">check if you need to register your trailer</a></p>
 
-            <div class="form-group">
-                 <span class="margin-bottom-1 error-message checkbox">Select the box if you have read the declaration</span>
+            <div class="form-group" id="checkdeclaration">
+                 <span class="margin-bottom-1 error-message a">Select the box if you have read the declaration</span>
                 <div class="multiple-choice">
-                    <input id="checkbox" name="checkbox" type="checkbox" value="checkbox">
+                    <input id="checkdeclaration" name="declaration" type="checkbox" value="checkbox">
                     <label for="checkbox">I have read and understand which trailers need to be registered</label>
                        
                     </div>
@@ -57,25 +55,30 @@
     </div>
 </main>
 
-<script>
-    $(".button").click(function() {
 
-        var checked = $("input[name=checkbox]:checked").val();
-        var validInput = true;
+<script type="text/javascript">
+    $('.button').click(validate);
 
-        if (!checked) {
-            validInput = false;
-            $(".error-summary").css("display", "block");
-            $(".error-message.checkbox").css("display", "block");
-            $("input[name=checkbox]").closest(".form-group").addClass("form-group-error");
-            $(document).find("input").last().addClass("form-control-error");
-            $('body').scrollTop();
+    function validate() {
+
+        validInput = true;
+
+        hideErrors();
+
+        var declaration = $('input[name=declaration]:checked').val();
+
+        if (!declaration) {
+            showErrors('#checkdeclaration', '.error-message.a');
         }
 
         if (validInput) {
-            go("/register/trailer-weights");
+            member.declaration = declaration;
+            go('/register/trailer-weights');
         }
-    })
+
+    }
 </script>
+
+
 
 {% endblock %}
